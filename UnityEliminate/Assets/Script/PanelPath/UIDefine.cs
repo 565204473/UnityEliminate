@@ -6,6 +6,7 @@ public class UIDefine {
 
     public const string LobbyGameOpenPanel = "LobbyGameOpenPanel";
     public const string LobbyGameLobbyPanel = "LobbyGameLobbyPanel";
+    public const string LobbyGamePanel = "LobbyGamePanel";
 
 
 }

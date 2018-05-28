@@ -15,6 +15,7 @@ public class ScenesMgr : QSingleton<ScenesMgr> {
         dicScenes = new Dictionary<SceneType, Scene>();
         dicScenes[SceneType.SceneLogion] = new SceneLogin();
         dicScenes[SceneType.SceneLobby] = new SceneLobby();
+        dicScenes[SceneType.SceneGame] = new SceneGame();
     }
 
     public void OpenScene(SceneType type) {
