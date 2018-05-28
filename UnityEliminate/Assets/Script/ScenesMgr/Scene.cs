@@ -21,10 +21,4 @@ public abstract class Scene : ISyncTask {
 
         return true;
     }
-
-
-    public virtual  void SelcetScene(SceneType type) {
-
-
-    }
 }

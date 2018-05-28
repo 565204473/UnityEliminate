@@ -1,18 +1,18 @@
-﻿using System.Collections;
+﻿using QFramework;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneLobby : Scene {
 
     public override bool LoadScene() {
+        ScenesMgr.Instance.CloseScene(SceneType.SceneLogion);
+        UIMgr.OpenPanel<LobbyGameOpenPanel>(prefabName: "Resources/" + UIDefine.LobbyGameLobbyPanel);
         return base.LoadScene();
     }
 
     public override bool recycleScene() {
         return base.recycleScene();
-    }
-
-    public override void SelcetScene(SceneType type) {
-        base.SelcetScene(type);
     }
 }

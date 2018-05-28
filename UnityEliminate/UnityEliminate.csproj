@@ -888,6 +888,17 @@
     <Compile Include="Assets\QFramework\Framework\4.ScriptCollection\ParticleScaler.cs" />
     <Compile Include="Assets\QFramework\Framework\5.FrameworkConfig\QFramework.cs" />
     <Compile Include="Assets\QFramework\Framework\5.FrameworkConfig\QFrameworkSettingData.cs" />
+    <Compile Include="Assets\Script\GameInit.cs" />
+    <Compile Include="Assets\Script\PanelPath\UIDefine.cs" />
+    <Compile Include="Assets\Script\Scenes\SceneLobby.cs" />
+    <Compile Include="Assets\Script\Scenes\SceneLogin.cs" />
+    <Compile Include="Assets\Script\ScenesMgr\ISyncTask.cs" />
+    <Compile Include="Assets\Script\ScenesMgr\Scene.cs" />
+    <Compile Include="Assets\Script\ScenesMgr\ScenesMgr.cs" />
+    <Compile Include="Assets\Script\UIPanel\LobbyGameLobbyPanel.cs" />
+    <Compile Include="Assets\Script\UIPanel\LobbyGameLobbyPanelComponents.cs" />
+    <Compile Include="Assets\Script\UIPanel\LobbyGameOpenPanel.cs" />
+    <Compile Include="Assets\Script\UIPanel\LobbyGameOpenPanelComponents.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\QFramework\Framework\0.Libs\6.UniRx\ReadMe.txt" />

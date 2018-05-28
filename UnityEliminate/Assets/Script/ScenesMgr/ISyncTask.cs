@@ -8,6 +8,4 @@ public interface ISyncTask  {
 
     bool recycleScene();
 
-    void SelcetScene(SceneType type);
-
 }
