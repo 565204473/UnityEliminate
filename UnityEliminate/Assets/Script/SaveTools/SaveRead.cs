@@ -34,7 +34,8 @@ public class SaveRead : IDisposable
 
     public T Read<T>(SaveType type)
     {
-        if (type != null) {
+        if (type != null)
+        {
             return (T)type.Read(this);
         }
         return default(T);
@@ -44,6 +45,18 @@ public class SaveRead : IDisposable
     {
         SaveType expectedValue = SaveTypeMgr.GetSaveType(typeof(T));
         return this.Read<T>(expectedValue);
+    }
+
+    public object ReadInit()
+    {
+        Debug.LogError("读取数据int");
+        return 1;
+    }
+
+    public object ReadString() {
+
+        Debug.LogError("读取数据string");
+        return null;
     }
 
     public void Dispose()

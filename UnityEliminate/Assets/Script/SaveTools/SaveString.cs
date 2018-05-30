@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SaveString : SaveType {
+public sealed  class SaveString : SaveType {
 
     public SaveString() : base(typeof(string)) {
         base.key = EnumSaveTypeKey.SaveString;
     }
 
     public override object Read(SaveRead reader) {
-        Debug.Log("调用SaveRead读入string的实现");
-        return null;
+        Debug.LogError("调用SaveRead读入string的实现");
+        return reader.ReadString();
     }
 
     public override void Write(object data, Writer write) {

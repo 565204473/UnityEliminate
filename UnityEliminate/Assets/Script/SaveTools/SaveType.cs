@@ -20,6 +20,7 @@ public abstract class SaveType : ISaveType {
 
     public virtual object Read(SaveRead reader) {
 
+        Debug.LogError("This Load method is not supported on Types of " + this.type.ToString() + ". Try a self-assigning Load method instead");
         return null;
     }
 
