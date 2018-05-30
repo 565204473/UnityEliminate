@@ -7,4 +7,5 @@ public partial class LobbyGameOpenPanel {
 
     [SerializeField] public Button BtnOpen;
     [SerializeField] public Text TestTxt;
+    [SerializeField] public string sceneObjectFile = "sceneObjectsFile.txt";
 }
