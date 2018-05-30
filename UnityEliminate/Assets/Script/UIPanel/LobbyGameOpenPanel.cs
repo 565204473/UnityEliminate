@@ -29,7 +29,7 @@ public partial class LobbyGameOpenPanel : QUIBehaviour {
             ES2.Save(0.1f, "f");
             ES2.Save(false, "t");
         }
-        string des = StringExtention.FillFormat("{0}/{1}/{2}/{3}/{4}",
+        string des = StringExtention.FillFormat("{0}/{1}/{2}/{3}",
               ES2.Load<int>("123"), ES2.Load<string>("w"),
               ES2.Load<float>("f"), ES2.Load<bool>("t"));
         Debug.LogError(des);

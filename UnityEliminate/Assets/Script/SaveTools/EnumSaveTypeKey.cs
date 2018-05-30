@@ -1,7 +1,7 @@
 ﻿public enum EnumSaveTypeKey {
-
+ 
+    SaveString=1,
     SaveInt,
-    SaveString,
     SaveBool,
     SaveFolat
 }

@@ -18,7 +18,7 @@ public static class SaveToolsHelp {
         SaveSetting setting = new SaveSetting();
         using (SaveRead reader = SaveRead.Create(setting)) {
 
-            return reader.Read<T>();
+            return reader.Read<T>(setting.filenameData.tag);
         }
     }
 }

@@ -13,6 +13,8 @@ public partial class LobbyGamePanel : QUIBehaviour {
     protected override void OnShow()
     {
         base.OnShow();
+        SaveToolsHelp.Save(98, "1");
+        SaveToolsHelp.Save("123", "2");
     }
 
     protected override void OnHide()

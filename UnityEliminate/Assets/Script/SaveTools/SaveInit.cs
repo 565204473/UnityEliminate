@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SaveInit : MonoBehaviour {
+public class SaveInit : MonoBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    void Awake()
+    {
+        Init();
+    }
+
+    public static void Init()
+    {
+        SaveTypeMgr.types = new Dictionary<System.Type, SaveType>();
+        SaveTypeMgr.types[typeof(System.Int32)] = new SaveInt();
+        SaveTypeMgr.types[typeof(System.String)] = new SaveString();
+
+    }
+
 }

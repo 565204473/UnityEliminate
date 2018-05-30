@@ -6,7 +6,7 @@ using System;
 
 public static class SaveTypeMgr {
 
-    public static Dictionary<Type, SaveType> types = new Dictionary<Type, SaveType>();
+    public static Dictionary<Type, SaveType> types = null;
     private static SaveType cachedType = null;
 
     public static void AddSaveType(SaveType type) {
