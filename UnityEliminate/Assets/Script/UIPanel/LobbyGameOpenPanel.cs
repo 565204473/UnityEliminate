@@ -25,6 +25,7 @@ public partial class LobbyGameOpenPanel : QUIBehaviour {
         if (!ES2.Exists("w")) {
             Debug.LogError("不存在");
             ES2.Save(1, "123");
+
             ES2.Save("保存的是String", "w");
             ES2.Save(0.1f, "f");
             ES2.Save(false, "t");

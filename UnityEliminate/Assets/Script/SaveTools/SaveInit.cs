@@ -12,10 +12,9 @@ public class SaveInit : MonoBehaviour
 
     public static void Init()
     {
-        SaveTypeMgr.types = new Dictionary<System.Type, SaveType>();
-        SaveTypeMgr.types[typeof(System.Int32)] = new SaveInt();
-        SaveTypeMgr.types[typeof(System.String)] = new SaveString();
-
+        StoredataTypeMgr.types = new Dictionary<System.Type, StoredataType>();
+        StoredataTypeMgr.types[typeof(System.Int32)] = new SaveInt();
+        StoredataTypeMgr.types[typeof(System.String)] = new SaveString();
     }
 
 }

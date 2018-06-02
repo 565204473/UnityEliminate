@@ -29,10 +29,10 @@ public class Writer : IDisposable
 
     public void Write<T>(T param)
     {
-        this.Write<T>(param, SaveTypeMgr.GetSaveType(param.GetType()));
+        this.Write<T>(param, StoredataTypeMgr.GetStoredataType(param.GetType()));
     }
 
-    public void Write<T>(T param, SaveType type)
+    public void Write<T>(T param, StoredataType type)
     {
         if (type == null)
         {
@@ -45,7 +45,7 @@ public class Writer : IDisposable
     }
     public void Write<T>(T param, string tag)
     {
-        SaveType valueType = SaveTypeMgr.GetSaveType(param.GetType());
+        StoredataType valueType = StoredataTypeMgr.GetStoredataType(param.GetType());
         this.Write<T>(param, valueType);
     }
 

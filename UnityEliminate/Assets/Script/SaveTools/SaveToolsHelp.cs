@@ -16,9 +16,9 @@ public static class SaveToolsHelp {
     public static T Load<T>(string identifier) {
 
         SaveSetting setting = new SaveSetting();
-        using (SaveRead reader = SaveRead.Create(setting)) {
+        using (Read reader = Read.Create(setting)) {
 
-            return reader.Read<T>(setting.filenameData.tag);
+            return reader.Reader<T>(setting.filenameData.tag);
         }
     }
 }

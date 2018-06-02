@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class StoredataType : IStoredataType {
 
-    public EnumStoredataTypeKey key;
+    public EnumSaveTypeKey key;
     public Type type;
 
     public StoredataType(Type type) {
