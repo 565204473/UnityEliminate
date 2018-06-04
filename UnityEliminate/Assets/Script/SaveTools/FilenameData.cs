@@ -5,9 +5,9 @@ using UnityEngine;
 public struct  FilenameData {
 
     public string tag;
-    public FilenameData(string path, SaveSetting setting) {
+    public FilenameData(string path) {
 
-        this.tag = "";
+        this.tag = path;
     }
 
 }

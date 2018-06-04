@@ -1,19 +1,30 @@
-﻿using System;
+﻿using QFramework;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WriterData : IDisposable {
 
+    private SaveSetting saveSetting;
+    public WriterData(SaveSetting data) {
+       this.saveSetting = data;
+
+    }
 
     public void WriteInt(int value) {
 
-        Debug.LogError("要写入文件的int" + value);
+        SerializeHelper.SerializeBinary(this.saveSetting.path, (int)value);
+        Debug.LogError("要写入文件的int" + (int)value);
+      
     }
 
+    public void WriteString(string value) {
+        Debug.LogError("要写入文件的string" + value);
+    }
 
     public void Dispose() {
-      
+
 
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Writer : IDisposable
 {
+    public WriterData writerData;
+    private SaveSetting saveData;
     public Writer(string settings)
     {
 
@@ -12,7 +14,8 @@ public class Writer : IDisposable
 
     public Writer(SaveSetting saveSetting)
     {
-
+        saveData = saveSetting;
+        writerData = new WriterData(saveData);      
     }
 
     public static Writer Create(string settings)

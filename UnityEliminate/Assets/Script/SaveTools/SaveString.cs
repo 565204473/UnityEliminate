@@ -16,5 +16,6 @@ public sealed  class SaveString : StoredataType {
     public override void Write(object data, Writer write) {
 
         Debug.LogError("写入sting的实现");
+        write.writerData.WriteString((string)data);
     }
 }

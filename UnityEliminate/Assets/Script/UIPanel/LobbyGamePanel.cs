@@ -5,23 +5,23 @@ using QFramework;
 
 public partial class LobbyGamePanel : QUIBehaviour {
 
-    protected override void InitUI(IUIData uiData = null)
-    {
+    private string path = "D:/Project/GitTest/UnityEliminate/UnityEliminate/Assets/TestSave/B.txt";
+    protected override void InitUI(IUIData uiData = null) {
         base.InitUI(uiData);
     }
 
-    protected override void OnShow()
-    {
+    protected override void OnShow() {
         base.OnShow();
-        SaveToolsHelp.Save(98, "1");
+        SaveSetting saveSetting = new SaveSetting();
+        saveSetting.path = path;
+        SaveToolsHelp.Save(98, "1", saveSetting);
         SaveToolsHelp.Save("123", "2");
 
         SaveToolsHelp.Load<string>("2");
-        SaveToolsHelp.Load<int>("1");   
+        SaveToolsHelp.Load<int>("1");
     }
 
-    protected override void OnHide()
-    {
+    protected override void OnHide() {
         base.OnHide();
     }
 }

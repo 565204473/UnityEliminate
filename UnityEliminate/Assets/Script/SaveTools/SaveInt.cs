@@ -18,5 +18,6 @@ public sealed class SaveInt : StoredataType
     public override void Write(object data, Writer write)
     {
         Debug.LogError("写入int的实现");
+        write.writerData.WriteInt((int)data);
     }
 }
