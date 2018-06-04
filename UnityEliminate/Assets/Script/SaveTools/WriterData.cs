@@ -14,7 +14,7 @@ public class WriterData : IDisposable {
 
     public void WriteInt(int value) {
 
-        SerializeHelper.SerializeBinary(this.saveSetting.path, (int)value);
+        SerializeHelper.SerializeBinary(this.saveSetting.path, "我也是醉了");
         Debug.LogError("要写入文件的int" + (int)value);
       
     }

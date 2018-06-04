@@ -26,4 +26,13 @@ public static class SaveToolsHelp {
             return reader.Reader<T>(setting.filenameData.tag);
         }
     }
+
+    public static T Load<T>(string identifier, SaveSetting setting)
+    {
+        SaveSetting settingClone = setting.Clone();
+        using (Read reader = Read.Create(settingClone))
+        {
+            return reader.Reader<T>(setting.filenameData.tag);
+        }
+    }
 }

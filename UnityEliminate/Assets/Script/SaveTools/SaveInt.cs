@@ -12,7 +12,7 @@ public sealed class SaveInt : StoredataType
     public override object Reader(Read reader)
     {
         Debug.LogError("调用SaveRead读int的实现");
-        return reader.ReadInit();
+        return reader.readData.ReadInt32();
     }
 
     public override void Write(object data, Writer write)

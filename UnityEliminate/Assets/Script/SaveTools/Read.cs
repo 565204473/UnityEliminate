@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Read : IDisposable
 {
+    public ReadData readData;
 
     public Read(string settings)
     {
@@ -13,7 +14,7 @@ public class Read : IDisposable
 
     public Read(SaveSetting saveSetting)
     {
-
+        readData = new ReadData(saveSetting);
     }
 
     public static Read Create(string settings)
@@ -47,11 +48,11 @@ public class Read : IDisposable
         return this.Reader<T>(expectedValue);
     }
 
-    public object ReadInit()
-    {
-        Debug.LogError("读取数据int");
-        return 1;
-    }
+    //public object ReadInit()
+    //{
+    //    Debug.LogError("读取数据int");
+    //    return 1;
+    //}
 
     public object ReadString() {
 
