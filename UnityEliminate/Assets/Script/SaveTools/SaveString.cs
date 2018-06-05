@@ -10,7 +10,7 @@ public sealed  class SaveString : StoredataType {
 
     public override object Reader(Read reader) {
         Debug.LogError("调用SaveRead读入string的实现");
-        return reader.ReadString();
+        return reader.readData.ReadString();
     }
 
     public override void Write(object data, Writer write) {

@@ -29,6 +29,23 @@ public class ReadData : IDisposable
         return 1;
     }
 
+    public string ReadString()
+    {
+        Stream stream = FileMgr.Instance.OpenReadStream(this.saveSetting.path);
+        if (stream != null)
+        {
+            var data = SerializeHelper.DeserializeBinary(stream);
+            if (data != null)
+            {
+                Debug.LogError(data.ConverToString());
+                return data.ConverToString() ;
+            }
+        }
+        return string.Empty;
+    }
+
+
+
 
 
     public void Dispose()

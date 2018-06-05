@@ -14,12 +14,13 @@ public class WriterData : IDisposable {
 
     public void WriteInt(int value) {
 
-        SerializeHelper.SerializeBinary(this.saveSetting.path, "我也是醉了");
+        SerializeHelper.SerializeBinary(this.saveSetting.path, value);
         Debug.LogError("要写入文件的int" + (int)value);
       
     }
 
     public void WriteString(string value) {
+        SerializeHelper.SerializeBinary(this.saveSetting.path, value);
         Debug.LogError("要写入文件的string" + value);
     }
 
