@@ -113,7 +113,7 @@ namespace QFramework {
         public string saveKey = string.Empty;
 
         [ProtoBuf.ProtoMember(2)]
-        public object savevalue = null;
+        public bool savevalue = false;
     }
 
 }
