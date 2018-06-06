@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SaveFloat : MonoBehaviour {
+public sealed class SaveFloat : StoredataType {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public SaveFloat() : base(typeof(float)) {
+        base.key = EnumSaveTypeKey.SaveFolat;
+    }
+
+    public override object Reader(Read reader) {
+        return reader.readData.ReadFolat();
+    }
+
+
+    public override void Write(object data, Writer write) {
+
+        write.writerData.WriteFloat(data);
+    }
 }

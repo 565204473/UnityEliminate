@@ -13,13 +13,33 @@ public partial class LobbyGamePanel : QUIBehaviour {
 
     protected override void OnShow() {
         base.OnShow();
-        SaveSetting saveSetting = new SaveSetting("1",path);     
+        SaveSetting saveSetting = new SaveSetting("1", path);
         SaveToolsHelp.Save(98, "1", saveSetting);
-        SaveSetting saveSetting1 = new SaveSetting("123", path);
-        SaveToolsHelp.Save("123", "2",saveSetting1);
 
-        SaveToolsHelp.Load<string>("2",saveSetting);
-        SaveToolsHelp.Load<int>("1", saveSetting1);
+
+        SaveSetting saveSetting1 = new SaveSetting("2", path);
+        SaveToolsHelp.Save("123", "2", saveSetting1);
+
+        SaveSetting saveSetting2 = new SaveSetting("3", path);
+        SaveToolsHelp.Save(100, "3", saveSetting2);
+
+
+        SaveSetting saveSetting3 = new SaveSetting("4", path);
+        SaveToolsHelp.Save(0.1f, "4", saveSetting3);
+
+        SaveSetting saveSetting4 = new SaveSetting("5", path);
+        SaveToolsHelp.Save(0.2f, "5", saveSetting4);
+
+        SaveSetting saveSetting5 = new SaveSetting("6", path);
+        SaveToolsHelp.Save(false, "6", saveSetting5);
+
+
+        SaveToolsHelp.Load<int>("1", saveSetting);
+        SaveToolsHelp.Load<int>("3", saveSetting2);
+        SaveToolsHelp.Load<string>("2", saveSetting1);
+        SaveToolsHelp.Load<float>("4", saveSetting3);
+        SaveToolsHelp.Load<float>("5", saveSetting4);
+        SaveToolsHelp.Load<bool>("6", saveSetting5);
     }
 
     protected override void OnHide() {

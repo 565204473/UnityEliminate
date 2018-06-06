@@ -23,30 +23,28 @@
  * THE SOFTWARE.
  ****************************************************************************/
 
+using System;
 using UnityEngine;
 
-namespace QFramework
-{
-    public class JsonPathProtobuf : MonoBehaviour
-    {
-        private void Start()
-        {
-            var tempProto = new ProtoBufTest
-            {
+namespace QFramework {
+    public class JsonPathProtobuf : MonoBehaviour {
+        private void Start() {
+            var tempProto = new ProtoBufTest {
                 ID = 1,
                 Msg = "Hello"
             };
 
-            var tempJson = new JsonTest {Age = 18};
+            var tempJson = new JsonTest { Age = 18 };
 
             this.Sequence()
                 .Until(() => { return Input.GetKeyDown(KeyCode.P); })
-                .Event(()=>  { string path = "Assets/TestJosn".CreateDirIfNotExists(); path += "/testPro.proto"; tempProto.SaveProtoBuff(path);})
+                .Event(() => { string path = "Assets/TestJosn".CreateDirIfNotExists(); path += "/testPro.proto"; tempProto.SaveProtoBuff(path); })
                 .Begin();
 
             this.Sequence()
                 .Until(() => { return Input.GetKeyDown(KeyCode.O); })
-                .Event(() => { ProtoBufTest tempLoadBuf = SerializeHelper.LoadProtoBuff<ProtoBufTest>(Application.dataPath + "/TestJosn/testPro.proto");
+                .Event(() => {
+                    ProtoBufTest tempLoadBuf = SerializeHelper.LoadProtoBuff<ProtoBufTest>(Application.dataPath + "/TestJosn/testPro.proto");
                     Debug.Log(tempLoadBuf.ID);
                 })
                 .Begin();
@@ -59,7 +57,7 @@ namespace QFramework
             this.Sequence()
                 .Until(() => { return Input.GetKeyDown(KeyCode.S); })
                 .Event(() => {
-                    JsonTest tempLoadJson = SerializeHelper.LoadJson<JsonTest>(Application.dataPath+"/TestJosn/TestJson.json");
+                    JsonTest tempLoadJson = SerializeHelper.LoadJson<JsonTest>(Application.dataPath + "/TestJosn/TestJson.json");
                     Debug.Log(tempLoadJson.Age);
                 })
                 .Begin();
@@ -68,18 +66,16 @@ namespace QFramework
     }
 
     [ProtoBuf.ProtoContract]
-    public class ProtoBufTest
-    {
+    public class ProtoBufTest {
         [ProtoBuf.ProtoMember(1)]
-        public int ID=0;
+        public int ID = 0;
 
         [ProtoBuf.ProtoMember(2)]
-        public string Msg="Hello";
+        public string Msg = "Hello";
     }
 
     [System.Serializable]
-    public class JsonTest
-    {
+    public class JsonTest {
         private string mName;
         public string Name
         {
@@ -93,4 +89,31 @@ namespace QFramework
             set { mAge = value; }
         }
     }
+
+    [System.Serializable]
+    public class JsonTestFloat {
+        private string savekey;
+        public string Savekey
+        {
+            get { return savekey; }
+            set { savekey = value; }
+        }
+        private object saveValue;
+        public object SaveValue
+        {
+            get { return saveValue; }
+            set { saveValue = value; }
+        }
+    }
+
+
+    [ProtoBuf.ProtoContract]
+    public class ProtoBufSave {
+        [ProtoBuf.ProtoMember(1)]
+        public string saveKey = string.Empty;
+
+        [ProtoBuf.ProtoMember(2)]
+        public object savevalue = null;
+    }
+
 }

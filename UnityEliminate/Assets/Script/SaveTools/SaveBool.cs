@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SaveBool : MonoBehaviour {
+public sealed class SaveBool : StoredataType {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public SaveBool() : base(typeof(bool)) {
+
+        base.key = EnumSaveTypeKey.SaveBool;
+    }
+
+    public override object Reader(Read reader) {
+        return reader.readData.ReadBool();
+    }
+
+    public override void Write(object data, Writer write) {
+        write.writerData.WriteBool((bool)data);
+    }
 }
