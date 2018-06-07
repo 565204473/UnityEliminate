@@ -47,7 +47,7 @@ public sealed class SaveSetting {
         return new SaveSetting {
             filenameData = this.filenameData,
             path = this.path,
-            saveImplementType = SaveImplementType.ImplementByte
+            saveImplementType = this.saveImplementType
         };
     }
 }
