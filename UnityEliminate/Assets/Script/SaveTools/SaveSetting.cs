@@ -32,12 +32,14 @@ public sealed class SaveSetting {
     public SaveSetting(string tag, SaveImplementType type = SaveImplementType.ImplementByte) {
         filenameData = new FilenameData(tag);
         this.path = SaveDefaultData.Path + "/" + tag;
+        this.saveImplementType = type;
         FileMgr.Instance.CreateDirIfNotExists(SaveDefaultData.Path);
     }
 
     public SaveSetting(string tag, string path, SaveImplementType type = SaveImplementType.ImplementByte) {
         filenameData = new FilenameData(tag);
         this.path = path + "/" + tag;
+        this.saveImplementType = type;
         FileMgr.Instance.CreateDirIfNotExists(path);
     }
 
