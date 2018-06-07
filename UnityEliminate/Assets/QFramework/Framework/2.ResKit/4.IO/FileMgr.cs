@@ -47,6 +47,21 @@ namespace QFramework
 			#endif
 		}
 
+        /// <summary>
+        /// 创建新的文件夹,如果存在则不创建
+        /// </summary>
+
+        public void CreateDirIfNotExists(string path) {
+
+            if (!FileExists(path)) {
+                Directory.CreateDirectory(path);
+#if UNITY_IPHONE && !UNITY_EDITOR
+						UnityEngine.iOS.Device.SetNoBackupFlag(path);
+#endif
+            }
+        }
+
+
 		public void InitStreamingAssetPath()
 		{
 			mStreamingAssetsPath = FilePath.StreamingAssetsPath;

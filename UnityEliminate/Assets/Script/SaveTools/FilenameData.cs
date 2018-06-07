@@ -5,9 +5,9 @@ using UnityEngine;
 public struct  FilenameData {
 
     public string tag;
-    public FilenameData(string path) {
+    public FilenameData(string tag) {
 
-        this.tag = path;
+        this.tag = tag;
     }
 
 }

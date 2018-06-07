@@ -110,10 +110,10 @@ namespace QFramework {
     [ProtoBuf.ProtoContract]
     public class ProtoBufSave {
         [ProtoBuf.ProtoMember(1)]
-        public string saveKey = string.Empty;
+        public string Savekey = string.Empty;
 
         [ProtoBuf.ProtoMember(2)]
-        public bool savevalue = false;
+        public bool SaveValue = false;
     }
 
 }

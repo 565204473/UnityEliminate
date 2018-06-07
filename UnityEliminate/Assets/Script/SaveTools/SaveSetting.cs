@@ -5,49 +5,47 @@ using System.IO;
 using QFramework;
 using UnityEditor;
 
-public static class SaveDefaultData
-{
-    public static string Path = FilePath.PersistentDataPath4Res;
-
+/// <summary>
+/// 技术实现方式
+/// </summary>
+public enum SaveImplementType {
+    ImplementByte,
+    ImplementXML,
+    ImplementJson,
+    ImplementProto
 }
 
 
-public sealed class SaveSetting
-{
+public static class SaveDefaultData {
+    public static string Path = FilePath.PersistentDataPath4Res;
+}
+
+
+public sealed class SaveSetting {
     public FilenameData filenameData;
     public string path;
-    public SaveSetting()
-    {
+    public SaveImplementType saveImplementType = SaveImplementType.ImplementByte;
+    public SaveSetting() {
 
     }
 
-    public SaveSetting(string tag)
-    {
+    public SaveSetting(string tag, SaveImplementType type = SaveImplementType.ImplementByte) {
         filenameData = new FilenameData(tag);
-        path = SaveDefaultData.Path;
+        this.path = SaveDefaultData.Path + "/" + tag;
+        FileMgr.Instance.CreateDirIfNotExists(SaveDefaultData.Path);
     }
 
-    public SaveSetting(string tag, string path)
-    {
+    public SaveSetting(string tag, string path, SaveImplementType type = SaveImplementType.ImplementByte) {
         filenameData = new FilenameData(tag);
         this.path = path + "/" + tag;
-
-        if (!FileMgr.Instance.FileExists(path))
-        {
-            Directory.CreateDirectory(path);
-#if UNITY_IPHONE && !UNITY_EDITOR
-						UnityEngine.iOS.Device.SetNoBackupFlag(path);
-#endif
-        }
-
+        FileMgr.Instance.CreateDirIfNotExists(path);
     }
 
-    public SaveSetting Clone()
-    {
-        return new SaveSetting
-        {
+    public SaveSetting Clone() {
+        return new SaveSetting {
             filenameData = this.filenameData,
-            path = this.path
+            path = this.path,
+            saveImplementType = SaveImplementType.ImplementByte
         };
     }
 }

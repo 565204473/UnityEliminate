@@ -48,20 +48,8 @@ public class Read : IDisposable
         return this.Reader<T>(expectedValue);
     }
 
-    //public object ReadInit()
-    //{
-    //    Debug.LogError("读取数据int");
-    //    return 1;
-    //}
-
-    public object ReadString() {
-
-        Debug.LogError("读取数据string");
-        return null;
-    }
-
     public void Dispose()
     {
-
+        readData = null;
     }
 }
