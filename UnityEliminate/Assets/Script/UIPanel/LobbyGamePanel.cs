@@ -33,6 +33,7 @@ public partial class LobbyGamePanel : QUIBehaviour {
 
         Vector2 ve = new Vector2(88, 88);
         SaveToolsHelp.Save(ve, "10", SaveImplementType.ImplementXML);
+        SaveToolsHelp.Save(66, "11", SaveImplementType.ImplementXML);
 
         //Debug.LogError(SaveToolsHelp.Load<int>("1", saveSetting));
         //Debug.LogError(SaveToolsHelp.Load<int>("3", saveSetting2));
@@ -43,6 +44,7 @@ public partial class LobbyGamePanel : QUIBehaviour {
         Debug.LogError(SaveToolsHelp.Load<bool>("100"));
         Debug.LogError(SaveToolsHelp.Load<int>("111"));
         Debug.LogError(SaveToolsHelp.Load<Vector2>("10", SaveImplementType.ImplementXML));
+        Debug.LogError(SaveToolsHelp.Load<int>("11", SaveImplementType.ImplementXML));
         //int num = SaveToolsHelp.Load<int>("8");
         //int num1 = SaveToolsHelp.Load<int>("9");
         //Debug.LogError(num + "****" + num1);
