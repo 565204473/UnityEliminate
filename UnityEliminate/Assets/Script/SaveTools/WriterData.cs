@@ -12,25 +12,30 @@ public class WriterData : IDisposable {
     }
 
     public void WriteInt(int value) {
-        Debug.LogError("要写入文件的int" + (int)value);
+        // Debug.LogError("要写入文件的int" + (int)value);
         SelectWriteType(saveSetting.saveImplementType, value);
 
     }
 
     public void WriteString(string value) {
-        Debug.LogError("要写入文件的string" + value);
+        // Debug.LogError("要写入文件的string" + value);
         SelectWriteType(saveSetting.saveImplementType, value);
     }
 
 
     public void WriteFloat(object value) {
-        Debug.LogError("要写入文件的float" + (float)value);
+        // Debug.LogError("要写入文件的float" + (float)value);
         SelectWriteType(saveSetting.saveImplementType, value);
     }
 
     public void WriteBool(bool value) {
-        Debug.LogError("要写入文件的bool" + value);
+        // Debug.LogError("要写入文件的bool" + value);
         SelectWriteType(saveSetting.saveImplementType, value);
+    }
+
+    public void WriteVector2(Vector2 value) {
+        string stringValue = StringExtention.Vector2ToString(value);
+        SelectWriteType(saveSetting.saveImplementType, stringValue);
     }
 
 
@@ -40,6 +45,7 @@ public class WriterData : IDisposable {
                 SerializeHelper.SerializeBinary(this.saveSetting.path, value);
                 break;
             case SaveImplementType.ImplementJson:
+                Debug.LogFormat(value.ConverToString());
                 var tempJson = new JsonTestFloat { Savekey = this.saveSetting.filenameData.tag, SaveValue = value };
                 tempJson.SaveJson(this.saveSetting.path);
                 break;

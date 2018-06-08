@@ -29,17 +29,23 @@ public partial class LobbyGamePanel : QUIBehaviour {
         SaveToolsHelp.Save(false, "6", saveSetting5);
         SaveToolsHelp.Save(true, "7", saveSetting6);
         SaveToolsHelp.Save(111, "8");
-        SaveToolsHelp.Save(999, "9", SaveImplementType.ImplementXML);
+        SaveToolsHelp.Save(999, "9");
 
-        SaveToolsHelp.Load<int>("1", saveSetting);
-        SaveToolsHelp.Load<int>("3", saveSetting2);
-        SaveToolsHelp.Load<string>("2", saveSetting1);
-        SaveToolsHelp.Load<float>("4", saveSetting3);
-        SaveToolsHelp.Load<float>("5", saveSetting4);
-        SaveToolsHelp.Load<bool>("6", saveSetting5);
-        SaveToolsHelp.Load<bool>("7", saveSetting6);
-        SaveToolsHelp.Load<int>("8");
-        SaveToolsHelp.Load<int>("9", SaveImplementType.ImplementXML);
+        Vector2 ve = new Vector2(88, 88);
+        SaveToolsHelp.Save(ve, "10", SaveImplementType.ImplementXML);
+
+        //Debug.LogError(SaveToolsHelp.Load<int>("1", saveSetting));
+        //Debug.LogError(SaveToolsHelp.Load<int>("3", saveSetting2));
+        //Debug.LogError(SaveToolsHelp.Load<string>("2", saveSetting1));
+        //Debug.LogError(SaveToolsHelp.Load<float>("4", saveSetting3));
+        //Debug.LogError(SaveToolsHelp.Load<float>("5", saveSetting4));
+        //Debug.LogError(SaveToolsHelp.Load<bool>("6", saveSetting5));
+        Debug.LogError(SaveToolsHelp.Load<bool>("100"));
+        Debug.LogError(SaveToolsHelp.Load<int>("111"));
+        Debug.LogError(SaveToolsHelp.Load<Vector2>("10", SaveImplementType.ImplementXML));
+        //int num = SaveToolsHelp.Load<int>("8");
+        //int num1 = SaveToolsHelp.Load<int>("9");
+        //Debug.LogError(num + "****" + num1);
     }
 
     protected override void OnHide() {

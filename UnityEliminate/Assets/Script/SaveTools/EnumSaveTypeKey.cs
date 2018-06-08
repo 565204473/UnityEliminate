@@ -3,7 +3,8 @@
     SaveString=1,
     SaveInt,
     SaveBool,
-    SaveFolat
+    SaveFolat,
+    SaveVector2
 }
 
 

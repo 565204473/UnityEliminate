@@ -17,6 +17,7 @@ public class SaveInit : MonoBehaviour
         StoredataTypeMgr.types[typeof(System.String)] = new SaveString();
         StoredataTypeMgr.types[typeof(System.Single)] = new SaveFloat();
         StoredataTypeMgr.types[typeof(System.Boolean)] = new SaveBool();
+        StoredataTypeMgr.types[typeof(Vector2)] = new SaveVector2();
     }
 
 }
