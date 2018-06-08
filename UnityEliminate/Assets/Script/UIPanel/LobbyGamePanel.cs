@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using QFramework;
 
-public partial class LobbyGamePanel : QUIBehaviour {
+public partial class LobbyGamePanel : QUIBehaviour
+{
 
     private string path;
-    protected override void InitUI(IUIData uiData = null) {
+    protected override void InitUI(IUIData uiData = null)
+    {
         base.InitUI(uiData);
         path = FilePath.PersistentDataPath4Res;
     }
 
-    protected override void OnShow() {
+    protected override void OnShow()
+    {
         base.OnShow();
 
         SaveSetting saveSetting = new SaveSetting("1", path);
@@ -32,9 +35,16 @@ public partial class LobbyGamePanel : QUIBehaviour {
         SaveToolsHelp.Save(999, "9");
 
         Vector2 ve = new Vector2(88, 88);
-        SaveToolsHelp.Save(ve, "10", SaveImplementType.ImplementXML);
+        SaveToolsHelp.Save(ve, "10");
         SaveToolsHelp.Save(66, "11", SaveImplementType.ImplementXML);
+        SaveToolsHelp.Save("保存类型", "12", SaveImplementType.ImplementXML);
+        SaveToolsHelp.Save(true, "13", SaveImplementType.ImplementXML);
 
+        Vector3 ve3 = new Vector3(2, 2, 2);
+        SaveToolsHelp.Save(ve3, "14");
+
+        Vector4 ve4 = new Vector4(5, 5, 5, 5);
+        SaveToolsHelp.Save(ve4, "15");
         //Debug.LogError(SaveToolsHelp.Load<int>("1", saveSetting));
         //Debug.LogError(SaveToolsHelp.Load<int>("3", saveSetting2));
         //Debug.LogError(SaveToolsHelp.Load<string>("2", saveSetting1));
@@ -43,14 +53,20 @@ public partial class LobbyGamePanel : QUIBehaviour {
         //Debug.LogError(SaveToolsHelp.Load<bool>("6", saveSetting5));
         Debug.LogError(SaveToolsHelp.Load<bool>("100"));
         Debug.LogError(SaveToolsHelp.Load<int>("111"));
-        Debug.LogError(SaveToolsHelp.Load<Vector2>("10", SaveImplementType.ImplementXML));
+        Vector2 ve1 = SaveToolsHelp.Load<Vector2>("10");
+        Debug.LogError(ve1);
         Debug.LogError(SaveToolsHelp.Load<int>("11", SaveImplementType.ImplementXML));
+        Debug.LogError(SaveToolsHelp.Load<string>("12", SaveImplementType.ImplementXML));
+        Debug.LogError(SaveToolsHelp.Load<bool>("13", SaveImplementType.ImplementXML));
+        Debug.LogError(SaveToolsHelp.Load<Vector3>("14"));
+        Debug.LogError(SaveToolsHelp.Load<Vector4>("15"));
         //int num = SaveToolsHelp.Load<int>("8");
         //int num1 = SaveToolsHelp.Load<int>("9");
         //Debug.LogError(num + "****" + num1);
     }
 
-    protected override void OnHide() {
+    protected override void OnHide()
+    {
         base.OnHide();
     }
 }

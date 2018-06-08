@@ -5,23 +5,29 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class ReadData : IDisposable {
+public class ReadData : IDisposable
+{
     private SaveSetting saveSetting;
-    public ReadData(SaveSetting data) {
+    public ReadData(SaveSetting data)
+    {
         saveSetting = data;
     }
 
-    public Int32 ReadInt32() {
-        if (SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveInt) is int) {
+    public Int32 ReadInt32()
+    {
+        if (SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveInt) is int)
+        {
             return (int)SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveInt);
         }
         NoHasKeyHint();
         return 1;
     }
 
-    public string ReadString() {
+    public string ReadString()
+    {
 
-        if (SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveString) is string) {
+        if (SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveString) is string)
+        {
             return (string)SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveString);
         }
         NoHasKeyHint();
@@ -29,8 +35,10 @@ public class ReadData : IDisposable {
     }
 
 
-    public float ReadFolat() {
-        if (SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveFolat) is float) {
+    public float ReadFolat()
+    {
+        if (SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveFolat) is float)
+        {
 
             return (float)SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveFolat);
         }
@@ -39,32 +47,60 @@ public class ReadData : IDisposable {
     }
 
 
-    public bool ReadBool() {
-        if (SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveBool) is bool) {
+    public bool ReadBool()
+    {
+        if (SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveBool) is bool)
+        {
             return (bool)SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveBool);
         }
         NoHasKeyHint();
         return false;
     }
 
-    public Vector2 ReadVector2() {
-        if (SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveVector2) is Vector2) {
+    public Vector2 ReadVector2()
+    {
+        if (SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveVector2) is Vector2)
+        {
             return (Vector2)SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveVector2);
         }
         NoHasKeyHint();
         return Vector2.zero;
     }
 
-    private object SelectReadType(SaveImplementType type, EnumSaveTypeKey keyType) {
-        switch (type) {
+    public Vector3 ReadVector3()
+    {
+        if (SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveVector3) is Vector3)
+        {
+            return (Vector3)SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveVector3);
+        }
+        NoHasKeyHint();
+        return Vector3.one;
+    }
 
+    public Vector4 ReadVector4() {
+
+        if (SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveVector4) is Vector4)
+        {
+            return (Vector4)SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveVector4);
+        }
+        NoHasKeyHint();
+        return Vector4.one;
+    }
+
+
+    private object SelectReadType(SaveImplementType type, EnumSaveTypeKey keyType)
+    {
+        switch (type)
+        {
             case SaveImplementType.ImplementByte:
                 Stream stream = FileMgr.Instance.OpenReadStream(this.saveSetting.path);
-                if (stream != null) {
+                if (stream != null)
+                {
                     var data = SerializeHelper.DeserializeBinary(stream);
-                    if (data != null) {
-                        // Debug.LogError(data.ConverToString());
-                        switch (keyType) {
+                    if (data != null)
+                    {
+                        switch (keyType)
+                        {
                             case EnumSaveTypeKey.SaveInt:
                                 return (int)data;
                             case EnumSaveTypeKey.SaveFolat:
@@ -75,16 +111,23 @@ public class ReadData : IDisposable {
                                 return (bool)data;
                             case EnumSaveTypeKey.SaveVector2:
                                 return StringExtention.GetValue<Vector2>(data.ConverToString());
+                            case EnumSaveTypeKey.SaveVector3:
+                                return StringExtention.GetValue<Vector3>(data.ConverToString());
+                            case EnumSaveTypeKey.SaveVector4:
+                                return StringExtention.GetValue<Vector4>(data.ConverToString());
                         }
                         return null;
                     }
                 }
                 break;
             case SaveImplementType.ImplementJson:
-                if (!string.IsNullOrEmpty(saveSetting.path)) {
+                if (!string.IsNullOrEmpty(saveSetting.path))
+                {
                     var data = SerializeHelper.LoadJson<JsonTestFloat>(this.saveSetting.path);
-                    if (data != null) {
-                        switch (keyType) {
+                    if (data != null)
+                    {
+                        switch (keyType)
+                        {
                             case EnumSaveTypeKey.SaveInt:
                                 return int.Parse(data.SaveValue.ToString());
                             case EnumSaveTypeKey.SaveFolat:
@@ -95,17 +138,23 @@ public class ReadData : IDisposable {
                                 return bool.Parse(data.SaveValue.ToString());
                             case EnumSaveTypeKey.SaveVector2:
                                 return StringExtention.GetValue<Vector2>(data.SaveValue.ConverToString());
+                            case EnumSaveTypeKey.SaveVector3:
+                                return StringExtention.GetValue<Vector3>(data.SaveValue.ConverToString());
+                            case EnumSaveTypeKey.SaveVector4:
+                                return StringExtention.GetValue<Vector4>(data.SaveValue.ConverToString());
                         }
                         return null;
                     }
                 }
                 break;
             case SaveImplementType.ImplementProto:
-                if (!string.IsNullOrEmpty(saveSetting.path)) {
+                if (!string.IsNullOrEmpty(saveSetting.path))
+                {
                     var data = SerializeHelper.LoadProtoBuff<ProtoBufSave>(saveSetting.path);
-                    if (data != null) {
-                        // Debug.LogError((bool)data.SaveValue);
-                        switch (keyType) {
+                    if (data != null)
+                    {
+                        switch (keyType)
+                        {
                             //case EnumSaveTypeKey.SaveInt:
                             //    return (int)data.SaveValue;
                             //case EnumSaveTypeKey.SaveFolat:
@@ -120,23 +169,57 @@ public class ReadData : IDisposable {
                 }
                 break;
             case SaveImplementType.ImplementXML:
-                if (!string.IsNullOrEmpty(saveSetting.path)) {
-                    var data = SerializeHelper.DeserializeXML<string>(saveSetting.path);
-                    if (data != null) {
-                        //  Debug.LogError(data);
-                        switch (keyType) {
-                            case EnumSaveTypeKey.SaveInt:
-                                return (int)data;
-                            case EnumSaveTypeKey.SaveFolat:
-                                return (float)data;
-                            case EnumSaveTypeKey.SaveString:
-                                return (string)data;
-                            case EnumSaveTypeKey.SaveBool:
-                                return (bool)data;
-                            case EnumSaveTypeKey.SaveVector2:
-                                return StringExtention.GetValue<Vector2>(data.ConverToString());
-                        }
-                        return null;
+                if (!string.IsNullOrEmpty(saveSetting.path))
+                {
+                    switch (keyType)
+                    {
+                        case EnumSaveTypeKey.SaveInt:
+                            var dataInt = SerializeHelper.DeserializeXML<int>(saveSetting.path);
+                            if (dataInt == null)
+                            {
+                                return null;
+                            }
+                            return (int)dataInt;
+                        case EnumSaveTypeKey.SaveFolat:
+                            var dataFolat = SerializeHelper.DeserializeXML<float>(saveSetting.path);
+                            if (dataFolat == null)
+                            {
+                                return null;
+                            }
+                            return (float)dataFolat;
+                        case EnumSaveTypeKey.SaveString:
+                            var dataString = SerializeHelper.DeserializeXML<string>(saveSetting.path);
+                            if (dataString == null)
+                            {
+                                return null;
+                            }
+                            return (string)dataString;
+                        case EnumSaveTypeKey.SaveBool:
+                            var dataBool = SerializeHelper.DeserializeXML<bool>(saveSetting.path);
+                            if (dataBool == null)
+                            {
+                                return null;
+                            }
+                            return (bool)dataBool;
+                        case EnumSaveTypeKey.SaveVector2:
+                            var dataVector2 = SerializeHelper.DeserializeXML<string>(saveSetting.path);
+                            if (dataVector2 == null)
+                            {
+                                return null;
+                            }
+                            return StringExtention.GetValue<Vector2>(dataVector2.ConverToString());
+                        case EnumSaveTypeKey.SaveVector3:
+                            var dataVector3 = SerializeHelper.DeserializeXML<string>(saveSetting.path);
+                            if (dataVector3 == null) {
+                                return null;
+                            }
+                            return StringExtention.GetValue<Vector3>(dataVector3.ConverToString());
+                        case EnumSaveTypeKey.SaveVector4:
+                            var dataVector4 = SerializeHelper.DeserializeXML<string>(saveSetting.path);
+                            if (dataVector4 == null) {
+                                return null;
+                            }
+                            return StringExtention.GetValue<Vector4>(dataVector4.ConverToString());
                     }
                 }
                 break;
@@ -145,11 +228,14 @@ public class ReadData : IDisposable {
     }
 
 
-    private void NoHasKeyHint() {
+    private void NoHasKeyHint()
+    {
         Debug.LogError("传入的key有问题，请检查是否有这个key的文件或者是否先保存了，默认返回一个默认值给你了,文件保存路径：" + saveSetting.path);
     }
 
 
-    public void Dispose() {
+    public void Dispose()
+    {
+        saveSetting = null;
     }
 }

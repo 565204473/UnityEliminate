@@ -4,7 +4,9 @@
     SaveInt,
     SaveBool,
     SaveFolat,
-    SaveVector2
+    SaveVector2,
+    SaveVector3,
+    SaveVector4
 }
 
 

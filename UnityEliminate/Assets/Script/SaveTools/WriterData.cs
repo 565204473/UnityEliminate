@@ -4,43 +4,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WriterData : IDisposable {
+public class WriterData : IDisposable
+{
 
     private SaveSetting saveSetting;
-    public WriterData(SaveSetting data) {
+    public WriterData(SaveSetting data)
+    {
         this.saveSetting = data;
     }
 
-    public void WriteInt(int value) {
-        // Debug.LogError("要写入文件的int" + (int)value);
+    public void WriteInt(int value)
+    {
         SelectWriteType(saveSetting.saveImplementType, value);
 
     }
 
-    public void WriteString(string value) {
-        // Debug.LogError("要写入文件的string" + value);
+    public void WriteString(string value)
+    {
         SelectWriteType(saveSetting.saveImplementType, value);
     }
 
 
-    public void WriteFloat(object value) {
-        // Debug.LogError("要写入文件的float" + (float)value);
+    public void WriteFloat(object value)
+    {
         SelectWriteType(saveSetting.saveImplementType, value);
     }
 
-    public void WriteBool(bool value) {
-        // Debug.LogError("要写入文件的bool" + value);
+    public void WriteBool(bool value)
+    {
         SelectWriteType(saveSetting.saveImplementType, value);
     }
 
-    public void WriteVector2(Vector2 value) {
+    public void WriteVector2(Vector2 value)
+    {
         string stringValue = StringExtention.Vector2ToString(value);
         SelectWriteType(saveSetting.saveImplementType, stringValue);
     }
 
 
-    private void SelectWriteType(SaveImplementType type, object value) {
-        switch (this.saveSetting.saveImplementType) {
+    public void WriteVector3(Vector3 value)
+    {
+        string stringValue = StringExtention.Vector3ToString(value);
+        SelectWriteType(saveSetting.saveImplementType, stringValue);
+    }
+
+    public void WriteVector4(Vector4 value)
+    {
+        string stringValue = StringExtention.Vector4ToString(value);
+        SelectWriteType(saveSetting.saveImplementType, stringValue);
+    }
+
+
+    private void SelectWriteType(SaveImplementType type, object value)
+    {
+        switch (this.saveSetting.saveImplementType)
+        {
             case SaveImplementType.ImplementByte:
                 SerializeHelper.SerializeBinary(this.saveSetting.path, value);
                 break;
@@ -50,7 +68,8 @@ public class WriterData : IDisposable {
                 tempJson.SaveJson(this.saveSetting.path);
                 break;
             case SaveImplementType.ImplementProto:
-                var tempProto = new ProtoBufSave {
+                var tempProto = new ProtoBufSave
+                {
                     Savekey = this.saveSetting.filenameData.tag,
                     SaveValue = (bool)value
                 };
@@ -62,7 +81,8 @@ public class WriterData : IDisposable {
         }
     }
 
-    public void Dispose() {
+    public void Dispose()
+    {
         saveSetting = null;
     }
 }
