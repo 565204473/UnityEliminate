@@ -1,4 +1,5 @@
 ﻿using QFramework;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,10 +30,11 @@ public partial class LobbyGameOpenPanel : QUIBehaviour {
             ES2.Save("保存的是String", "w");
             ES2.Save(0.1f, "f");
             ES2.Save(false, "t");
+            ES2.Save(TestEnum.One, "h");
         }
-        string des = StringExtention.FillFormat("{0}/{1}/{2}/{3}",
+        string des = StringExtention.FillFormat("{0}/{1}/{2}/{3}/{4}",
               ES2.Load<int>("123"), ES2.Load<string>("w"),
-              ES2.Load<float>("f"), ES2.Load<bool>("t"));
+              ES2.Load<float>("f"), ES2.Load<bool>("t"),ES2.Load<TestEnum>("h"));
         Debug.LogError(des);
     }
 

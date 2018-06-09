@@ -9,7 +9,9 @@
     SaveVector4,
     SaveLong,
     SaveQuaternion,
-    SaveColor
+    SaveColor,
+    SaveDouble,
+    SaveEnum
 }
 
 
