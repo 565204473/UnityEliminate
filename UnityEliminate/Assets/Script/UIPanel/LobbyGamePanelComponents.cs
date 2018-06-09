@@ -6,5 +6,6 @@ using UnityEngine.UI;
 public partial class LobbyGamePanel
 {
     [SerializeField] public Image imgbg;
+    [SerializeField] public Image imgColor;
 
 }

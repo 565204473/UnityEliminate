@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using QFramework;
 
-public partial class LobbyGamePanel : QUIBehaviour
-{
+public partial class LobbyGamePanel : QUIBehaviour {
 
     private string path;
-    protected override void InitUI(IUIData uiData = null)
-    {
+    protected override void InitUI(IUIData uiData = null) {
         base.InitUI(uiData);
         path = FilePath.PersistentDataPath4Res;
     }
 
-    protected override void OnShow()
-    {
+    protected override void OnShow() {
         base.OnShow();
 
         SaveSetting saveSetting = new SaveSetting("1", path);
@@ -39,12 +36,18 @@ public partial class LobbyGamePanel : QUIBehaviour
         SaveToolsHelp.Save(66, "11", SaveImplementType.ImplementXML);
         SaveToolsHelp.Save("保存类型", "12", SaveImplementType.ImplementXML);
         SaveToolsHelp.Save(true, "13", SaveImplementType.ImplementXML);
-
         Vector3 ve3 = new Vector3(2, 2, 2);
         SaveToolsHelp.Save(ve3, "14");
-
         Vector4 ve4 = new Vector4(5, 5, 5, 5);
         SaveToolsHelp.Save(ve4, "15");
+        SaveToolsHelp.Save(922337203685477580, "16");
+        Quaternion qu = Quaternion.AngleAxis(0.8f, new Vector3(8, 9, 4));
+        SaveToolsHelp.Save(qu, "17", SaveImplementType.ImplementXML);
+
+        Color color = new Color(100f, 100f, 180f, 255f);
+        SaveToolsHelp.Save(Color.green, "18", SaveImplementType.ImplementXML);
+
+
         //Debug.LogError(SaveToolsHelp.Load<int>("1", saveSetting));
         //Debug.LogError(SaveToolsHelp.Load<int>("3", saveSetting2));
         //Debug.LogError(SaveToolsHelp.Load<string>("2", saveSetting1));
@@ -55,18 +58,23 @@ public partial class LobbyGamePanel : QUIBehaviour
         Debug.LogError(SaveToolsHelp.Load<int>("111"));
         Vector2 ve1 = SaveToolsHelp.Load<Vector2>("10");
         Debug.LogError(ve1);
+
+
         Debug.LogError(SaveToolsHelp.Load<int>("11", SaveImplementType.ImplementXML));
         Debug.LogError(SaveToolsHelp.Load<string>("12", SaveImplementType.ImplementXML));
         Debug.LogError(SaveToolsHelp.Load<bool>("13", SaveImplementType.ImplementXML));
         Debug.LogError(SaveToolsHelp.Load<Vector3>("14"));
         Debug.LogError(SaveToolsHelp.Load<Vector4>("15"));
+        Debug.LogError(SaveToolsHelp.Load<long>("16"));
+        Debug.LogError(SaveToolsHelp.Load<Quaternion>("17", SaveImplementType.ImplementXML));
+        Debug.LogError(SaveToolsHelp.Load<Color>("18", SaveImplementType.ImplementXML));
+        imgColor.color = SaveToolsHelp.Load<Color>("18", SaveImplementType.ImplementXML);
         //int num = SaveToolsHelp.Load<int>("8");
         //int num1 = SaveToolsHelp.Load<int>("9");
         //Debug.LogError(num + "****" + num1);
     }
 
-    protected override void OnHide()
-    {
+    protected override void OnHide() {
         base.OnHide();
     }
 }

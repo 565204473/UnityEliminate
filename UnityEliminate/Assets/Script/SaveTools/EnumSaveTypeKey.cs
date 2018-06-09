@@ -6,7 +6,10 @@
     SaveFolat,
     SaveVector2,
     SaveVector3,
-    SaveVector4
+    SaveVector4,
+    SaveLong,
+    SaveQuaternion,
+    SaveColor
 }
 
 

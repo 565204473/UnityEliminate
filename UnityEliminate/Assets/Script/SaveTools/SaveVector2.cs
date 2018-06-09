@@ -13,6 +13,7 @@ public sealed class SaveVector2 : StoredataType {
     }
 
     public override void Write(object data, Writer write) {
-        write.writerData.WriteVector2((Vector2)data);
+        write.writerData.
+            WriteVector2((Vector2)data);
     }
 }
