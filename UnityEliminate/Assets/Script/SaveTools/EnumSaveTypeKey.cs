@@ -11,7 +11,8 @@
     SaveQuaternion,
     SaveColor,
     SaveDouble,
-    SaveEnum
+    SaveEnum,
+    SaveList
 }
 
 

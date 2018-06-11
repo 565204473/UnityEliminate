@@ -25,6 +25,7 @@ public sealed class SaveSetting {
     public FilenameData filenameData;
     public string path;
     public SaveImplementType saveImplementType = SaveImplementType.ImplementByte;
+    public object curObject;
     public SaveSetting() {
 
     }

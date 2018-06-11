@@ -89,7 +89,7 @@ public class WriterData : IDisposable
                 SerializeHelper.SerializeBinary(this.saveSetting.path, value);
                 break;
             case SaveImplementType.ImplementJson:
-                Debug.LogFormat(value.ConverToString());
+ 
                 var tempJson = new JsonTestFloat { Savekey = this.saveSetting.filenameData.tag, SaveValue = value };
                 tempJson.SaveJson(this.saveSetting.path);
                 break;

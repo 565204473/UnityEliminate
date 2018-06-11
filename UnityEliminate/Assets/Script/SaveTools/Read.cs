@@ -3,53 +3,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Read : IDisposable
-{
+public class Read : IDisposable {
     public ReadData readData;
+    public SaveSetting Setting;
 
-    public Read(string settings)
-    {
+    public Read(string settings) {
 
     }
 
-    public Read(SaveSetting saveSetting)
-    {
+    public Read(SaveSetting saveSetting) {
         readData = new ReadData(saveSetting);
+        Setting = saveSetting;
     }
 
-    public static Read Create(string settings)
-    {
+    public static Read Create(string settings) {
         return new Read(settings);
     }
 
-    public static Read Create(SaveSetting setting)
-    {
+    public static Read Create(SaveSetting setting) {
         return new Read(setting);
     }
 
 
-    public T Reader<T>()
-    {
+    public T Reader<T>() {
         return Reader<T>(StoredataTypeMgr.GetStoredataType(typeof(T)));
     }
 
-    public T Reader<T>(StoredataType type)
-    {
-        if (type != null)
-        {
+    public T Reader<T>(StoredataType type) {
+        if (type != null) {
             return (T)type.Reader(this);
         }
         return default(T);
     }
 
-    public T Reader<T>(string tag)
-    {
+    public T Reader<T>(string tag) {
         StoredataType expectedValue = StoredataTypeMgr.GetStoredataType(typeof(T));
+        Setting.curObject = typeof(T);
         return this.Reader<T>(expectedValue);
     }
 
-    public void Dispose()
-    {
+    public void Dispose() {
         readData = null;
     }
 }

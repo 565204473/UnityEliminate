@@ -25,7 +25,7 @@ public class SaveInit : MonoBehaviour
         StoredataTypeMgr.types[typeof(Vector4)] = new SaveVector4();
         StoredataTypeMgr.types[typeof(Quaternion)] = new SaveQuaternion();
         StoredataTypeMgr.types[typeof(Color)] = new SaveColor();
-        StoredataTypeMgr.types[typeof(Enum)] = new SaveEnum();
+        StoredataTypeMgr.types[typeof(System.Enum)] = new SaveEnum();
 
     }
 

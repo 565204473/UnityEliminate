@@ -204,6 +204,7 @@ namespace QFramework {
             return string.IsNullOrEmpty(value) ? default(T) : value.TryGetValue((T)typeof(T).DefaultForType());
         }
 
+
         /// <summary>
         /// 从字符串中获取值
         /// </summary>
@@ -214,13 +215,13 @@ namespace QFramework {
             if (string.IsNullOrEmpty(value)) {
                 return default(T);
             }
-
             return (T)TryGetValue(value, typeof(T), defultValue);
         }
 
         public static object GetValue(this string value, Type type) {
             return value.TryGetValue(type, type.DefaultForType());
         }
+
 
         /// <summary>
         /// 从字符串中获取值
@@ -283,8 +284,9 @@ namespace QFramework {
                     return bool.Parse(value);
                 }
 
-                if (type.BaseType == typeof(Enum)) {
-                    return GetValue(value, Enum.GetUnderlyingType(type));
+                if (type.BaseType == typeof(Enum) || type == typeof(Enum)) {
+                    return Enum.Parse(type, value);
+                    // return GetValue(value, Enum.GetUnderlyingType(type));
                 }
 
                 if (type == typeof(Vector2)) {
@@ -296,7 +298,6 @@ namespace QFramework {
                 if (type == typeof(Vector3)) {
                     Vector3 vector;
                     ParseVector3(value, out vector);
-                    //Debug.LogError(vector.ToString());
                     return vector;
                 }
 
@@ -610,6 +611,7 @@ namespace QFramework {
             //Debug.logger.Log("ConverToString " + Spriter1 + "  "+ Spriter2);
             if (value == null) return string.Empty;
             var type = value.GetType();
+
             if (type == typeof(Vector3)) {
                 return FBracket1.ToString() + ((Vector3)value).x + Spriter1 + ((Vector3)value).y +
                        Spriter1 + ((Vector3)value).z + BBracket1;

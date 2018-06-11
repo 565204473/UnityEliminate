@@ -7,7 +7,8 @@ using System;
 enum TestEnum
 {
     One,
-    Two
+    Two,
+    Three
 }
 
 
@@ -57,11 +58,11 @@ public partial class LobbyGamePanel : QUIBehaviour
 
         //Color color = new Color(100f, 100f, 180f, 255f);
         //SaveToolsHelp.Save(color, "18", SaveImplementType.ImplementXML);
-        //SaveToolsHelp.Save(0.0001f, "19");
-        //SaveToolsHelp.Save(0.00012f, "20");
+        SaveToolsHelp.Save(0.0001f, "19");
+        SaveToolsHelp.Save(0.00012f, "20");
 
-
-        SaveToolsHelp.Save(TestEnum.Two, "21");
+        TestEnum testEnum = TestEnum.Three;
+      //  SaveToolsHelp.Save(testEnum, "21");
 
         //Debug.LogError(SaveToolsHelp.Load<int>("1", saveSetting));
         //Debug.LogError(SaveToolsHelp.Load<int>("3", saveSetting2));
@@ -69,21 +70,21 @@ public partial class LobbyGamePanel : QUIBehaviour
         //Debug.LogError(SaveToolsHelp.Load<float>("4", saveSetting3));
         //Debug.LogError(SaveToolsHelp.Load<float>("5", saveSetting4));
         //Debug.LogError(SaveToolsHelp.Load<bool>("6", saveSetting5));
-        Debug.LogError(SaveToolsHelp.Load<bool>("100"));
-        Debug.LogError(SaveToolsHelp.Load<int>("111"));
-        Vector2 ve1 = SaveToolsHelp.Load<Vector2>("10");
-        Debug.LogError(ve1);
-        Debug.LogError(SaveToolsHelp.Load<int>("11", SaveImplementType.ImplementXML));
-        Debug.LogError(SaveToolsHelp.Load<string>("12", SaveImplementType.ImplementXML));
-        Debug.LogError(SaveToolsHelp.Load<bool>("13", SaveImplementType.ImplementXML));
-        Debug.LogError(SaveToolsHelp.Load<Vector3>("14"));
-        Debug.LogError(SaveToolsHelp.Load<Vector4>("15"));
-        Debug.LogError(SaveToolsHelp.Load<long>("16"));
-        Debug.LogError(SaveToolsHelp.Load<Quaternion>("17", SaveImplementType.ImplementXML));
-        Debug.LogError(SaveToolsHelp.Load<Color>("18", SaveImplementType.ImplementXML));
+        //Debug.LogError(SaveToolsHelp.Load<bool>("100"));
+        //Debug.LogError(SaveToolsHelp.Load<int>("111"));
+        //Vector2 ve1 = SaveToolsHelp.Load<Vector2>("10");
+        //Debug.LogError(ve1);
+        //Debug.LogError(SaveToolsHelp.Load<int>("11", SaveImplementType.ImplementXML));
+        //Debug.LogError(SaveToolsHelp.Load<string>("12", SaveImplementType.ImplementXML));
+        //Debug.LogError(SaveToolsHelp.Load<bool>("13", SaveImplementType.ImplementXML));
+        //Debug.LogError(SaveToolsHelp.Load<Vector3>("14"));
+        //Debug.LogError(SaveToolsHelp.Load<Vector4>("15"));
+        //Debug.LogError(SaveToolsHelp.Load<long>("16"));
+        //Debug.LogError(SaveToolsHelp.Load<Quaternion>("17", SaveImplementType.ImplementXML));
+        //Debug.LogError(SaveToolsHelp.Load<Color>("18", SaveImplementType.ImplementXML));
         imgColor.color = SaveToolsHelp.Load<Color>("18", SaveImplementType.ImplementXML);
-        Debug.LogError(SaveToolsHelp.Load<double>("19"));
-        Debug.LogError(SaveToolsHelp.Load<double>("20"));
+        //Debug.LogError(SaveToolsHelp.Load<double>("19"));
+        //Debug.LogError(SaveToolsHelp.Load<double>("20"));
         Debug.LogError(SaveToolsHelp.Load<TestEnum>("21"));
         //int num = SaveToolsHelp.Load<int>("8");
         //int num1 = SaveToolsHelp.Load<int>("9");
