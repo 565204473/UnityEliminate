@@ -117,6 +117,17 @@ public class ReadData : IDisposable {
         return TestEnum.One;
     }
 
+    public List<object> ReadList() {
+        if (SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveList) is List<object>) {
+            return (List<object>)SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveList);
+        }
+        NoHasKeyHint();
+        return new List<object>();
+    }
+
+
+
+
     private object SelectReadType(SaveImplementType type, EnumSaveTypeKey keyType) {
         switch (type) {
             case SaveImplementType.ImplementByte:
@@ -183,7 +194,7 @@ public class ReadData : IDisposable {
                             case EnumSaveTypeKey.SaveColor:
                                 return StringExtention.GetValue<Color>(data.SaveValue.ConverToString());
                             case EnumSaveTypeKey.SaveEnum:
-                                return StringExtention.GetValue<Enum>(data.SaveValue.ConverToString());
+                                return StringExtention.GetValue(data.SaveValue.ConverToString(), (Type)saveSetting.curObject);
                         }
                         return null;
                     }
@@ -281,7 +292,7 @@ public class ReadData : IDisposable {
                             if (dataEnum == null) {
                                 return null;
                             }
-                            return StringExtention.GetValue<Enum>(dataEnum.ConverToString());
+                            return StringExtention.GetValue(dataEnum.ConverToString(), (Type)saveSetting.curObject);
                     }
                 }
                 break;

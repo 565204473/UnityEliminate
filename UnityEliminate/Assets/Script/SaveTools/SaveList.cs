@@ -14,6 +14,6 @@ public  sealed class SaveList : StoredataType {
     }
 
     public override void Write(object data, Writer write) {
-        
+        write.writerData.WriteList(data);
     }
 }
