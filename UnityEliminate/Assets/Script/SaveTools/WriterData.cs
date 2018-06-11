@@ -80,7 +80,7 @@ public class WriterData : IDisposable
         SelectWriteType(saveSetting.saveImplementType, stringValue);
     }
 
-    public void WriteList(object value) {
+    public void WriteList(List<object> value) {
         string stringValue = StringExtention.ConverToString(value);
         SelectWriteType(saveSetting.saveImplementType, stringValue);
     }
@@ -94,7 +94,6 @@ public class WriterData : IDisposable
                 SerializeHelper.SerializeBinary(this.saveSetting.path, value);
                 break;
             case SaveImplementType.ImplementJson:
- 
                 var tempJson = new JsonTestFloat { Savekey = this.saveSetting.filenameData.tag, SaveValue = value };
                 tempJson.SaveJson(this.saveSetting.path);
                 break;

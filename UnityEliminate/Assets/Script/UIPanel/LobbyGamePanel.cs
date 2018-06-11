@@ -58,11 +58,17 @@ public partial class LobbyGamePanel : QUIBehaviour
 
         //Color color = new Color(100f, 100f, 180f, 255f);
         //SaveToolsHelp.Save(color, "18", SaveImplementType.ImplementXML);
-        SaveToolsHelp.Save(0.0001f, "19");
-        SaveToolsHelp.Save(0.00012f, "20");
+        //SaveToolsHelp.Save(0.0001f, "19");
+        //SaveToolsHelp.Save(0.00012f, "20");
 
         TestEnum testEnum = TestEnum.Three;
-      //  SaveToolsHelp.Save(testEnum, "21");
+        SaveToolsHelp.Save(testEnum, "21");
+
+        List<object> lsTestString = new List<object>();
+        lsTestString.Add("我真的好累啊");
+        lsTestString.Add("真的");
+        lsTestString.Add(111);
+        SaveToolsHelp.Save(lsTestString, "22", SaveImplementType.ImplementXML);
 
         //Debug.LogError(SaveToolsHelp.Load<int>("1", saveSetting));
         //Debug.LogError(SaveToolsHelp.Load<int>("3", saveSetting2));
@@ -86,6 +92,11 @@ public partial class LobbyGamePanel : QUIBehaviour
         //Debug.LogError(SaveToolsHelp.Load<double>("19"));
         //Debug.LogError(SaveToolsHelp.Load<double>("20"));
         Debug.LogError(SaveToolsHelp.Load<TestEnum>("21"));
+        Debug.LogError(SaveToolsHelp.Load<List<object>>("22", SaveImplementType.ImplementXML).Count);
+        foreach (var item in SaveToolsHelp.Load<List<object>>("22", SaveImplementType.ImplementXML))
+        {
+            Debug.LogError(item);
+        }
         //int num = SaveToolsHelp.Load<int>("8");
         //int num1 = SaveToolsHelp.Load<int>("9");
         //Debug.LogError(num + "****" + num1);

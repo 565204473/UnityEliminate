@@ -24,7 +24,8 @@
  * THE SOFTWARE.
  ****************************************************************************/
 
-namespace QFramework {
+namespace QFramework
+{
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -35,13 +36,15 @@ namespace QFramework {
     using UnityEngine;
     using Random = UnityEngine.Random;
 
-    public static class TypeEx {
+    public static class TypeEx
+    {
         /// <summary>
         /// 获取默认值
         /// </summary>
         /// <param name="targetType"></param>
         /// <returns></returns>
-        public static object DefaultForType(this Type targetType) {
+        public static object DefaultForType(this Type targetType)
+        {
             return targetType.IsValueType ? Activator.CreateInstance(targetType) : null;
         }
     }
@@ -70,8 +73,10 @@ namespace QFramework {
     [AttributeUsage(AttributeTargets.Method)]
     public class FromString : Attribute { }
 
-    public static class StringExtention {
-        public static void Example() {
+    public static class StringExtention
+    {
+        public static void Example()
+        {
             var emptyStr = string.Empty;
             Debug.Log(emptyStr.IsNotNullAndEmpty());
             Debug.Log(emptyStr.IsNullOrEmpty());
@@ -85,7 +90,8 @@ namespace QFramework {
         /// </summary>
         /// <param name="selfStr"></param>
         /// <returns></returns>
-        public static bool IsNullOrEmpty(this string selfStr) {
+        public static bool IsNullOrEmpty(this string selfStr)
+        {
             return string.IsNullOrEmpty(selfStr);
         }
 
@@ -94,7 +100,8 @@ namespace QFramework {
         /// </summary>
         /// <param name="selfStr"></param>
         /// <returns></returns>
-        public static bool IsNotNullAndEmpty(this string selfStr) {
+        public static bool IsNotNullAndEmpty(this string selfStr)
+        {
             return !string.IsNullOrEmpty(selfStr);
         }
 
@@ -103,7 +110,8 @@ namespace QFramework {
         /// </summary>
         /// <param name="selfStr"></param>
         /// <returns></returns>
-        public static bool IsTrimNotNullAndEmpty(this string selfStr) {
+        public static bool IsTrimNotNullAndEmpty(this string selfStr)
+        {
             return !string.IsNullOrEmpty(selfStr.Trim());
         }
 
@@ -112,24 +120,29 @@ namespace QFramework {
         /// </summary>
         private static readonly char[] mCachedSplitCharArray = { '.' };
 
-        public static string[] Split(this string selfStr, char splitSymbol) {
+        public static string[] Split(this string selfStr, char splitSymbol)
+        {
             mCachedSplitCharArray[0] = splitSymbol;
             return selfStr.Split(mCachedSplitCharArray);
         }
 
-        public static string UppercaseFirst(this string str) {
+        public static string UppercaseFirst(this string str)
+        {
             return char.ToUpper(str[0]) + str.Substring(1);
         }
 
-        public static string LowercaseFirst(this string str) {
+        public static string LowercaseFirst(this string str)
+        {
             return char.ToLower(str[0]) + str.Substring(1);
         }
 
-        public static string ToUnixLineEndings(this string str) {
+        public static string ToUnixLineEndings(this string str)
+        {
             return str.Replace("\r\n", "\n").Replace("\r", "\n");
         }
 
-        public static string ToCSV(this string[] values) {
+        public static string ToCSV(this string[] values)
+        {
             return string.Join(", ", values
                 .Where(value => !string.IsNullOrEmpty(value))
                 .Select(value => value.Trim())
@@ -137,18 +150,22 @@ namespace QFramework {
             );
         }
 
-        public static string[] ArrayFromCSV(this string values) {
+        public static string[] ArrayFromCSV(this string values)
+        {
             return values
                 .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(value => value.Trim())
                 .ToArray();
         }
 
-        public static string ToSpacedCamelCase(this string text) {
+        public static string ToSpacedCamelCase(this string text)
+        {
             var sb = new StringBuilder(text.Length * 2);
             sb.Append(char.ToUpper(text[0]));
-            for (var i = 1; i < text.Length; i++) {
-                if (char.IsUpper(text[i]) && text[i - 1] != ' ') {
+            for (var i = 1; i < text.Length; i++)
+            {
+                if (char.IsUpper(text[i]) && text[i - 1] != ' ')
+                {
                     sb.Append(' ');
                 }
 
@@ -164,32 +181,39 @@ namespace QFramework {
         /// <param name="selfStr"></param>
         /// <param name="args"></param>
         /// <returns></returns>
-        public static string FillFormat(this string selfStr, params object[] args) {
+        public static string FillFormat(this string selfStr, params object[] args)
+        {
             return string.Format(selfStr, args);
         }
 
-        public static StringBuilder Append(this string selfStr, string toAppend) {
+        public static StringBuilder Append(this string selfStr, string toAppend)
+        {
             return new StringBuilder(selfStr).Append(toAppend);
         }
 
-        public static string AddPrefix(this string selfStr, string toPrefix) {
+        public static string AddPrefix(this string selfStr, string toPrefix)
+        {
             return new StringBuilder(toPrefix).Append(selfStr).ToString();
         }
 
-        public static StringBuilder AppendFormat(this string selfStr, string toAppend, params object[] args) {
+        public static StringBuilder AppendFormat(this string selfStr, string toAppend, params object[] args)
+        {
             return new StringBuilder(selfStr).AppendFormat(toAppend, args);
         }
 
-        public static string LastWord(this string selfUrl) {
+        public static string LastWord(this string selfUrl)
+        {
             return selfUrl.Split('/').Last();
         }
 
-        public static int ToInt(this string selfStr, int defaulValue = 0) {
+        public static int ToInt(this string selfStr, int defaulValue = 0)
+        {
             var retValue = defaulValue;
             return int.TryParse(selfStr, out retValue) ? retValue : defaulValue;
         }
 
-        public static float ToFloat(this string selfStr, float defaulValue = 0) {
+        public static float ToFloat(this string selfStr, float defaulValue = 0)
+        {
             var retValue = defaulValue;
             return float.TryParse(selfStr, out retValue) ? retValue : defaulValue;
         }
@@ -200,7 +224,8 @@ namespace QFramework {
         private const char FBracket1 = '(';
         private const char BBracket1 = ')';
 
-        public static T GetValue<T>(this string value) {
+        public static T GetValue<T>(this string value)
+        {
             return string.IsNullOrEmpty(value) ? default(T) : value.TryGetValue((T)typeof(T).DefaultForType());
         }
 
@@ -211,14 +236,17 @@ namespace QFramework {
         /// <typeparam name="T"></typeparam>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static T TryGetValue<T>(this string value, T defultValue) {
-            if (string.IsNullOrEmpty(value)) {
+        public static T TryGetValue<T>(this string value, T defultValue)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
                 return default(T);
             }
             return (T)TryGetValue(value, typeof(T), defultValue);
         }
 
-        public static object GetValue(this string value, Type type) {
+        public static object GetValue(this string value, Type type)
+        {
             return value.TryGetValue(type, type.DefaultForType());
         }
 
@@ -229,91 +257,112 @@ namespace QFramework {
         /// <param name="value"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static object TryGetValue(this string value, Type type, object defultValue) {
-            try {
+        public static object TryGetValue(this string value, Type type, object defultValue)
+        {
+            try
+            {
                 if (type == null) return "";
-                if (string.IsNullOrEmpty(value)) {
+                if (string.IsNullOrEmpty(value))
+                {
                     return type.IsValueType ? Activator.CreateInstance(type) : null;
                 }
 
-                if (type == typeof(string)) {
+                if (type == typeof(string))
+                {
                     return value;
                 }
 
-                if (type == typeof(int)) {
+                if (type == typeof(int))
+                {
                     return Convert.ToInt32(Convert.ToDouble(value));
                 }
 
-                if (type == typeof(float)) {
+                if (type == typeof(float))
+                {
                     return float.Parse(value);
                 }
 
-                if (type == typeof(byte)) {
+                if (type == typeof(byte))
+                {
                     return Convert.ToByte(Convert.ToDouble(value));
                 }
 
-                if (type == typeof(sbyte)) {
+                if (type == typeof(sbyte))
+                {
                     return Convert.ToSByte(Convert.ToDouble(value));
                 }
 
-                if (type == typeof(uint)) {
+                if (type == typeof(uint))
+                {
                     return Convert.ToUInt32(Convert.ToDouble(value));
                 }
 
-                if (type == typeof(short)) {
+                if (type == typeof(short))
+                {
                     return Convert.ToInt16(Convert.ToDouble(value));
                 }
 
-                if (type == typeof(long)) {
+                if (type == typeof(long))
+                {
                     return Convert.ToInt64(Convert.ToDouble(value));
                 }
 
-                if (type == typeof(ushort)) {
+                if (type == typeof(ushort))
+                {
                     return Convert.ToUInt16(Convert.ToDouble(value));
                 }
 
-                if (type == typeof(ulong)) {
+                if (type == typeof(ulong))
+                {
                     return Convert.ToUInt64(Convert.ToDouble(value));
                 }
 
-                if (type == typeof(double)) {
+                if (type == typeof(double))
+                {
                     return double.Parse(value);
                 }
 
-                if (type == typeof(bool)) {
+                if (type == typeof(bool))
+                {
                     return bool.Parse(value);
                 }
 
-                if (type.BaseType == typeof(Enum) || type == typeof(Enum)) {
+                if (type.BaseType == typeof(Enum) || type == typeof(Enum))
+                {
                     return Enum.Parse(type, value);
                     // return GetValue(value, Enum.GetUnderlyingType(type));
                 }
 
-                if (type == typeof(Vector2)) {
+                if (type == typeof(Vector2))
+                {
                     Vector2 vector;
                     ParseVector2(value, out vector);
                     return vector;
                 }
 
-                if (type == typeof(Vector3)) {
+                if (type == typeof(Vector3))
+                {
                     Vector3 vector;
                     ParseVector3(value, out vector);
                     return vector;
                 }
 
-                if (type == typeof(Vector4)) {
+                if (type == typeof(Vector4))
+                {
                     Vector4 vector;
                     ParseVector4(value, out vector);
                     return vector;
                 }
 
-                if (type == typeof(Quaternion)) {
+                if (type == typeof(Quaternion))
+                {
                     Quaternion quaternion;
                     ParseQuaternion(value, out quaternion);
                     return quaternion;
                 }
 
-                if (type == typeof(Color)) {
+                if (type == typeof(Color))
+                {
                     Color color;
                     ParseColor(value, out color);
                     return color;
@@ -322,11 +371,13 @@ namespace QFramework {
                 object constructor;
                 object genericArgument;
                 //词典
-                if (type.IsGenericType && (type.GetGenericTypeDefinition() == typeof(Dictionary<,>))) {
+                if (type.IsGenericType && (type.GetGenericTypeDefinition() == typeof(Dictionary<,>)))
+                {
                     Type[] genericArguments = type.GetGenericArguments();
                     Dictionary<string, string> dictionary = ParseMap(value, Spriter2, Spriter1);
                     constructor = type.GetConstructor(Type.EmptyTypes).Invoke(null);
-                    foreach (KeyValuePair<string, string> pair in dictionary) {
+                    foreach (KeyValuePair<string, string> pair in dictionary)
+                    {
                         var genericArgument1 = GetValue(pair.Key, genericArguments[0]);
                         genericArgument = GetValue(pair.Value, genericArguments[1]);
                         type.GetMethod("Add").Invoke(constructor, new[] { genericArgument1, genericArgument });
@@ -336,50 +387,58 @@ namespace QFramework {
                 }
 
                 //列表
-                if (type.IsGenericType && (type.GetGenericTypeDefinition() == typeof(List<>))) {
+                if (type.IsGenericType && (type.GetGenericTypeDefinition() == typeof(List<>)))
+                {
                     var type2 = type.GetGenericArguments()[0];
                     var list = ParseList(value, Spriter1);
 
                     constructor = Activator.CreateInstance(type);
-                    foreach (var str in list) {
-                        genericArgument = GetValue(str, type2);
-                        Debug.Log(str + "  " + type2.Name);
+                    foreach (var str in list)
+                    {
+                        genericArgument = str;//GetValue(str, type2);
+                        Debug.Log(str + "  " + type2.Name + "  " + genericArgument);
                         type.GetMethod("Add").Invoke(constructor, new[] { genericArgument });
                     }
 
                     return constructor;
                 }
 
-                if (type == typeof(ArrayList)) {
+                if (type == typeof(ArrayList))
+                {
                     return value.GetValue<List<string>>() ?? defultValue;
                 }
 
-                if (type == typeof(Hashtable)) {
+                if (type == typeof(Hashtable))
+                {
                     return value.GetValue<Dictionary<string, string>>() ?? defultValue;
                 }
 
                 //数组
-                if (type.IsArray) {
+                if (type.IsArray)
+                {
                     var elementType = Type.GetType(
                         type.FullName.Replace("[]", string.Empty));
                     var elStr = value.Split(Spriter1);
                     var array = Array.CreateInstance(elementType, elStr.Length);
 
-                    for (var i = 0; i < elStr.Length; i++) {
+                    for (var i = 0; i < elStr.Length; i++)
+                    {
                         array.SetValue(elStr[i].GetValue(elementType), i);
                     }
 
                     return array;
                 }
 
-                if (CanConvertFromString(type)) {
+                if (CanConvertFromString(type))
+                {
                     return ParseFromStringableObject(value, type);
                 }
 
                 Log.W("字符转换", "没有适合的转换类型，返回默认值");
                 return defultValue != type.DefaultForType() ? defultValue : type.DefaultForType();
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 Log.E(e);
                 Log.W("字符转换", "解析失败，返回默认值");
                 return type.DefaultForType();
@@ -395,18 +454,22 @@ namespace QFramework {
         /// <param name="result"></param>
         /// <param name="colorSpriter"></param>
         /// <returns></returns>
-        public static bool ParseColor(string _inputString, out Color result, char colorSpriter = ',') {
+        public static bool ParseColor(string _inputString, out Color result, char colorSpriter = ',')
+        {
             string str = _inputString.Trim();
             str = str.Replace(FBracket1.ToString(), "");
             str = str.Replace(BBracket1.ToString(), "");
             result = Color.clear;
-            if (str.Length < 9) {
+            if (str.Length < 9)
+            {
                 return false;
             }
 
-            try {
+            try
+            {
                 var strArray = str.Split(colorSpriter);
-                if (strArray.Length != 4) {
+                if (strArray.Length != 4)
+                {
                     return false;
                 }
 
@@ -414,7 +477,8 @@ namespace QFramework {
                     float.Parse(strArray[2]) / 255f, float.Parse(strArray[3]) / 255f);
                 return true;
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 return false;
             }
         }
@@ -425,11 +489,14 @@ namespace QFramework {
         /// <param name="strList"></param>
         /// <param name="listSpriter"></param>
         /// <returns></returns>
-        public static List<string> ParseList(this string strList, char listSpriter = ',') {
+        public static List<string> ParseList(this string strList, char listSpriter = ',')
+        {
             var list = new List<string>();
-            if (!string.IsNullOrEmpty(strList)) {
+            if (!string.IsNullOrEmpty(strList))
+            {
                 var str = strList.Trim();
-                if (string.IsNullOrEmpty(strList)) {
+                if (string.IsNullOrEmpty(strList))
+                {
                     return list;
                 }
 
@@ -448,14 +515,19 @@ namespace QFramework {
         /// <param name="mapSpriter"></param>
         /// <returns></returns>
         public static Dictionary<string, string> ParseMap(this string strMap, char keyValueSpriter = ':',
-            char mapSpriter = ',') {
+            char mapSpriter = ',')
+        {
             var dictionary = new Dictionary<string, string>();
-            if (!string.IsNullOrEmpty(strMap)) {
+            if (!string.IsNullOrEmpty(strMap))
+            {
                 var strArray = strMap.Split(mapSpriter);
-                foreach (var str in strArray) {
-                    if (!string.IsNullOrEmpty(str)) {
+                foreach (var str in strArray)
+                {
+                    if (!string.IsNullOrEmpty(str))
+                    {
                         var strArray2 = str.Split(keyValueSpriter);
-                        if ((strArray2.Length == 2) && !dictionary.ContainsKey(strArray2[0])) {
+                        if ((strArray2.Length == 2) && !dictionary.ContainsKey(strArray2[0]))
+                        {
                             dictionary.Add(strArray2[0].Trim(), strArray2[1].Trim());
                         }
                     }
@@ -472,14 +544,17 @@ namespace QFramework {
         /// <param name="result"></param>
         /// <param name="vectorSpriter"></param>
         /// <returns></returns>
-        public static bool ParseVector4(string _inputString, out Vector4 result, char vectorSpriter = ',') {
+        public static bool ParseVector4(string _inputString, out Vector4 result, char vectorSpriter = ',')
+        {
             var str = _inputString.Trim();
             str = str.Replace(FBracket1.ToString(), "");
             str = str.Replace(BBracket1.ToString(), "");
             result = new Vector4();
-            try {
+            try
+            {
                 var strArray = str.Split(vectorSpriter);
-                if (strArray.Length != 4) {
+                if (strArray.Length != 4)
+                {
                     return false;
                 }
 
@@ -489,7 +564,8 @@ namespace QFramework {
                 result.w = float.Parse(strArray[3]);
                 return true;
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 Log.E(e);
                 return false;
             }
@@ -502,7 +578,8 @@ namespace QFramework {
         /// <param name="result"></param>
         /// <param name="spriter"></param>
         /// <returns></returns>
-        public static bool ParseQuaternion(string _inputString, out Quaternion result, char spriter = ',') {
+        public static bool ParseQuaternion(string _inputString, out Quaternion result, char spriter = ',')
+        {
             var vec = new Vector4();
             var flag = ParseVector4(_inputString, out vec, spriter);
             result = new Quaternion(vec.x, vec.y, vec.z, vec.w);
@@ -516,14 +593,17 @@ namespace QFramework {
         /// <param name="result"></param>
         /// <param name="spriter"></param>
         /// <returns></returns>
-        public static bool ParseVector3(string _inputString, out Vector3 result, char spriter = ',') {
+        public static bool ParseVector3(string _inputString, out Vector3 result, char spriter = ',')
+        {
             var str = _inputString.Trim();
             str = str.Replace(FBracket1.ToString(), "");
             str = str.Replace(BBracket1.ToString(), "");
             result = new Vector3();
-            try {
+            try
+            {
                 var strArray = str.Split(spriter);
-                if (strArray.Length != 3) {
+                if (strArray.Length != 3)
+                {
                     return false;
                 }
 
@@ -532,7 +612,8 @@ namespace QFramework {
                 result.z = float.Parse(strArray[2]);
                 return true;
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 Log.E(e);
                 return false;
             }
@@ -545,14 +626,17 @@ namespace QFramework {
         /// <param name="result"></param>
         /// <param name="spriter"></param>
         /// <returns></returns>
-        public static bool ParseVector2(string _inputString, out Vector2 result, char spriter = ',') {
+        public static bool ParseVector2(string _inputString, out Vector2 result, char spriter = ',')
+        {
             var str = _inputString.Trim();
             str = str.Replace(FBracket1.ToString(), "");
             str = str.Replace(BBracket1.ToString(), "");
             result = new Vector2();
-            try {
+            try
+            {
                 var strArray = str.Split(spriter);
-                if (strArray.Length != 2) {
+                if (strArray.Length != 2)
+                {
                     return false;
                 }
 
@@ -560,7 +644,8 @@ namespace QFramework {
                 result.y = float.Parse(strArray[1]);
                 return true;
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 Log.E(e);
                 return false;
             }
@@ -572,15 +657,18 @@ namespace QFramework {
         /// <param name="str"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static object ParseFromStringableObject(string str, Type type) {
+        public static object ParseFromStringableObject(string str, Type type)
+        {
             var methodInfos = type.GetMethods();
 
             MethodInfo info = null;
-            foreach (var method in methodInfos) {
+            foreach (var method in methodInfos)
+            {
                 if (info != null) break;
                 var attrs = method.GetCustomAttributes(false);
 
-                if (attrs.OfType<FromString>().Any()) {
+                if (attrs.OfType<FromString>().Any())
+                {
                     info = method;
                 }
             }
@@ -595,7 +683,8 @@ namespace QFramework {
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public static float GetRandom(this string str) {
+        public static float GetRandom(this string str)
+        {
             var strs = str.Split('~');
             var num1 = strs[0].GetValue<float>();
             var num2 = strs[1].GetValue<float>();
@@ -607,43 +696,51 @@ namespace QFramework {
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string ConverToString(this object value) {
+        public static string ConverToString(this object value)
+        {
             //Debug.logger.Log("ConverToString " + Spriter1 + "  "+ Spriter2);
             if (value == null) return string.Empty;
             var type = value.GetType();
 
-            if (type == typeof(Vector3)) {
+            if (type == typeof(Vector3))
+            {
                 return FBracket1.ToString() + ((Vector3)value).x + Spriter1 + ((Vector3)value).y +
                        Spriter1 + ((Vector3)value).z + BBracket1;
             }
 
-            if (type == typeof(Vector2)) {
+            if (type == typeof(Vector2))
+            {
                 return FBracket1.ToString() + ((Vector2)value).x + Spriter1 + ((Vector2)value).y +
                        BBracket1;
             }
 
-            if (type == typeof(Vector4)) {
+            if (type == typeof(Vector4))
+            {
                 return FBracket1.ToString() + ((Vector4)value).x + Spriter1 + ((Vector4)value).y +
                        Spriter1 + ((Vector4)value).z + Spriter1 + ((Vector4)value).w +
                        BBracket1;
             }
 
-            if (type == typeof(Quaternion)) {
+            if (type == typeof(Quaternion))
+            {
                 return FBracket1.ToString() + ((Quaternion)value).x + Spriter1 + ((Quaternion)value).y +
                        Spriter1 + ((Quaternion)value).z + Spriter1 + ((Quaternion)value).w +
                        BBracket1;
             }
 
-            if (type == typeof(Color)) {
+            if (type == typeof(Color))
+            {
                 return FBracket1.ToString() + ((Color)value).r + Spriter1 + ((Color)value).g +
                        Spriter1 + ((Color)value).b + BBracket1;
             }
 
-            if (type.BaseType == typeof(Enum)) {
+            if (type.BaseType == typeof(Enum))
+            {
                 return Enum.GetName(type, value);
             }
 
-            if (type.IsGenericType && (type.GetGenericTypeDefinition() == typeof(Dictionary<,>))) {
+            if (type.IsGenericType && (type.GetGenericTypeDefinition() == typeof(Dictionary<,>)))
+            {
                 var Count = (int)type.GetProperty("Count").GetValue(value, null);
                 if (Count == 0) return string.Empty;
                 var getIe = type.GetMethod("GetEnumerator");
@@ -654,7 +751,8 @@ namespace QFramework {
 
                 var stringBuilder = new StringBuilder();
 
-                while (enumerator != null && (bool)moveToNextMethod.Invoke(enumerator, new object[0])) {
+                while (enumerator != null && (bool)moveToNextMethod.Invoke(enumerator, new object[0]))
+                {
                     stringBuilder.Append(Spriter1 + ConverToString(current.GetValue(enumerator, null)));
                 }
 
@@ -662,7 +760,8 @@ namespace QFramework {
 
             }
 
-            if (type.IsGenericType && (type.GetGenericTypeDefinition() == typeof(KeyValuePair<,>))) {
+            if (type.IsGenericType && (type.GetGenericTypeDefinition() == typeof(KeyValuePair<,>)))
+            {
                 var pairKey = type.GetProperty("Key").GetValue(value, null);
                 var pairValue = type.GetProperty("Value").GetValue(value, null);
 
@@ -671,7 +770,8 @@ namespace QFramework {
                 return keyStr + Spriter2 + valueStr;
             }
 
-            if (type.IsGenericType && (type.GetGenericTypeDefinition() == typeof(List<>))) {
+            if (type.IsGenericType && (type.GetGenericTypeDefinition() == typeof(List<>)))
+            {
                 var Count = (int)type.GetProperty("Count").GetValue(value, null);
                 if (Count == 0) return String.Empty;
                 var mget = type.GetMethod("get_Item", BindingFlags.Instance | BindingFlags.Public);
@@ -681,7 +781,8 @@ namespace QFramework {
                 object item;
                 string itemStr;
 
-                for (var i = 0; i < Count - 1; i++) {
+                for (var i = 0; i < Count - 1; i++)
+                {
                     item = mget.Invoke(value, new object[] { i });
                     itemStr = item.ConverToString();
                     stringBuilder.Append(itemStr + Spriter1);
@@ -694,10 +795,12 @@ namespace QFramework {
                 return stringBuilder.ToString();
             }
 
-            if (type == typeof(ArrayList)) {
+            if (type == typeof(ArrayList))
+            {
                 var builder = new StringBuilder();
                 var arrayList = value as ArrayList;
-                for (var i = 0; i < arrayList.Count - 1; i++) {
+                for (var i = 0; i < arrayList.Count - 1; i++)
+                {
                     builder.Append(arrayList[i].ConverToString()).Append(",");
                 }
 
@@ -705,11 +808,13 @@ namespace QFramework {
                 return builder.ToString();
             }
 
-            if (type == typeof(Hashtable)) {
+            if (type == typeof(Hashtable))
+            {
                 var builder = new StringBuilder();
                 var table = value as Hashtable;
                 var e = table.Keys.GetEnumerator();
-                while (e.MoveNext()) {
+                while (e.MoveNext())
+                {
                     var tableKey = e.Current.ConverToString();
                     var tableValue = table[e.Current].ConverToString();
                     builder.Append(tableKey).Append(Spriter2).Append(tableValue).Append(Spriter1);
@@ -719,12 +824,15 @@ namespace QFramework {
                 return builder.ToString();
             }
 
-            if (type.IsArray) {
+            if (type.IsArray)
+            {
                 var stringBuilder = new StringBuilder();
                 var array = value as Array;
-                if (array.Length > 0) {
+                if (array.Length > 0)
+                {
                     stringBuilder.Append(ConverToString(array.GetValue(0)));
-                    for (var i = 1; i < array.Length; i++) {
+                    for (var i = 1; i < array.Length; i++)
+                    {
                         stringBuilder.Append(Spriter1.ToString());
                         stringBuilder.Append(ConverToString(array.GetValue(i)));
                     }
@@ -735,7 +843,8 @@ namespace QFramework {
                 return string.Empty;
             }
 
-            if (CanConvertToString(type)) {
+            if (CanConvertToString(type))
+            {
                 return ToStringableObjectConvertToString(value, type);
             }
 
@@ -745,28 +854,33 @@ namespace QFramework {
 
         #region ToString
 
-        public static string Vector2ToString(Vector2 value) {
+        public static string Vector2ToString(Vector2 value)
+        {
             return FBracket1.ToString() + value.x + Spriter1 + value.y +
                    BBracket1;
         }
 
-        public static string Vector3ToString(Vector3 value) {
+        public static string Vector3ToString(Vector3 value)
+        {
             return FBracket1.ToString() + value.x + Spriter1 + value.y +
                    Spriter1 + value.z + BBracket1;
         }
 
-        public static string Vector4ToString(Vector4 value) {
+        public static string Vector4ToString(Vector4 value)
+        {
             return FBracket1.ToString() + value.x + Spriter1 + value.y +
                    Spriter1 + value.z + Spriter1 + value.w +
                    BBracket1;
         }
 
-        public static string ColorToString(Color value) {
+        public static string ColorToString(Color value)
+        {
             return FBracket1.ToString() + value.r + Spriter1 + value.g +
                    Spriter1 + value.b + Spriter1 + value.a + BBracket1;
         }
 
-        public static string QuaternionToString(Quaternion value) {
+        public static string QuaternionToString(Quaternion value)
+        {
             return FBracket1.ToString() + value.x + Spriter1 + value.y +
                    Spriter1 + value.z + Spriter1 + value.w +
                    BBracket1;
@@ -778,7 +892,8 @@ namespace QFramework {
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static string ListConvertToString<T>(this List<T> value, char split1 = ',') {
+        public static string ListConvertToString<T>(this List<T> value, char split1 = ',')
+        {
             var type = value.GetType();
             var Count = (int)type.GetProperty("Count").GetValue(value, null);
             if (Count == 0) return String.Empty;
@@ -789,7 +904,8 @@ namespace QFramework {
             object item;
             string itemStr;
 
-            for (var i = 0; i < Count - 1; i++) {
+            for (var i = 0; i < Count - 1; i++)
+            {
                 item = mget.Invoke(value, new object[] { i });
                 itemStr = item.ConverToString();
                 stringBuilder.Append(itemStr + split1);
@@ -808,12 +924,15 @@ namespace QFramework {
         /// <param name="value"></param>
         /// <param name="split1"></param>
         /// <returns></returns>
-        public static string ArrConvertToString(this Array value, char split1 = ',') {
+        public static string ArrConvertToString(this Array value, char split1 = ',')
+        {
             var stringBuilder = new StringBuilder();
             var array = value;
-            if (array.Length > 0) {
+            if (array.Length > 0)
+            {
                 stringBuilder.Append(ConverToString(array.GetValue(0)));
-                for (var i = 1; i < array.Length; i++) {
+                for (var i = 1; i < array.Length; i++)
+                {
                     stringBuilder.Append(split1.ToString());
                     stringBuilder.Append(ConverToString(array.GetValue(i)));
                 }
@@ -830,7 +949,8 @@ namespace QFramework {
         /// <param name="value"></param>
         /// <param name="split1"></param>
         /// <returns></returns>
-        public static string KVPConvertToString<K, V>(this KeyValuePair<K, V> value, char split1 = ':') {
+        public static string KVPConvertToString<K, V>(this KeyValuePair<K, V> value, char split1 = ':')
+        {
             var type = value.GetType();
             var pairKey = type.GetProperty("Key").GetValue(value, null);
             var pairValue = type.GetProperty("Value").GetValue(value, null);
@@ -850,7 +970,8 @@ namespace QFramework {
         /// <param name="split2"></param>
         /// <returns></returns>
         public static string DictConvertToString<K, V>(this Dictionary<K, V> value, char split1 = ',',
-            char split2 = ':') {
+            char split2 = ':')
+        {
             var type = value.GetType();
             var Count = (int)type.GetProperty("Count").GetValue(value, null);
             if (Count == 0) return String.Empty;
@@ -862,7 +983,8 @@ namespace QFramework {
 
             var stringBuilder = new StringBuilder();
 
-            while (enumerator != null && (bool)moveToNextMethod.Invoke(enumerator, new object[0])) {
+            while (enumerator != null && (bool)moveToNextMethod.Invoke(enumerator, new object[0]))
+            {
                 stringBuilder.Append(split1 + ConverToString(current.GetValue(enumerator, null)));
             }
 
@@ -875,15 +997,18 @@ namespace QFramework {
         /// <param name="obj"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static string ToStringableObjectConvertToString(this object obj, Type type) {
+        public static string ToStringableObjectConvertToString(this object obj, Type type)
+        {
             var methodInfos = type.GetMethods();
 
             MethodInfo info = null;
-            foreach (var method in methodInfos) {
+            foreach (var method in methodInfos)
+            {
                 if (info != null) break;
                 var attrs = method.GetCustomAttributes(false);
 
-                if (attrs.OfType<ToString>().Any()) {
+                if (attrs.OfType<ToString>().Any())
+                {
                     info = method;
                 }
             }
@@ -927,9 +1052,11 @@ namespace QFramework {
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public static Type GetTypeByString(this string str) {
+        public static Type GetTypeByString(this string str)
+        {
             str = str.Trim();
-            switch (str) {
+            switch (str)
+            {
                 case "int":
                     return typeof(int);
                 case "float":
@@ -962,14 +1089,16 @@ namespace QFramework {
                     return typeof(Color);
             }
 
-            if (str.StartsWith("List")) {
+            if (str.StartsWith("List"))
+            {
                 var genType = str.Substring(str.IndexOf('<') + 1, str.IndexOf('>') - str.LastIndexOf('<') - 1)
                     .GetTypeByString();
                 return Type.GetType("System.Collections.Generic.List`1[[" + genType.FullName + ", " +
                                     genType.Assembly.FullName + "]], " + typeof(List<>).Assembly.FullName);
             }
 
-            if (str.StartsWith("Dictionary")) {
+            if (str.StartsWith("Dictionary"))
+            {
                 var typeNames = str.Substring(str.IndexOf('<') + 1, str.IndexOf('>') - str.LastIndexOf('<') - 1)
                     .Split(',');
                 var type1 = typeNames[0].Trim().GetTypeByString();
@@ -982,7 +1111,8 @@ namespace QFramework {
             }
 
             //仅支持内置类型,支持多维数组
-            if (str.Contains("[") && str.Contains("]")) {
+            if (str.Contains("[") && str.Contains("]"))
+            {
                 var itemTypeStr = str.Substring(0, str.IndexOf('['));
                 var bracketStr = str.Substring(str.IndexOf('['), str.LastIndexOf(']') - str.IndexOf('[') + 1);
                 var itemType = itemTypeStr.GetTypeByString();
@@ -998,7 +1128,8 @@ namespace QFramework {
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static bool IsConvertableType(this Type type) {
+        public static bool IsConvertableType(this Type type)
+        {
             return CanConvertFromString(type) && CanConvertToString(type) || convertableTypes.Contains(type);
         }
 
@@ -1007,7 +1138,8 @@ namespace QFramework {
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static bool CanConvertFromString(this Type type) {
+        public static bool CanConvertFromString(this Type type)
+        {
             var methodInfos = type.GetMethods();
             return methodInfos.Select(method => method.GetCustomAttributes(false)).Any(attrs => attrs.OfType<FromString>().Any());
         }
@@ -1017,7 +1149,8 @@ namespace QFramework {
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static bool CanConvertToString(this Type type) {
+        public static bool CanConvertToString(this Type type)
+        {
             var methodInfos = type.GetMethods();
             return methodInfos.SelectMany(method => method.GetCustomAttributes(false)).OfType<ToString>().Any();
         }
@@ -1030,9 +1163,11 @@ namespace QFramework {
         /// <param name="newValue"></param>
         /// <param name="startAt"></param>
         /// <returns></returns>
-        public static string ReplaceFirst(this string input, string oldValue, string newValue, int startAt = 0) {
+        public static string ReplaceFirst(this string input, string oldValue, string newValue, int startAt = 0)
+        {
             var index = input.IndexOf(oldValue, startAt);
-            if (index < 0) {
+            if (index < 0)
+            {
                 return input;
             }
 
@@ -1044,7 +1179,8 @@ namespace QFramework {
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public static bool HasChinese(this string input) {
+        public static bool HasChinese(this string input)
+        {
             return Regex.IsMatch(input, @"[\u4e00-\u9fa5]");
         }
 
@@ -1053,7 +1189,8 @@ namespace QFramework {
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public static bool HasSpace(this string input) {
+        public static bool HasSpace(this string input)
+        {
             return input.Contains(" ");
         }
 
@@ -1064,15 +1201,19 @@ namespace QFramework {
         /// <param name="source"></param>
         /// <param name="sp"></param>
         /// <returns></returns>
-        public static string Join<T>(this IEnumerable<T> source, string sp) {
+        public static string Join<T>(this IEnumerable<T> source, string sp)
+        {
             var result = new StringBuilder();
             var first = true;
-            foreach (T item in source) {
-                if (first) {
+            foreach (T item in source)
+            {
+                if (first)
+                {
                     first = false;
                     result.Append(item.ConverToString());
                 }
-                else {
+                else
+                {
                     result.Append(sp).Append(item.ConverToString());
                 }
             }
@@ -1085,7 +1226,8 @@ namespace QFramework {
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public static bool IsNullOrEmptyR(this string str) {
+        public static bool IsNullOrEmptyR(this string str)
+        {
             return string.IsNullOrEmpty(str);
         }
 
@@ -1095,7 +1237,8 @@ namespace QFramework {
         /// <param name="str"></param>
         /// <param name="target"></param>
         /// <returns></returns>
-        public static string RemoveString(this string str, params string[] targets) {
+        public static string RemoveString(this string str, params string[] targets)
+        {
             return targets.Aggregate(str, (current, t) => current.Replace(t, string.Empty));
         }
 
@@ -1105,9 +1248,11 @@ namespace QFramework {
         /// <param name="str"></param>
         /// <param name="separator"></param>
         /// <returns></returns>
-        public static string[] SplitAndTrim(this string str, params char[] separator) {
+        public static string[] SplitAndTrim(this string str, params char[] separator)
+        {
             var res = str.Split(separator);
-            for (var i = 0; i < res.Length; i++) {
+            for (var i = 0; i < res.Length; i++)
+            {
                 res[i] = res[i].Trim();
             }
 
@@ -1121,7 +1266,8 @@ namespace QFramework {
         /// <param name="front"></param>
         /// <param name="behined"></param>
         /// <returns></returns>
-        public static string FindBetween(this string str, string front, string behined) {
+        public static string FindBetween(this string str, string front, string behined)
+        {
             var startIndex = str.IndexOf(front) + front.Length;
             var endIndex = str.IndexOf(behined);
             if (startIndex < 0 || endIndex < 0)
@@ -1135,7 +1281,8 @@ namespace QFramework {
         /// <param name="str"></param>
         /// <param name="front"></param>
         /// <returns></returns>
-        public static string FindAfter(this string str, string front) {
+        public static string FindAfter(this string str, string front)
+        {
             var startIndex = str.IndexOf(front) + front.Length;
             return startIndex < 0 ? str : str.Substring(startIndex);
         }
