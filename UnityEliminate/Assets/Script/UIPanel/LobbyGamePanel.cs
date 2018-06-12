@@ -4,27 +4,32 @@ using UnityEngine;
 using QFramework;
 using System;
 
-enum TestEnum {
+enum TestEnum
+{
     One,
     Two,
     Three
 }
 
 
-public partial class LobbyGamePanel : QUIBehaviour {
+public partial class LobbyGamePanel : QUIBehaviour
+{
 
     private string path;
-    protected override void InitUI(IUIData uiData = null) {
+    protected override void InitUI(IUIData uiData = null)
+    {
         base.InitUI(uiData);
         path = FilePath.PersistentDataPath4Res;
     }
 
-    public void Update() {
+    public void Update()
+    {
 
 
     }
 
-    protected override void OnShow() {
+    protected override void OnShow()
+    {
         base.OnShow();
 
         SaveSetting saveSetting = new SaveSetting("1", path);
@@ -127,9 +132,13 @@ public partial class LobbyGamePanel : QUIBehaviour {
         //int num = SaveToolsHelp.Load<int>("8");
         //int num1 = SaveToolsHelp.Load<int>("9");
         //Debug.LogError(num + "****" + num1);
+
+        SaveToolsHelp.Load<string>("25");
+        SaveToolsHelp.Load<string>("27", SaveImplementType.ImplementXML);
     }
 
-    protected override void OnHide() {
+    protected override void OnHide()
+    {
         base.OnHide();
     }
 }

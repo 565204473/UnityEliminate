@@ -66,7 +66,7 @@ namespace QFramework {
                 System.Runtime.Serialization.Formatters.Binary.BinaryFormatter bf =
                     new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
                 var data = bf.Deserialize(stream);
-
+                UnityEngine.Debug.LogError(DateTime.Now.Millisecond + "读Byte结束");
                 // TODO:这里没风险嘛?
                 return data;
             }
@@ -131,7 +131,8 @@ namespace QFramework {
                 object data = xmlserializer.Deserialize(fs);
 
                 if (data != null) {
-               
+
+                    UnityEngine.Debug.LogError(DateTime.Now.Millisecond + "读**Xml结束");
                     return data;
                 }
             }

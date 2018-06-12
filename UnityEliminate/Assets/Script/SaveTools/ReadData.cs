@@ -138,6 +138,7 @@ public class ReadData : IDisposable {
             case SaveImplementType.ImplementByte:
                 Stream stream = FileMgr.Instance.OpenReadStream(this.saveSetting.path);
                 if (stream != null) {
+                    UnityEngine.Debug.LogError(DateTime.Now.Millisecond + "读Byte开始");
                     var data = SerializeHelper.DeserializeBinary(stream);
                     if (data != null) {
                         switch (keyType) {
@@ -254,6 +255,7 @@ public class ReadData : IDisposable {
                             }
                             return (float)dataFolat;
                         case EnumSaveTypeKey.SaveString:
+                            UnityEngine.Debug.LogError(DateTime.Now.Millisecond + "读**Xml开始");
                             var dataString = SerializeHelper.DeserializeXML<string>(saveSetting.path);
                             if (dataString == null) {
                                 return null;
