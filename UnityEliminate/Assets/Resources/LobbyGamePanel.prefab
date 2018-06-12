@@ -122,6 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imgbg: {fileID: 114076118818039284}
   imgColor: {fileID: 114914436842646108}
+  text: {fileID: 4900000, guid: d6aecdb0cfe74a94391553a653d77e9f, type: 3}
 --- !u!114 &114561192960005206
 MonoBehaviour:
   m_ObjectHideFlags: 1
