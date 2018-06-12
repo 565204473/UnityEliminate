@@ -25,4 +25,5 @@ public abstract class StoredataType : IStoredataType {
     }
 
     public abstract void Write(object data, Writer write);
+
 }

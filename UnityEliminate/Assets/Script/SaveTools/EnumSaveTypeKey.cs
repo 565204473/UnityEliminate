@@ -12,7 +12,8 @@
     SaveColor,
     SaveDouble,
     SaveEnum,
-    SaveList
+    SaveList,
+    SaveDictionary
 }
 
 

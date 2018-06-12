@@ -27,182 +27,158 @@
  * THE SOFTWARE.
  ****************************************************************************/
 
-namespace QFramework
-{
-	using System.IO;
-	using System.Xml.Serialization;
+namespace QFramework {
+    using System;
+    using System.IO;
+    using System.Xml.Serialization;
     using Newtonsoft.Json;
 
-    public static class SerializeHelper
-	{
-		public static bool SerializeBinary(string path, object obj)
-		{
-			if (string.IsNullOrEmpty(path))
-			{
-				Log.W("SerializeBinary Without Valid Path.");
-				return false;
-			}
+    public static class SerializeHelper {
+        public static bool SerializeBinary(string path, object obj) {
+            if (string.IsNullOrEmpty(path)) {
+                Log.W("SerializeBinary Without Valid Path.");
+                return false;
+            }
 
-			if (obj == null)
-			{
-				Log.W("SerializeBinary obj is Null.");
-				return false;
-			}
+            if (obj == null) {
+                Log.W("SerializeBinary obj is Null.");
+                return false;
+            }
 
-			using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
-			{
-				System.Runtime.Serialization.Formatters.Binary.BinaryFormatter bf =
-					new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-				bf.Serialize(fs, obj);
-				return true;
-			}
-		}
+            using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate)) {
+                System.Runtime.Serialization.Formatters.Binary.BinaryFormatter bf =
+                    new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                bf.Serialize(fs, obj);
+    
+                UnityEngine.Debug.LogError(DateTime.Now.Millisecond + "Byte结束");
 
-		public static object DeserializeBinary(Stream stream)
-		{
-			if (stream == null)
-			{
-				Log.W("DeserializeBinary Failed!");
-				return null;
-			}
+                return true;
+            }
+        }
 
-			using (stream)
-			{
-				System.Runtime.Serialization.Formatters.Binary.BinaryFormatter bf =
-					new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-				var data = bf.Deserialize(stream);
+        public static object DeserializeBinary(Stream stream) {
+            if (stream == null) {
+                Log.W("DeserializeBinary Failed!");
+                return null;
+            }
 
-				// TODO:这里没风险嘛?
-				return data;
-			}
-		}
+            using (stream) {
+                System.Runtime.Serialization.Formatters.Binary.BinaryFormatter bf =
+                    new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                var data = bf.Deserialize(stream);
 
-		public static object DeserializeBinary(string path)
-		{
-			if (string.IsNullOrEmpty(path))
-			{
-				Log.W("DeserializeBinary Without Valid Path.");
-				return null;
-			}
+                // TODO:这里没风险嘛?
+                return data;
+            }
+        }
 
-			FileInfo fileInfo = new FileInfo(path);
+        public static object DeserializeBinary(string path) {
+            if (string.IsNullOrEmpty(path)) {
+                Log.W("DeserializeBinary Without Valid Path.");
+                return null;
+            }
 
-			if (!fileInfo.Exists)
-			{
-				Log.W("DeserializeBinary File Not Exit.");
-				return null;
-			}
+            FileInfo fileInfo = new FileInfo(path);
 
-			using (FileStream fs = fileInfo.OpenRead())
-			{
-				System.Runtime.Serialization.Formatters.Binary.BinaryFormatter bf =
-					new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-				object data = bf.Deserialize(fs);
+            if (!fileInfo.Exists) {
+                Log.W("DeserializeBinary File Not Exit.");
+                return null;
+            }
 
-				if (data != null)
-				{
-					return data;
-				}
-			}
+            using (FileStream fs = fileInfo.OpenRead()) {
+                System.Runtime.Serialization.Formatters.Binary.BinaryFormatter bf =
+                    new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                object data = bf.Deserialize(fs);
 
-			Log.W("DeserializeBinary Failed:" + path);
-			return null;
-		}
+                if (data != null) {
+                    return data;
+                }
+            }
 
-		public static bool SerializeXML(string path, object obj)
-		{
-			if (string.IsNullOrEmpty(path))
-			{
-				Log.W("SerializeBinary Without Valid Path.");
-				return false;
-			}
+            Log.W("DeserializeBinary Failed:" + path);
+            return null;
+        }
 
-			if (obj == null)
-			{
-				Log.W("SerializeBinary obj is Null.");
-				return false;
-			}
+        public static bool SerializeXML(string path, object obj) {
+            if (string.IsNullOrEmpty(path)) {
+                Log.W("SerializeBinary Without Valid Path.");
+                return false;
+            }
 
-			using (var fs = new FileStream(path, FileMode.OpenOrCreate))
-			{
-				var xmlserializer = new XmlSerializer(obj.GetType());
-				xmlserializer.Serialize(fs, obj);
-				return true;
-			}
-		}
+            if (obj == null) {
+                Log.W("SerializeBinary obj is Null.");
+                return false;
+            }
 
-		public static object DeserializeXML<T>(string path)
-		{
-			if (string.IsNullOrEmpty(path))
-			{
-				Log.W("DeserializeBinary Without Valid Path.");
-				return null;
-			}
+            using (var fs = new FileStream(path, FileMode.OpenOrCreate)) {
+                var xmlserializer = new XmlSerializer(obj.GetType());
+                xmlserializer.Serialize(fs, obj);
+                UnityEngine.Debug.LogError(DateTime.Now.Millisecond + "**Xml结束");
+                return true;
+            }
+        }
 
-			FileInfo fileInfo = new FileInfo(path);
+        public static object DeserializeXML<T>(string path) {
+            if (string.IsNullOrEmpty(path)) {
+                Log.W("DeserializeBinary Without Valid Path.");
+                return null;
+            }
 
-			using (FileStream fs = fileInfo.OpenRead())
-			{
-				XmlSerializer xmlserializer = new XmlSerializer(typeof(T));
-				object data = xmlserializer.Deserialize(fs);
+            FileInfo fileInfo = new FileInfo(path);
 
-				if (data != null)
-				{
-					return data;
-				}
-			}
+            using (FileStream fs = fileInfo.OpenRead()) {
+                XmlSerializer xmlserializer = new XmlSerializer(typeof(T));
+                object data = xmlserializer.Deserialize(fs);
 
-			Log.W("DeserializeBinary Failed:" + path);
-			return null;
-		}
+                if (data != null) {
+               
+                    return data;
+                }
+            }
 
-		public static string ToJson<T>(this T obj) where T : class
-		{
+            Log.W("DeserializeBinary Failed:" + path);
+            return null;
+        }
+
+        public static string ToJson<T>(this T obj) where T : class {
             return JsonConvert.SerializeObject(obj, Formatting.Indented);
-		}
+        }
 
-		public static T FromJson<T>(this string json) where T : class
-		{
+        public static T FromJson<T>(this string json) where T : class {
             return JsonConvert.DeserializeObject<T>(json);
-		}
+        }
 
-		public static void SaveJson<T>(this T obj, string path) where T : class
-		{
-			File.WriteAllText(path, obj.ToJson<T>());
-		}
+        public static void SaveJson<T>(this T obj, string path) where T : class {
+            File.WriteAllText(path, obj.ToJson<T>());
+            UnityEngine.Debug.LogError(DateTime.Now.Millisecond + "**json结束");
+        }
 
-		public static T LoadJson<T>(string path) where T : class
-		{
-			return File.ReadAllText(path).FromJson<T>();
-		}
+        public static T LoadJson<T>(string path) where T : class {
+            return File.ReadAllText(path).FromJson<T>();
+        }
 
-		public static byte[] ToProtoBuff<T>(this T obj) where T : class
-		{
-			using (MemoryStream ms = new MemoryStream())
-			{
-				ProtoBuf.Serializer.Serialize<T>(ms, obj);
-				return ms.ToArray();
-			}
-		}
+        public static byte[] ToProtoBuff<T>(this T obj) where T : class {
+            using (MemoryStream ms = new MemoryStream()) {
+                ProtoBuf.Serializer.Serialize<T>(ms, obj);
+                return ms.ToArray();
+            }
+        }
 
-		public static T FromProtoBuff<T>(this byte[] bytes) where T : class
-		{
-			if (bytes == null || bytes.Length == 0)
-			{
-				throw new System.ArgumentNullException("bytes");
-			}
-			T t = ProtoBuf.Serializer.Deserialize<T>(new MemoryStream(bytes));
-			return t;
-		}
+        public static T FromProtoBuff<T>(this byte[] bytes) where T : class {
+            if (bytes == null || bytes.Length == 0) {
+                throw new System.ArgumentNullException("bytes");
+            }
+            T t = ProtoBuf.Serializer.Deserialize<T>(new MemoryStream(bytes));
+            return t;
+        }
 
-		public static void SaveProtoBuff<T>(this T obj, string path) where T : class
-		{
-			File.WriteAllBytes(path, obj.ToProtoBuff<T>());
-		}
+        public static void SaveProtoBuff<T>(this T obj, string path) where T : class {
+            File.WriteAllBytes(path, obj.ToProtoBuff<T>());
+            UnityEngine.Debug.LogError(DateTime.Now.Millisecond + "**Proto结束");
+        }
 
-		public static T LoadProtoBuff<T>(string path) where T : class
-		{
-			return File.ReadAllBytes(path).FromProtoBuff<T>();
-		}
-	}
+        public static T LoadProtoBuff<T>(string path) where T : class {
+            return File.ReadAllBytes(path).FromProtoBuff<T>();
+        }
+    }
 }

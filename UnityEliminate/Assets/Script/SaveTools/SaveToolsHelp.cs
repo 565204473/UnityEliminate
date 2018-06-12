@@ -14,7 +14,6 @@ public static class SaveToolsHelp {
     public static void Save<T>(T param, string identifier, SaveImplementType type = SaveImplementType.ImplementByte) {
         SaveSetting setting = new SaveSetting(identifier, type);
         using (Writer writer = Writer.Create(setting)) {
-
             writer.Write<T>(param, setting.filenameData.tag);
             writer.Save();
         }

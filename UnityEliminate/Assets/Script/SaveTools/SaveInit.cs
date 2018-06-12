@@ -27,6 +27,7 @@ public class SaveInit : MonoBehaviour
         StoredataTypeMgr.types[typeof(Color)] = new SaveColor();
         StoredataTypeMgr.types[typeof(System.Enum)] = new SaveEnum();
         StoredataTypeMgr.types[typeof(List<object>)] = new SaveList();
+        StoredataTypeMgr.types[typeof(Dictionary<object, object>)] = new SaveDictionary();
 
     }
 
