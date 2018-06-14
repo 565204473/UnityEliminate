@@ -13,7 +13,8 @@
     SaveDouble,
     SaveEnum,
     SaveList,
-    SaveDictionary
+    SaveDictionary,
+    Savebyte
 }
 
 
