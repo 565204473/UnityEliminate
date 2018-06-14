@@ -105,7 +105,20 @@ namespace QFramework
 			return false;
 		}
 
-		public static string CombinePath(this string selfPath, string toCombinePath)
+        /// <summary>
+        /// 判断文件是否存在
+        /// </summary>
+        /// <param name="fileFullPath"></param>
+        /// <returns></returns>
+
+        public static bool HasFileIfExists(this string fileFullPath) {
+            if (File.Exists(fileFullPath)) {           
+                return true;
+            }
+            return false;
+        }
+
+        public static string CombinePath(this string selfPath, string toCombinePath)
 		{
 			return Path.Combine(selfPath, toCombinePath);
 		}

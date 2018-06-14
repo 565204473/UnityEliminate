@@ -4,32 +4,27 @@ using UnityEngine;
 using QFramework;
 using System;
 
-enum TestEnum
-{
+enum TestEnum {
     One,
     Two,
     Three
 }
 
 
-public partial class LobbyGamePanel : QUIBehaviour
-{
+public partial class LobbyGamePanel : QUIBehaviour {
 
     private string path;
-    protected override void InitUI(IUIData uiData = null)
-    {
+    protected override void InitUI(IUIData uiData = null) {
         base.InitUI(uiData);
         path = FilePath.PersistentDataPath4Res;
     }
 
-    public void Update()
-    {
+    public void Update() {
 
 
     }
 
-    protected override void OnShow()
-    {
+    protected override void OnShow() {
         base.OnShow();
 
         SaveSetting saveSetting = new SaveSetting("1", path);
@@ -86,11 +81,10 @@ public partial class LobbyGamePanel : QUIBehaviour
         //lsDicTest.Add(2, "嘻嘻");
         //SaveToolsHelp.Save(lsDicTest, "24", SaveImplementType.ImplementXML);
 
-        UnityEngine.Debug.LogError(DateTime.Now + "***");
-        SaveToolsHelp.Save(text.text + "***" + DateTime.Now, "25");
-        SaveToolsHelp.Save(text.text + "***" + DateTime.Now, "26", SaveImplementType.ImplementJson);
-        SaveToolsHelp.Save(text.text + "***" + DateTime.Now, "27", SaveImplementType.ImplementXML);
-        SaveToolsHelp.Save(text.text + "***" + DateTime.Now, "28", SaveImplementType.ImplementProto);
+        //SaveToolsHelp.Save(text.text + "***" + DateTime.Now, "25");
+        //SaveToolsHelp.Save(text.text + "***" + DateTime.Now, "26", SaveImplementType.ImplementJson);
+        //SaveToolsHelp.Save(text.text + "***" + DateTime.Now, "27", SaveImplementType.ImplementXML);
+        //SaveToolsHelp.Save(text.text + "***" + DateTime.Now, "28", SaveImplementType.ImplementProto);
 
         //Debug.LogError(SaveToolsHelp.Load<int>("1", saveSetting));
         //Debug.LogError(SaveToolsHelp.Load<int>("3", saveSetting2));
@@ -133,12 +127,18 @@ public partial class LobbyGamePanel : QUIBehaviour
         //int num1 = SaveToolsHelp.Load<int>("9");
         //Debug.LogError(num + "****" + num1);
 
-        SaveToolsHelp.Load<string>("25");
-        SaveToolsHelp.Load<string>("27", SaveImplementType.ImplementXML);
+        //SaveToolsHelp.Load<string>("25");
+        //SaveToolsHelp.Load<string>("27", SaveImplementType.ImplementXML);
+        //SaveToolsHelp.Load<string>("26", SaveImplementType.ImplementJson);
+        //SaveToolsHelp.Load<string>("28", SaveImplementType.ImplementProto);
+
+        SaveToolsHelp.Load<float>("29");
+        SaveToolsHelp.Delete("1");
+        Debug.LogError(SaveToolsHelp.Exists("2"));
+        Debug.LogError(SaveToolsHelp.GetFiles("100"));
     }
 
-    protected override void OnHide()
-    {
+    protected override void OnHide() {
         base.OnHide();
     }
 }

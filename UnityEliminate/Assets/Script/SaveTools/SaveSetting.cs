@@ -15,6 +15,15 @@ public enum SaveImplementType {
     ImplementProto
 }
 
+public enum SaveReadingType {
+
+    Writer,
+    Read,
+    Delete,
+    Exists
+}
+
+
 
 public static class SaveDefaultData {
     public static string Path = FilePath.PersistentDataPath4Res;
@@ -26,9 +35,18 @@ public sealed class SaveSetting {
     public string path;
     public SaveImplementType saveImplementType = SaveImplementType.ImplementByte;
     public object curObject;
+
     public SaveSetting() {
 
     }
+
+    public SaveSetting(string tag, SaveReadingType type = SaveReadingType.Delete) {
+        path = SaveDefaultData.Path + "/" + tag;
+        if (type == SaveReadingType.Delete) {
+            IOExtension.DeleteFileIfExists(path);
+        }
+    }
+
 
     public SaveSetting(string tag, SaveImplementType type = SaveImplementType.ImplementByte) {
         filenameData = new FilenameData(tag);
@@ -50,5 +68,25 @@ public sealed class SaveSetting {
             path = this.path,
             saveImplementType = this.saveImplementType
         };
+    }
+
+    public bool IsExists(string tag) {
+        path = SaveDefaultData.Path + "/" + tag;
+        if (!string.IsNullOrEmpty(path)) {
+
+            return IOExtension.HasFileIfExists(path);
+        }
+        return false;
+    }
+
+
+    public string GetFiles(string tag) {
+        path = SaveDefaultData.Path + "/" + tag;
+        if (!string.IsNullOrEmpty(path)) {
+            if (IsExists(path)) {
+                return path;
+            }
+        }
+        return string.Empty;
     }
 }

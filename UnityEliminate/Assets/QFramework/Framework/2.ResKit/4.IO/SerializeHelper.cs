@@ -146,7 +146,11 @@ namespace QFramework {
         }
 
         public static T FromJson<T>(this string json) where T : class {
-            return JsonConvert.DeserializeObject<T>(json);
+          
+            var data = JsonConvert.DeserializeObject<T>(json);
+            UnityEngine.Debug.LogError(DateTime.Now.Millisecond + "读json结束");
+            return data;
+           // return JsonConvert.DeserializeObject<T>(json);
         }
 
         public static void SaveJson<T>(this T obj, string path) where T : class {
@@ -154,8 +158,9 @@ namespace QFramework {
             UnityEngine.Debug.LogError(DateTime.Now.Millisecond + "**json结束");
         }
 
-        public static T LoadJson<T>(string path) where T : class {
+        public static T LoadJson<T>(string path) where T : class {         
             return File.ReadAllText(path).FromJson<T>();
+       
         }
 
         public static byte[] ToProtoBuff<T>(this T obj) where T : class {
@@ -179,7 +184,10 @@ namespace QFramework {
         }
 
         public static T LoadProtoBuff<T>(string path) where T : class {
-            return File.ReadAllBytes(path).FromProtoBuff<T>();
+            var data = File.ReadAllBytes(path).FromProtoBuff<T>();
+            UnityEngine.Debug.LogError(DateTime.Now.Millisecond + "读**Proto结束");
+            return data;
+          //  return File.ReadAllBytes(path).FromProtoBuff<T>();
         }
     }
 }

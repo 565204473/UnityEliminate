@@ -138,7 +138,7 @@ public class ReadData : IDisposable {
             case SaveImplementType.ImplementByte:
                 Stream stream = FileMgr.Instance.OpenReadStream(this.saveSetting.path);
                 if (stream != null) {
-                    UnityEngine.Debug.LogError(DateTime.Now.Millisecond + "读Byte开始");
+                   Debug.LogError(DateTime.Now.Millisecond + "读Byte开始");
                     var data = SerializeHelper.DeserializeBinary(stream);
                     if (data != null) {
                         switch (keyType) {
@@ -178,6 +178,7 @@ public class ReadData : IDisposable {
                 break;
             case SaveImplementType.ImplementJson:
                 if (!string.IsNullOrEmpty(saveSetting.path)) {
+                    Debug.LogError(DateTime.Now.Millisecond + "读json开始");
                     var data = SerializeHelper.LoadJson<JsonTestFloat>(this.saveSetting.path);
                     if (data != null) {
                         switch (keyType) {
@@ -217,6 +218,7 @@ public class ReadData : IDisposable {
                 break;
             case SaveImplementType.ImplementProto:
                 if (!string.IsNullOrEmpty(saveSetting.path)) {
+                    Debug.LogError(DateTime.Now.Millisecond + "读proto开始");
                     var data = SerializeHelper.LoadProtoBuff<ProtoBufSave>(saveSetting.path);
                     if (data != null) {
                         switch (keyType) {
