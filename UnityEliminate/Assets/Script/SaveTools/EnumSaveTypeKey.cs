@@ -14,7 +14,8 @@
     SaveEnum,
     SaveList,
     SaveDictionary,
-    Savebyte
+    Savebyte,
+    SaveShort
 }
 
 

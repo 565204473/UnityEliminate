@@ -99,6 +99,11 @@ public class WriterData : IDisposable
     }
 
 
+    public void WriteShort(short value)
+    {
+        SelectWriteType(saveSetting.saveImplementType, value);
+    }
+
     private void SelectWriteType(SaveImplementType type, object value)
     {
         switch (saveSetting.saveImplementType)

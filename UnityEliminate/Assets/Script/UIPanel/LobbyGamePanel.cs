@@ -4,27 +4,32 @@ using UnityEngine;
 using QFramework;
 using System;
 
-enum TestEnum {
+enum TestEnum
+{
     One,
     Two,
     Three
 }
 
 
-public partial class LobbyGamePanel : QUIBehaviour {
+public partial class LobbyGamePanel : QUIBehaviour
+{
 
     private string path;
-    protected override void InitUI(IUIData uiData = null) {
+    protected override void InitUI(IUIData uiData = null)
+    {
         base.InitUI(uiData);
         path = FilePath.PersistentDataPath4Res;
     }
 
-    public void Update() {
+    public void Update()
+    {
 
 
     }
 
-    protected override void OnShow() {
+    protected override void OnShow()
+    {
         base.OnShow();
 
         SaveSetting saveSetting = new SaveSetting("1", path);
@@ -43,7 +48,6 @@ public partial class LobbyGamePanel : QUIBehaviour {
         //SaveToolsHelp.Save(true, "7", saveSetting6);
         //SaveToolsHelp.Save(111, "8");
         //SaveToolsHelp.Save(999, "9");
-
         //Vector2 ve = new Vector2(88, 88);
         //SaveToolsHelp.Save(ve, "10");
         //SaveToolsHelp.Save(66, "11", SaveImplementType.ImplementXML);
@@ -56,35 +60,35 @@ public partial class LobbyGamePanel : QUIBehaviour {
         //SaveToolsHelp.Save(922337203685477580, "16");
         //Quaternion qu = Quaternion.AngleAxis(0.8f, new Vector3(8, 9, 4));
         //SaveToolsHelp.Save(qu, "17", SaveImplementType.ImplementXML);
-
         //Color color = new Color(100f, 100f, 180f, 255f);
         //SaveToolsHelp.Save(color, "18", SaveImplementType.ImplementXML);
         //SaveToolsHelp.Save(0.0001f, "19");
         //SaveToolsHelp.Save(0.00012f, "20");
-
         //TestEnum testEnum = TestEnum.Three;
         //SaveToolsHelp.Save(testEnum, "21");
-
         //List<object> lsTestString = new List<object>();
         //lsTestString.Add("我真的好累啊");
         //lsTestString.Add("真的");
         //lsTestString.Add(123);
         //SaveToolsHelp.Save(lsTestString, "22", SaveImplementType.ImplementXML);
-
         //List<object> lsTestint = new List<object>();
         //lsTestint.Add(2);
         //lsTestint.Add(3);
         //SaveToolsHelp.Save(lsTestint, "23");
-
         //Dictionary<object, object> lsDicTest = new Dictionary<object, object>();
         //lsDicTest.Add(1, "哈哈");
         //lsDicTest.Add(2, "嘻嘻");
         //SaveToolsHelp.Save(lsDicTest, "24", SaveImplementType.ImplementXML);
-
         //SaveToolsHelp.Save(text.text + "***" + DateTime.Now, "25");
         //SaveToolsHelp.Save(text.text + "***" + DateTime.Now, "26", SaveImplementType.ImplementJson);
         //SaveToolsHelp.Save(text.text + "***" + DateTime.Now, "27", SaveImplementType.ImplementXML);
         //SaveToolsHelp.Save(text.text + "***" + DateTime.Now, "28", SaveImplementType.ImplementProto);
+        //Byte b = 2;
+        //Byte c = 3;
+        //SaveToolsHelp.Save(b, "29");
+        //SaveToolsHelp.Save(c, "30");
+        short s = 12;
+        SaveToolsHelp.Save(s, "31");
 
         //Debug.LogError(SaveToolsHelp.Load<int>("1", saveSetting));
         //Debug.LogError(SaveToolsHelp.Load<int>("3", saveSetting2));
@@ -132,13 +136,16 @@ public partial class LobbyGamePanel : QUIBehaviour {
         //SaveToolsHelp.Load<string>("26", SaveImplementType.ImplementJson);
         //SaveToolsHelp.Load<string>("28", SaveImplementType.ImplementProto);
 
-        SaveToolsHelp.Load<float>("29");
-        SaveToolsHelp.Delete("1");
-        Debug.LogError(SaveToolsHelp.Exists("2"));
-        Debug.LogError(SaveToolsHelp.GetFiles("100"));
+        //SaveToolsHelp.Delete("1");
+        //Debug.LogError(SaveToolsHelp.Exists("2"));
+        //Debug.LogError(SaveToolsHelp.GetFiles("100"));
+        //Debug.LogError(SaveToolsHelp.Load<byte>("29"));
+        //Debug.LogError(SaveToolsHelp.Load<byte>("30"));
+        Debug.LogError(SaveToolsHelp.Load<short>("31"));
     }
 
-    protected override void OnHide() {
+    protected override void OnHide()
+    {
         base.OnHide();
     }
 }

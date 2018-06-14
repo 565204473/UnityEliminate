@@ -165,7 +165,21 @@ public class ReadData : IDisposable
 
     public byte ReadByte()
     {
+        if (SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.Savebyte) is byte)
+        {
+            return (byte)SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.Savebyte);
+        }
+        NoHasKeyHint();
+        return 1;
+    }
 
+    public short ReadShort()
+    {
+        if (SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveShort) is short)
+        {
+            return (short)SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveShort);
+        }
+        NoHasKeyHint();
         return 1;
     }
 
@@ -196,6 +210,10 @@ public class ReadData : IDisposable
                                 return double.Parse(data.ToString());
                             case EnumSaveTypeKey.SaveBool:
                                 return bool.Parse(data.ToString());
+                            case EnumSaveTypeKey.Savebyte:
+                                return byte.Parse(data.ToString());
+                            case EnumSaveTypeKey.SaveShort:
+                                return short.Parse(data.ToString());
                             case EnumSaveTypeKey.SaveVector2:
                                 return StringExtention.GetValue<Vector2>(data.ConverToString());
                             case EnumSaveTypeKey.SaveVector3:
@@ -239,6 +257,10 @@ public class ReadData : IDisposable
                                 return double.Parse(data.SaveValue.ToString());
                             case EnumSaveTypeKey.SaveBool:
                                 return bool.Parse(data.SaveValue.ToString());
+                            case EnumSaveTypeKey.Savebyte:
+                                return byte.Parse(data.SaveValue.ToString());
+                            case EnumSaveTypeKey.SaveShort:
+                                return short.Parse(data.SaveValue.ToString());
                             case EnumSaveTypeKey.SaveVector2:
                                 return StringExtention.GetValue<Vector2>(data.SaveValue.ConverToString());
                             case EnumSaveTypeKey.SaveVector3:
@@ -331,6 +353,20 @@ public class ReadData : IDisposable
                                 return null;
                             }
                             return (bool)dataBool;
+                        case EnumSaveTypeKey.Savebyte:
+                            var dataByte = SerializeHelper.DeserializeXML<byte>(saveSetting.path);
+                            if (dataByte == null)
+                            {
+                                return null;
+                            }
+                            return byte.Parse(dataByte.ToString());
+                        case EnumSaveTypeKey.SaveShort:
+                            var dataShort = SerializeHelper.DeserializeXML<short>(saveSetting.path);
+                            if (dataShort == null)
+                            {
+                                return null;
+                            }
+                            return (short)dataShort;
                         case EnumSaveTypeKey.SaveVector2:
                             var dataVector2 = SerializeHelper.DeserializeXML<string>(saveSetting.path);
                             if (dataVector2 == null)
