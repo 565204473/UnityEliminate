@@ -25,6 +25,7 @@ public class SaveInit : MonoBehaviour
         StoredataTypeMgr.types[typeof(System.Single)] = new SaveFloat();
         StoredataTypeMgr.types[typeof(System.Boolean)] = new SaveBool();
         StoredataTypeMgr.types[typeof(System.Byte)] = new SaveByte();
+        StoredataTypeMgr.types[typeof(System.Char)] = new SaveChar();
         StoredataTypeMgr.types[typeof(Vector2)] = new SaveVector2();
         StoredataTypeMgr.types[typeof(Vector3)] = new SaveVector3();
         StoredataTypeMgr.types[typeof(Vector4)] = new SaveVector4();
@@ -33,6 +34,7 @@ public class SaveInit : MonoBehaviour
         StoredataTypeMgr.types[typeof(System.Enum)] = new SaveEnum();
         StoredataTypeMgr.types[typeof(List<object>)] = new SaveList();
         StoredataTypeMgr.types[typeof(Dictionary<object, object>)] = new SaveDictionary();
+        StoredataTypeMgr.types[typeof(DateTime)] = new SaveDateTime();
 
     }
 

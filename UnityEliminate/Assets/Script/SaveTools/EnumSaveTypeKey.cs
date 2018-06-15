@@ -18,7 +18,9 @@
     SaveShort,
     SaveUint,
     SaveUlong,
-    SaveUshort
+    SaveUshort,
+    SaveChar,
+    SaveDateTime
 }
 
 

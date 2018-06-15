@@ -26,7 +26,6 @@ public partial class LobbyGamePanel : QUIBehaviour {
 
     protected override void OnShow() {
         base.OnShow();
-
         SaveSetting saveSetting = new SaveSetting("1", path);
         SaveSetting saveSetting1 = new SaveSetting("2", path);
         SaveSetting saveSetting2 = new SaveSetting("3", path);
@@ -84,15 +83,20 @@ public partial class LobbyGamePanel : QUIBehaviour {
         //SaveToolsHelp.Save(c, "30");
         //short s = 12;
         //SaveToolsHelp.Save(s, "31");
-
         //uint u = 123;
         //SaveToolsHelp.Save(u, "32");
-
         //ulong ul = 1234;
         //SaveToolsHelp.Save(ul, "33");
+        //ushort us = 12345;
+        //SaveToolsHelp.Save(us, "34");
+        //char ch = 'F';
+        //SaveToolsHelp.Save(ch, "35");
 
-        ushort us = 12345;
-        SaveToolsHelp.Save(us, "34");
+        SaveToolsHelp.Save(88, "36");
+        SaveToolsHelp.Save(99, "37");
+
+        DateTime dateTime = new DateTime();
+        SaveToolsHelp.Save(dateTime, "38");
 
         //Debug.LogError(SaveToolsHelp.Load<int>("1", saveSetting));
         //Debug.LogError(SaveToolsHelp.Load<int>("3", saveSetting2));
@@ -147,8 +151,13 @@ public partial class LobbyGamePanel : QUIBehaviour {
         //Debug.LogError(SaveToolsHelp.Load<byte>("30"));
         //  Debug.LogError(SaveToolsHelp.Load<short>("31"));
         //  Debug.LogError(SaveToolsHelp.Load<uint>("32"));
-      //  Debug.LogError(SaveToolsHelp.Load<ulong>("33"));
-        Debug.LogError(SaveToolsHelp.Load<ushort>("34"));
+        //  Debug.LogError(SaveToolsHelp.Load<ulong>("33"));
+        //Debug.LogError(SaveToolsHelp.Load<ushort>("34"));
+        //Debug.LogError(SaveToolsHelp.Load<char>("35"));
+        Debug.LogError(SaveToolsHelp.Load<int>("36"));
+        Debug.LogError(SaveToolsHelp.Load<int>("37"));
+
+        Debug.LogError(SaveToolsHelp.Load<DateTime>("38").Year);
     }
 
     protected override void OnHide() {

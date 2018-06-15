@@ -13,11 +13,6 @@ public abstract class StoredataType : IStoredataType {
         this.type = type;
     }
 
-    public virtual void Reader(Read reader, object c) {
-
-        Debug.LogError("读取");
-    }
-
     public virtual object Reader(Read reader) {
 
         Debug.LogError("This Load method is not supported on Types of " + this.type.ToString() + ". Try a self-assigning Load method instead");
@@ -25,5 +20,4 @@ public abstract class StoredataType : IStoredataType {
     }
 
     public abstract void Write(object data, Writer write);
-
 }

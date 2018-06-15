@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IStoredataType {
 
-    void Reader(Read reader, object c);
+    object Reader(Read reader);
     void Write(object data, Writer write);
 }

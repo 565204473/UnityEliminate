@@ -101,6 +101,14 @@ public class WriterData : IDisposable {
         SelectWriteType(saveSetting.saveImplementType, value);
     }
 
+    public void WriteChar(char value) {
+        SelectWriteType(saveSetting.saveImplementType, value);
+    }
+
+    public void WriteDateTime(DateTime value) {
+        SelectWriteType(saveSetting.saveImplementType, value);
+    }
+
 
     private void SelectWriteType(SaveImplementType type, object value) {
         switch (saveSetting.saveImplementType) {
