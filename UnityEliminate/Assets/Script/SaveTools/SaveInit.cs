@@ -17,6 +17,9 @@ public class SaveInit : MonoBehaviour
         StoredataTypeMgr.types[typeof(System.Int16)] = new SaveShort();
         StoredataTypeMgr.types[typeof(System.Int32)] = new SaveInt();
         StoredataTypeMgr.types[typeof(System.Int64)] = new SaveLong();
+        StoredataTypeMgr.types[typeof(System.UInt32)] = new SaveUint();
+        StoredataTypeMgr.types[typeof(System.UInt64)] = new SaveUlong();
+        StoredataTypeMgr.types[typeof(System.UInt16)] = new SaveUshort();
         StoredataTypeMgr.types[typeof(System.Double)] = new SaveDouble();
         StoredataTypeMgr.types[typeof(System.String)] = new SaveString();
         StoredataTypeMgr.types[typeof(System.Single)] = new SaveFloat();

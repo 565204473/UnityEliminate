@@ -15,7 +15,10 @@
     SaveList,
     SaveDictionary,
     Savebyte,
-    SaveShort
+    SaveShort,
+    SaveUint,
+    SaveUlong,
+    SaveUshort
 }
 
 

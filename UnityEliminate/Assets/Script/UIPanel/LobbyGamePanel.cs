@@ -4,32 +4,27 @@ using UnityEngine;
 using QFramework;
 using System;
 
-enum TestEnum
-{
+enum TestEnum {
     One,
     Two,
     Three
 }
 
 
-public partial class LobbyGamePanel : QUIBehaviour
-{
+public partial class LobbyGamePanel : QUIBehaviour {
 
     private string path;
-    protected override void InitUI(IUIData uiData = null)
-    {
+    protected override void InitUI(IUIData uiData = null) {
         base.InitUI(uiData);
         path = FilePath.PersistentDataPath4Res;
     }
 
-    public void Update()
-    {
+    public void Update() {
 
 
     }
 
-    protected override void OnShow()
-    {
+    protected override void OnShow() {
         base.OnShow();
 
         SaveSetting saveSetting = new SaveSetting("1", path);
@@ -87,8 +82,17 @@ public partial class LobbyGamePanel : QUIBehaviour
         //Byte c = 3;
         //SaveToolsHelp.Save(b, "29");
         //SaveToolsHelp.Save(c, "30");
-        short s = 12;
-        SaveToolsHelp.Save(s, "31");
+        //short s = 12;
+        //SaveToolsHelp.Save(s, "31");
+
+        //uint u = 123;
+        //SaveToolsHelp.Save(u, "32");
+
+        //ulong ul = 1234;
+        //SaveToolsHelp.Save(ul, "33");
+
+        ushort us = 12345;
+        SaveToolsHelp.Save(us, "34");
 
         //Debug.LogError(SaveToolsHelp.Load<int>("1", saveSetting));
         //Debug.LogError(SaveToolsHelp.Load<int>("3", saveSetting2));
@@ -141,11 +145,13 @@ public partial class LobbyGamePanel : QUIBehaviour
         //Debug.LogError(SaveToolsHelp.GetFiles("100"));
         //Debug.LogError(SaveToolsHelp.Load<byte>("29"));
         //Debug.LogError(SaveToolsHelp.Load<byte>("30"));
-        Debug.LogError(SaveToolsHelp.Load<short>("31"));
+        //  Debug.LogError(SaveToolsHelp.Load<short>("31"));
+        //  Debug.LogError(SaveToolsHelp.Load<uint>("32"));
+      //  Debug.LogError(SaveToolsHelp.Load<ulong>("33"));
+        Debug.LogError(SaveToolsHelp.Load<ushort>("34"));
     }
 
-    protected override void OnHide()
-    {
+    protected override void OnHide() {
         base.OnHide();
     }
 }
