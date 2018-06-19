@@ -272,7 +272,7 @@ public class ReadData : IDisposable {
                             case EnumSaveTypeKey.SaveDateTime:
                                 return DateTime.Parse(data.ToString());
                             case EnumSaveTypeKey.SaveArray:
-                                return StringExtention.GetValue<Array>(data.ConverToString());
+                                return StringExtention.GetValue(data.ConverToString(), (Type)saveSetting.curObject);
 
                         }
                         return null;

@@ -98,8 +98,8 @@ public partial class LobbyGamePanel : QUIBehaviour {
         //SaveToolsHelp.Save(dateTime, "38", SaveImplementType.ImplementXML);
 
 
-        //int[] array = new int[2] { 33, 44 };
-        //SaveToolsHelp.Save(array, "39");
+        int[] array = new int[2] { 33, 44 };
+        SaveToolsHelp.Save(array, "39");
 
         string[] array1 = new string[3] { "55", "66", "我是中文" };
         SaveToolsHelp.Save(array1, "40");
@@ -164,10 +164,10 @@ public partial class LobbyGamePanel : QUIBehaviour {
         //Debug.LogError(SaveToolsHelp.Load<int>("37"));
 
         //  Debug.LogError(SaveToolsHelp.Load<DateTime>("38", SaveImplementType.ImplementXML));
-        //Debug.LogError(SaveToolsHelp.Load<int[]>("39").Length);
-        //foreach (var item in SaveToolsHelp.Load<int[]>("39")) {
-        //    Debug.LogError(item);
-        //}
+        //  Debug.LogError(SaveToolsHelp.Load<int[]>("39").Length);
+        foreach (var item in SaveToolsHelp.Load<int[]>("39")) {
+            Debug.LogError(item);
+        }
 
         foreach (var item in SaveToolsHelp.Load<string[]>("40")) {
             Debug.LogError(item);

@@ -363,10 +363,9 @@ namespace QFramework {
                     var elementType = Type.GetType(
                         type.FullName.Replace("[]", string.Empty));
                     var elStr = value.Split(Spriter1);
-                    //Debug.LogError(elementType);
                     var array = Array.CreateInstance(elementType, elStr.Length);
                     for (var i = 0; i < elStr.Length; i++) {
-                        // array.SetValue(elStr[i].GetValue(elementType), i);             
+                         array.SetValue(elStr[i].GetValue(elementType), i);             
                     }
                     return array;
                 }
