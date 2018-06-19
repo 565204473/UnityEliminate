@@ -104,6 +104,9 @@ public partial class LobbyGamePanel : QUIBehaviour {
         string[] array1 = new string[3] { "55", "66", "我是中文" };
         SaveToolsHelp.Save(array1, "40");
 
+        bool[] array2 = new bool[2] { true, true };
+        SaveToolsHelp.Save(array2, "41");
+
         //Debug.LogError(SaveToolsHelp.Load<int>("1", saveSetting));
         //Debug.LogError(SaveToolsHelp.Load<int>("3", saveSetting2));
         //Debug.LogError(SaveToolsHelp.Load<string>("2", saveSetting1));
@@ -170,6 +173,10 @@ public partial class LobbyGamePanel : QUIBehaviour {
         }
 
         foreach (var item in SaveToolsHelp.Load<string[]>("40")) {
+            Debug.LogError(item);
+        }
+
+        foreach (var item in SaveToolsHelp.Load<bool[]>("41")) {
             Debug.LogError(item);
         }
     }
