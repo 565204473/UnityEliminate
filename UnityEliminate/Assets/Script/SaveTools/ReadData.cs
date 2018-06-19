@@ -204,11 +204,20 @@ public class ReadData : IDisposable {
 
     public DateTime ReadDateTime() {
         var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveDateTime);
-        if ( dt is DateTime) {
+        if (dt is DateTime) {
             return (DateTime)dt;
         }
         NoHasKeyHint();
         return new DateTime();
+    }
+
+    public Array ReadArray() {
+        var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveArray);
+        if (dt is Array) {
+            return (Array)dt;
+        }
+        NoHasKeyHint();
+        return new Array[1];
     }
 
     private object SelectReadType(SaveImplementType type, EnumSaveTypeKey keyType) {
@@ -262,6 +271,8 @@ public class ReadData : IDisposable {
                                 return StringExtention.GetValue<Dictionary<object, object>>(data.ConverToString());
                             case EnumSaveTypeKey.SaveDateTime:
                                 return DateTime.Parse(data.ToString());
+                            case EnumSaveTypeKey.SaveArray:
+                                return StringExtention.GetValue<Array>(data.ConverToString());
 
                         }
                         return null;
@@ -316,6 +327,8 @@ public class ReadData : IDisposable {
                                 return StringExtention.GetValue<Dictionary<object, object>>(data.SaveValue.ConverToString());
                             case EnumSaveTypeKey.SaveDateTime:
                                 return DateTime.Parse(data.SaveValue.ToString());
+                            case EnumSaveTypeKey.SaveArray:
+                                return StringExtention.GetValue<Array>(data.SaveValue.ConverToString());
 
                         }
                         return null;
@@ -473,6 +486,12 @@ public class ReadData : IDisposable {
                                 return null;
                             }
                             return (DateTime)dataDateTime;
+                        case EnumSaveTypeKey.SaveArray:
+                            var dataArray = SerializeHelper.DeserializeXML<Array>(saveSetting.path);
+                            if (dataArray == null) {
+                                return null;
+                            }
+                            return StringExtention.GetValue<Array>(dataArray.ConverToString());
                     }
                 }
                 break;

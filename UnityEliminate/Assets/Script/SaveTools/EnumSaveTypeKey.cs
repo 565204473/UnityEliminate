@@ -20,7 +20,8 @@
     SaveUlong,
     SaveUshort,
     SaveChar,
-    SaveDateTime
+    SaveDateTime,
+    SaveArray
 }
 
 

@@ -110,6 +110,12 @@ public class WriterData : IDisposable {
     }
 
 
+    public void WriteArray(Array value) {
+        string stringValue = StringExtention.ConverToString(value);
+        SelectWriteType(saveSetting.saveImplementType, stringValue);
+    }
+
+
     private void SelectWriteType(SaveImplementType type, object value) {
         switch (saveSetting.saveImplementType) {
             case SaveImplementType.ImplementByte:

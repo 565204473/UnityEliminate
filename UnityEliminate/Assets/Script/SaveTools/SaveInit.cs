@@ -35,6 +35,7 @@ public class SaveInit : MonoBehaviour
         StoredataTypeMgr.types[typeof(List<object>)] = new SaveList();
         StoredataTypeMgr.types[typeof(Dictionary<object, object>)] = new SaveDictionary();
         StoredataTypeMgr.types[typeof(DateTime)] = new SaveDateTime();
+        StoredataTypeMgr.types[typeof(Array)] = new SaveArray();
 
     }
 

@@ -359,16 +359,19 @@ namespace QFramework {
                 }
 
                 //数组
-                if (type.IsArray) {
+                if (type.IsArray || type == typeof(Array)) {
                     var elementType = Type.GetType(
                         type.FullName.Replace("[]", string.Empty));
                     var elStr = value.Split(Spriter1);
                     var array = Array.CreateInstance(elementType, elStr.Length);
-
+                    Debug.LogError(array);
                     for (var i = 0; i < elStr.Length; i++) {
-                        array.SetValue(elStr[i].GetValue(elementType), i);
+                        Debug.LogError(elStr[i] + "***" + i + "****" + elementType);
+                        // array.SetValue((elStr[i]), i);
+                        // array.SetValue(elStr[i].GetValue(elementType), i);
                     }
-
+                    //array.SetValue(33, 0);
+                    // array.SetValue(44, 1);
                     return array;
                 }
 
