@@ -26,7 +26,7 @@ public enum SaveReadingType {
 
 
 public static class SaveDefaultData {
-    public static string Path = FilePath.PersistentDataPath4Res;
+    public static string Path = FilePath.PersistentDataPath4Res + "/";
 }
 
 
@@ -41,7 +41,7 @@ public sealed class SaveSetting {
     }
 
     public SaveSetting(string tag, SaveReadingType type = SaveReadingType.Delete) {
-        path = SaveDefaultData.Path + "/" + tag;
+        path = SaveDefaultData.Path + tag;
         if (type == SaveReadingType.Delete) {
             IOExtension.DeleteFileIfExists(path);
         }
@@ -50,14 +50,14 @@ public sealed class SaveSetting {
 
     public SaveSetting(string tag, SaveImplementType type = SaveImplementType.ImplementByte) {
         filenameData = new FilenameData(tag);
-        this.path = SaveDefaultData.Path + "/" + tag;
+        this.path = SaveDefaultData.Path + tag;
         this.saveImplementType = type;
         FileMgr.Instance.CreateDirIfNotExists(SaveDefaultData.Path);
     }
 
     public SaveSetting(string tag, string path, SaveImplementType type = SaveImplementType.ImplementByte) {
         filenameData = new FilenameData(tag);
-        this.path = path + "/" + tag;
+        this.path = path + tag;
         this.saveImplementType = type;
         FileMgr.Instance.CreateDirIfNotExists(path);
     }
@@ -71,7 +71,7 @@ public sealed class SaveSetting {
     }
 
     public bool IsExists(string tag) {
-        path = SaveDefaultData.Path + "/" + tag;
+        path = SaveDefaultData.Path + tag;
         if (!string.IsNullOrEmpty(path)) {
 
             return IOExtension.HasFileIfExists(path);
@@ -81,7 +81,7 @@ public sealed class SaveSetting {
 
 
     public string GetFiles(string tag) {
-        path = SaveDefaultData.Path + "/" + tag;
+        path = SaveDefaultData.Path + tag;
         if (!string.IsNullOrEmpty(path)) {
             if (IsExists(path)) {
                 return path;

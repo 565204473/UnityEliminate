@@ -91,12 +91,17 @@ public partial class LobbyGamePanel : QUIBehaviour {
         //SaveToolsHelp.Save(us, "34");
         //char ch = 'F';
         //SaveToolsHelp.Save(ch, "35");
+        //SaveToolsHelp.Save(88, "36");
+        //SaveToolsHelp.Save(99, "37");
+        //DateTime dateTime = new DateTime(2018, 06, 19);
+        //Debug.LogError(dateTime);
+        //SaveToolsHelp.Save(dateTime, "38", SaveImplementType.ImplementXML);
 
-        SaveToolsHelp.Save(88, "36");
-        SaveToolsHelp.Save(99, "37");
 
-        DateTime dateTime = new DateTime();
-        SaveToolsHelp.Save(dateTime, "38");
+        int[] array = new int[2] { 33, 44 };
+        SaveToolsHelp.Save(array, "39");
+
+
 
         //Debug.LogError(SaveToolsHelp.Load<int>("1", saveSetting));
         //Debug.LogError(SaveToolsHelp.Load<int>("3", saveSetting2));
@@ -154,10 +159,11 @@ public partial class LobbyGamePanel : QUIBehaviour {
         //  Debug.LogError(SaveToolsHelp.Load<ulong>("33"));
         //Debug.LogError(SaveToolsHelp.Load<ushort>("34"));
         //Debug.LogError(SaveToolsHelp.Load<char>("35"));
-        Debug.LogError(SaveToolsHelp.Load<int>("36"));
-        Debug.LogError(SaveToolsHelp.Load<int>("37"));
+        //Debug.LogError(SaveToolsHelp.Load<int>("36"));
+        //Debug.LogError(SaveToolsHelp.Load<int>("37"));
 
-        Debug.LogError(SaveToolsHelp.Load<DateTime>("38").Year);
+        //  Debug.LogError(SaveToolsHelp.Load<DateTime>("38", SaveImplementType.ImplementXML));
+        Debug.LogError(SaveToolsHelp.Load<Array>("39").Length);
     }
 
     protected override void OnHide() {

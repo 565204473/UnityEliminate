@@ -43,13 +43,6 @@ public class Writer : IDisposable {
         this.Write<T>(param, valueType);
     }
 
-
-    public void Save() {
-
-        Debug.Log("这里要加人检测是否有，先删除，在保存");
-    }
-
-
     public void Dispose() {
 
     }

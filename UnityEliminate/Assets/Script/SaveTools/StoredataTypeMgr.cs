@@ -19,6 +19,11 @@ public static class StoredataTypeMgr {
 
             return new SaveEnum();
         }
+        if (IsArray(type)) {
+
+            return new SaveArray();
+        }
+
         return null;
     }
 
@@ -26,5 +31,9 @@ public static class StoredataTypeMgr {
     private static bool IsEnum(Type type) {
 
         return type.IsEnum;
+    }
+
+    private static bool IsArray(Type type) {
+        return type.IsArray;
     }
 }
