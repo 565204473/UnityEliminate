@@ -67,7 +67,7 @@ public class WriterData : IDisposable {
     }
 
     public void WriteList<T>(List<T> value) {
-        string stringValue = StringExtention.ConverToString(value);
+        string stringValue = StringExtention.ListConvertToString(value);
         SelectWriteType(saveSetting.saveImplementType, stringValue);
     }
 
@@ -111,7 +111,7 @@ public class WriterData : IDisposable {
 
 
     public void WriteArray(Array value) {
-        string stringValue = StringExtention.ConverToString(value);
+        string stringValue = StringExtention.ArrConvertToString(value);
         SelectWriteType(saveSetting.saveImplementType, stringValue);
     }
 
