@@ -761,7 +761,7 @@
 <XPD:ATTR name="Left" type="integer">36</XPD:ATTR>
 <XPD:ATTR name="Top" type="integer">76</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">118</XPD:ATTR>
-<XPD:ATTR name="Height" type="integer">329</XPD:ATTR>
+<XPD:ATTR name="Height" type="integer">342</XPD:ATTR>
 <XPD:REF name="Model">UT1lA4+9lEmzAvJJlO2M3AAA</XPD:REF>
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="B0odTN2PQEWE9KQrAm+nCwAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="Lgx30tTxRUWLAcCO2k/xewAA">
@@ -926,7 +926,7 @@
 <XPD:OBJ name="OwnedViews[20]" type="UMLAssociationView" guid="YKfWLM8yck230tdM05dg8gAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Points" type="Points">153,258;280,296</XPD:ATTR>
+<XPD:ATTR name="Points" type="Points">153,263;280,299</XPD:ATTR>
 <XPD:REF name="Model">2KDdvncxV0CMlwnHHcjjiAAA</XPD:REF>
 <XPD:REF name="Head">cSJ+fGLG1EC174s1fU25FAAA</XPD:REF>
 <XPD:REF name="Tail">4VKWdHglhECxA0O/BIcahQAA</XPD:REF>
@@ -1359,7 +1359,7 @@ https://tech.meituan.com/serialization_vs_deserialization.html
 <XPD:ATTR name="Left" type="integer">1628</XPD:ATTR>
 <XPD:ATTR name="Top" type="integer">12</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">317</XPD:ATTR>
-<XPD:ATTR name="Height" type="integer">368</XPD:ATTR>
+<XPD:ATTR name="Height" type="integer">381</XPD:ATTR>
 <XPD:REF name="Model">5rOYgfY3IEq3hFZD8KDfUAAA</XPD:REF>
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="mE3JIBQGHUGZXUliJHjrKAAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="swToeCupq0qKZi3JEcDmGwAA">
@@ -1390,7 +1390,7 @@ https://tech.meituan.com/serialization_vs_deserialization.html
 <XPD:ATTR name="Left" type="integer">1544</XPD:ATTR>
 <XPD:ATTR name="Top" type="integer">452</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">403</XPD:ATTR>
-<XPD:ATTR name="Height" type="integer">381</XPD:ATTR>
+<XPD:ATTR name="Height" type="integer">394</XPD:ATTR>
 <XPD:REF name="Model">d9LRs0+yMUmGD8mIeiDxygAA</XPD:REF>
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="Vnkf/kpe/0qcakNOmCtFGQAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="EYPvcxyXM0usUEq4mQMb0AAA">
@@ -1564,7 +1564,7 @@ https://tech.meituan.com/serialization_vs_deserialization.html
 <XPD:OBJ name="OwnedViews[32]" type="UMLRealizationView" guid="P/CjiNzChEWpxqrfqUS0IAAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Points" type="Points">2120,159;1944,178</XPD:ATTR>
+<XPD:ATTR name="Points" type="Points">2120,161;1944,183</XPD:ATTR>
 <XPD:REF name="Model">cbYB73jUqEK88IIbFLbnFQAA</XPD:REF>
 <XPD:REF name="Head">JWXNOGhinE+O4u+HKCNuhwAA</XPD:REF>
 <XPD:REF name="Tail">Uke5l9cLsUWw0xUiDtzp/AAA</XPD:REF>
@@ -1590,7 +1590,7 @@ https://tech.meituan.com/serialization_vs_deserialization.html
 <XPD:OBJ name="OwnedViews[33]" type="UMLDependencyView" guid="CQCLPJBQIk+ecmrX1ZKU3AAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Points" type="Points">2147,251;1940,452</XPD:ATTR>
+<XPD:ATTR name="Points" type="Points">2148,251;1944,452</XPD:ATTR>
 <XPD:REF name="Model">p9RhlILU+UqkErLnztIw6QAA</XPD:REF>
 <XPD:REF name="Head">bPel6MMEo0G+iF8y00XDlgAA</XPD:REF>
 <XPD:REF name="Tail">Uke5l9cLsUWw0xUiDtzp/AAA</XPD:REF>
@@ -1647,7 +1647,7 @@ https://tech.meituan.com/serialization_vs_deserialization.html
 <XPD:OBJ name="OwnedViews[35]" type="UMLDependencyView" guid="DeTe7YiBHEW03Xo3mT/9/gAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Points" type="Points">2188,643;1946,642</XPD:ATTR>
+<XPD:ATTR name="Points" type="Points">2188,645;1946,647</XPD:ATTR>
 <XPD:REF name="Model">iXjntvtlr0Cemwee4A0gGwAA</XPD:REF>
 <XPD:REF name="Head">bPel6MMEo0G+iF8y00XDlgAA</XPD:REF>
 <XPD:REF name="Tail">t/q/GDHKTUK9ArNHJEQ8WQAA</XPD:REF>
@@ -1699,7 +1699,7 @@ https://tech.meituan.com/serialization_vs_deserialization.html
 <XPD:OBJ name="OwnedViews[37]" type="UMLDependencyView" guid="tQ9lZZco20q8/NhNkuBSoAAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Points" type="Points">1628,229;1322,295</XPD:ATTR>
+<XPD:ATTR name="Points" type="Points">1628,235;1322,298</XPD:ATTR>
 <XPD:REF name="Model">oKSCfa+tEkyZg1ZIGDLPpwAA</XPD:REF>
 <XPD:REF name="Head">VFhMOoqR+0iv1WwkerFqLAAA</XPD:REF>
 <XPD:REF name="Tail">JWXNOGhinE+O4u+HKCNuhwAA</XPD:REF>
@@ -1725,7 +1725,7 @@ https://tech.meituan.com/serialization_vs_deserialization.html
 <XPD:OBJ name="OwnedViews[38]" type="UMLDependencyView" guid="uiC78/bV10SaquVf/obycgAA">
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
-<XPD:ATTR name="Points" type="Points">1544,555;1268,436</XPD:ATTR>
+<XPD:ATTR name="Points" type="Points">1544,559;1264,436</XPD:ATTR>
 <XPD:REF name="Model">abKodjq45kmbaMT0aiaOlwAA</XPD:REF>
 <XPD:REF name="Head">VFhMOoqR+0iv1WwkerFqLAAA</XPD:REF>
 <XPD:REF name="Tail">bPel6MMEo0G+iF8y00XDlgAA</XPD:REF>
@@ -2625,7 +2625,7 @@ https://tech.meituan.com/serialization_vs_deserialization.html
 <XPD:REF name="Views[2]">kpHwaPXB00CmH54/OKCZtQAA</XPD:REF>
 <XPD:ATTR name="#Associations" type="integer">1</XPD:ATTR>
 <XPD:REF name="Associations[0]">OMU4xN7ya0my4ji/BJItzAAA</XPD:REF>
-<XPD:ATTR name="#Literals" type="integer">21</XPD:ATTR>
+<XPD:ATTR name="#Literals" type="integer">22</XPD:ATTR>
 <XPD:OBJ name="Literals[0]" type="UMLEnumerationLiteral" guid="YvHxX2oC6EKXaKLxEtl3RQAA">
 <XPD:ATTR name="Name" type="string">SaveString</XPD:ATTR>
 <XPD:REF name="Enumeration">UT1lA4+9lEmzAvJJlO2M3AAA</XPD:REF>
@@ -2708,6 +2708,10 @@ https://tech.meituan.com/serialization_vs_deserialization.html
 </XPD:OBJ>
 <XPD:OBJ name="Literals[20]" type="UMLEnumerationLiteral" guid="LeB5gGOp5ESDlUiloQ8yZgAA">
 <XPD:ATTR name="Name" type="string">SaveDateTime</XPD:ATTR>
+<XPD:REF name="Enumeration">UT1lA4+9lEmzAvJJlO2M3AAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="Literals[21]" type="UMLEnumerationLiteral" guid="8EId6NmVc0ioYmVCkDsn7AAA">
+<XPD:ATTR name="Name" type="string">SaveArray</XPD:ATTR>
 <XPD:REF name="Enumeration">UT1lA4+9lEmzAvJJlO2M3AAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
@@ -3230,7 +3234,7 @@ https://tech.meituan.com/serialization_vs_deserialization.html
 <XPD:REF name="ClientDependencies[1]">oKSCfa+tEkyZg1ZIGDLPpwAA</XPD:REF>
 <XPD:ATTR name="#SupplierDependencies" type="integer">1</XPD:ATTR>
 <XPD:REF name="SupplierDependencies[0]">cbYB73jUqEK88IIbFLbnFQAA</XPD:REF>
-<XPD:ATTR name="#Operations" type="integer">24</XPD:ATTR>
+<XPD:ATTR name="#Operations" type="integer">25</XPD:ATTR>
 <XPD:OBJ name="Operations[0]" type="UMLOperation" guid="s+qDZPmqzUmOt18RdlV4UwAA">
 <XPD:ATTR name="Name" type="string">WriterData</XPD:ATTR>
 <XPD:REF name="Owner">5rOYgfY3IEq3hFZD8KDfUAAA</XPD:REF>
@@ -3433,7 +3437,16 @@ https://tech.meituan.com/serialization_vs_deserialization.html
 <XPD:REF name="BehavioralFeature">1P37kRHhPkad6+TgsbyM8AAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:OBJ name="Operations[22]" type="UMLOperation" guid="RBROL9sHWUGwGt9Z41HGYwAA">
+<XPD:OBJ name="Operations[22]" type="UMLOperation" guid="tyXAGvkDBEigaRvQIUgNZgAA">
+<XPD:ATTR name="Name" type="string">void WriteArray</XPD:ATTR>
+<XPD:REF name="Owner">5rOYgfY3IEq3hFZD8KDfUAAA</XPD:REF>
+<XPD:ATTR name="#Parameters" type="integer">1</XPD:ATTR>
+<XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="+cHmYHPZYE6EnZZ1YzQOkwAA">
+<XPD:ATTR name="Name" type="string">Array value</XPD:ATTR>
+<XPD:REF name="BehavioralFeature">tyXAGvkDBEigaRvQIUgNZgAA</XPD:REF>
+</XPD:OBJ>
+</XPD:OBJ>
+<XPD:OBJ name="Operations[23]" type="UMLOperation" guid="RBROL9sHWUGwGt9Z41HGYwAA">
 <XPD:ATTR name="Name" type="string">void SelectWriteType</XPD:ATTR>
 <XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
 <XPD:REF name="Owner">5rOYgfY3IEq3hFZD8KDfUAAA</XPD:REF>
@@ -3447,7 +3460,7 @@ https://tech.meituan.com/serialization_vs_deserialization.html
 <XPD:REF name="BehavioralFeature">RBROL9sHWUGwGt9Z41HGYwAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:OBJ name="Operations[23]" type="UMLOperation" guid="2Ol/tpjWyE+Qsoegj2w8cQAA">
+<XPD:OBJ name="Operations[24]" type="UMLOperation" guid="2Ol/tpjWyE+Qsoegj2w8cQAA">
 <XPD:ATTR name="Name" type="string">void Dispose</XPD:ATTR>
 <XPD:REF name="Owner">5rOYgfY3IEq3hFZD8KDfUAAA</XPD:REF>
 </XPD:OBJ>
@@ -3476,7 +3489,7 @@ https://tech.meituan.com/serialization_vs_deserialization.html
 <XPD:ATTR name="#SupplierDependencies" type="integer">2</XPD:ATTR>
 <XPD:REF name="SupplierDependencies[0]">p9RhlILU+UqkErLnztIw6QAA</XPD:REF>
 <XPD:REF name="SupplierDependencies[1]">iXjntvtlr0Cemwee4A0gGwAA</XPD:REF>
-<XPD:ATTR name="#Operations" type="integer">25</XPD:ATTR>
+<XPD:ATTR name="#Operations" type="integer">26</XPD:ATTR>
 <XPD:OBJ name="Operations[0]" type="UMLOperation" guid="J7nGzPDn/U2+ZzeAKBeS2AAA">
 <XPD:ATTR name="Name" type="string">ReadData</XPD:ATTR>
 <XPD:REF name="Owner">d9LRs0+yMUmGD8mIeiDxygAA</XPD:REF>
@@ -3535,7 +3548,7 @@ https://tech.meituan.com/serialization_vs_deserialization.html
 <XPD:REF name="Owner">d9LRs0+yMUmGD8mIeiDxygAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Operations[13]" type="UMLOperation" guid="C7r5nlXkHkeY6On6U277hQAA">
-<XPD:ATTR name="Name" type="string">List&lt;object&gt; ReadList</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">object ReadList</XPD:ATTR>
 <XPD:REF name="Owner">d9LRs0+yMUmGD8mIeiDxygAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Operations[14]" type="UMLOperation" guid="xCt9hKbRK0+XwU2VgxsW+QAA">
@@ -3584,12 +3597,16 @@ https://tech.meituan.com/serialization_vs_deserialization.html
 <XPD:REF name="BehavioralFeature">vljnBGiurUiEHVtEo2RY7QAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:OBJ name="Operations[23]" type="UMLOperation" guid="a4qMEKrrlEaWnq7OyVGuDAAA">
+<XPD:OBJ name="Operations[23]" type="UMLOperation" guid="4hNJQi56xEGfr95sGOvqlgAA">
+<XPD:ATTR name="Name" type="string">Array ReadArray</XPD:ATTR>
+<XPD:REF name="Owner">d9LRs0+yMUmGD8mIeiDxygAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="Operations[24]" type="UMLOperation" guid="a4qMEKrrlEaWnq7OyVGuDAAA">
 <XPD:ATTR name="Name" type="string">NoHasKeyHint</XPD:ATTR>
 <XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
 <XPD:REF name="Owner">d9LRs0+yMUmGD8mIeiDxygAA</XPD:REF>
 </XPD:OBJ>
-<XPD:OBJ name="Operations[24]" type="UMLOperation" guid="5l3OdqxMuU2UFsq74gQvQwAA">
+<XPD:OBJ name="Operations[25]" type="UMLOperation" guid="5l3OdqxMuU2UFsq74gQvQwAA">
 <XPD:ATTR name="Name" type="string">void Dispose</XPD:ATTR>
 <XPD:REF name="Owner">d9LRs0+yMUmGD8mIeiDxygAA</XPD:REF>
 </XPD:OBJ>
@@ -3629,8 +3646,8 @@ https://tech.meituan.com/serialization_vs_deserialization.html
 <XPD:REF name="Participant">uVZadLwWKUSKiQ1eQFut4QAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">rkwzreiULk2/NqGNAkCJjwAA</XPD:REF>
-<XPD:REF name="Views[1]">7z9b3A9CuEWpL2ns/LJdMwAA</XPD:REF>
-<XPD:REF name="Views[2]">KCurxmmKr0Ctjv8MKcBndgAA</XPD:REF>
+<XPD:REF name="Views[1]">KCurxmmKr0Ctjv8MKcBndgAA</XPD:REF>
+<XPD:REF name="Views[2]">7z9b3A9CuEWpL2ns/LJdMwAA</XPD:REF>
 <XPD:REF name="Views[3]">t+2dIKCmnUa8Prs5K/b1FQAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Connections[1]" type="UMLAssociationEnd" guid="xFfbpFxnT0WprhUZi8p2FAAA">
@@ -3639,8 +3656,8 @@ https://tech.meituan.com/serialization_vs_deserialization.html
 <XPD:REF name="Participant">400Obaut+keThnkBZabsxAAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">/sESOwDIjkWaFxjNeb1yoQAA</XPD:REF>
-<XPD:REF name="Views[1]">qhg+VxyQD064rs1UuaA9tAAA</XPD:REF>
-<XPD:REF name="Views[2]">CkZcsgdjS0yAqRGjrcTTDAAA</XPD:REF>
+<XPD:REF name="Views[1]">CkZcsgdjS0yAqRGjrcTTDAAA</XPD:REF>
+<XPD:REF name="Views[2]">qhg+VxyQD064rs1UuaA9tAAA</XPD:REF>
 <XPD:REF name="Views[3]">tEWUN/ypbk6+LlG4pVfjMQAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
