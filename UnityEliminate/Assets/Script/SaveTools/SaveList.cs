@@ -1,11 +1,12 @@
-﻿using System;
+﻿using QFramework;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public sealed class SaveList : StoredataType {
 
-    public SaveList() : base(typeof(List<object>)) {
+    public SaveList() : base(typeof(List<>)) {
         key = EnumSaveTypeKey.SaveList;
     }
 
@@ -15,6 +16,6 @@ public sealed class SaveList : StoredataType {
     }
 
     public override void Write(object data, Writer write) {
-        write.writerData.WriteList((List<object>)data);
+        write.writerData.WriteList(data);
     }
 }

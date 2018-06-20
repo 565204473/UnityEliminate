@@ -66,8 +66,8 @@ public class WriterData : IDisposable {
         SelectWriteType(saveSetting.saveImplementType, stringValue);
     }
 
-    public void WriteList<T>(List<T> value) {
-        string stringValue = StringExtention.ListConvertToString(value);
+    public void WriteList(object value) {
+        string stringValue = StringExtention.ConverToString(value);
         SelectWriteType(saveSetting.saveImplementType, stringValue);
     }
 

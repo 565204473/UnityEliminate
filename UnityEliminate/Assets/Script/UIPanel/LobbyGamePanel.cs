@@ -73,7 +73,7 @@ public partial class LobbyGamePanel : QUIBehaviour {
         //lsDicTest.Add(1, "哈哈");
         //lsDicTest.Add(2, "嘻嘻");
         //SaveToolsHelp.Save(lsDicTest, "24", SaveImplementType.ImplementXML);
-        //SaveToolsHelp.Save(text.text + "***" + DateTime.Now, "25");
+        SaveToolsHelp.Save(text.text + "***" + DateTime.Now, "25",SaveImplementType.ImplementXML);
         //SaveToolsHelp.Save(text.text + "***" + DateTime.Now, "26", SaveImplementType.ImplementJson);
         //SaveToolsHelp.Save(text.text + "***" + DateTime.Now, "27", SaveImplementType.ImplementXML);
         //SaveToolsHelp.Save(text.text + "***" + DateTime.Now, "28", SaveImplementType.ImplementProto);
@@ -98,14 +98,20 @@ public partial class LobbyGamePanel : QUIBehaviour {
         //SaveToolsHelp.Save(dateTime, "38", SaveImplementType.ImplementXML);
 
 
-        int[] array = new int[2] { 33, 44 };
-        SaveToolsHelp.Save(array, "39");
+        //int[] array = new int[2] { 33, 44 };
+        //SaveToolsHelp.Save(array, "39");
 
-        string[] array1 = new string[3] { "55", "66", "我是中文" };
-        SaveToolsHelp.Save(array1, "40");
+        //string[] array1 = new string[3] { "55", "66", "我是中文" };
+        //SaveToolsHelp.Save(array1, "40");
 
-        bool[] array2 = new bool[2] { true, true };
-        SaveToolsHelp.Save(array2, "41");
+        //bool[] array2 = new bool[2] { true, true };
+        //SaveToolsHelp.Save(array2, "41");
+
+
+        //List<int> ls = new List<int>();
+        //ls.Add(1);
+        //ls.Add(2);
+        //SaveToolsHelp.Save(ls, "42");
 
         //Debug.LogError(SaveToolsHelp.Load<int>("1", saveSetting));
         //Debug.LogError(SaveToolsHelp.Load<int>("3", saveSetting2));
@@ -148,7 +154,7 @@ public partial class LobbyGamePanel : QUIBehaviour {
         //int num1 = SaveToolsHelp.Load<int>("9");
         //Debug.LogError(num + "****" + num1);
 
-        //SaveToolsHelp.Load<string>("25");
+        SaveToolsHelp.Load<string>("25", SaveImplementType.ImplementXML);
         //SaveToolsHelp.Load<string>("27", SaveImplementType.ImplementXML);
         //SaveToolsHelp.Load<string>("26", SaveImplementType.ImplementJson);
         //SaveToolsHelp.Load<string>("28", SaveImplementType.ImplementProto);
@@ -168,17 +174,25 @@ public partial class LobbyGamePanel : QUIBehaviour {
 
         //  Debug.LogError(SaveToolsHelp.Load<DateTime>("38", SaveImplementType.ImplementXML));
         //  Debug.LogError(SaveToolsHelp.Load<int[]>("39").Length);
-        foreach (var item in SaveToolsHelp.Load<int[]>("39")) {
-            Debug.LogError(item);
-        }
+        //foreach (var item in SaveToolsHelp.Load<int[]>("39")) {
+        //    Debug.LogError(item);
+        //}
 
-        foreach (var item in SaveToolsHelp.Load<string[]>("40")) {
-            Debug.LogError(item);
-        }
+        //foreach (var item in SaveToolsHelp.Load<string[]>("40")) {
+        //    Debug.LogError(item);
+        //}
 
-        foreach (var item in SaveToolsHelp.Load<bool[]>("41")) {
-            Debug.LogError(item);
-        }
+        //foreach (var item in SaveToolsHelp.Load<bool[]>("41")) {
+        //    Debug.LogError(item);
+        //}
+
+        //foreach (var item in SaveToolsHelp.Load<List<int>>("42")) {
+        //    Debug.LogError(item);
+        //}
+
+        //foreach (var item in SaveToolsHelp.Load<List<string>>("43")) {
+        //    Debug.LogError(item);
+        //}
     }
 
     protected override void OnHide() {

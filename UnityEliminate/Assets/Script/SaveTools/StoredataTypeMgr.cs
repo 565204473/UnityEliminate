@@ -24,6 +24,11 @@ public static class StoredataTypeMgr {
             return new SaveArray();
         }
 
+        if (IsGenericType(type)) {
+
+            return new SaveList();
+        }
+
         return null;
     }
 
@@ -35,5 +40,10 @@ public static class StoredataTypeMgr {
 
     private static bool IsArray(Type type) {
         return type.IsArray;
+    }
+
+    private static bool IsGenericType(Type type) {
+
+        return type.IsGenericType;
     }
 }

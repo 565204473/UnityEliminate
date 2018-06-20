@@ -27,7 +27,6 @@ public class ReadData : IDisposable {
             return (long)dt;
         }
         NoHasKeyHint();
-
         return 0;
     }
 
@@ -129,13 +128,13 @@ public class ReadData : IDisposable {
         return TestEnum.One;
     }
 
-    public List<object> ReadList() {
+    public object ReadList() {
         var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveList);
-        if (dt is List<object>) {
-            return (List<object>)dt;
+        if (dt != null && dt.GetType().IsGenericType) {
+            return dt;
         }
         NoHasKeyHint();
-        return new List<object>();
+        return StringExtention.GetValue("1", (Type)saveSetting.curObject); ;
     }
 
     public Dictionary<object, object> ReadDictionary() {
@@ -266,7 +265,7 @@ public class ReadData : IDisposable {
                             case EnumSaveTypeKey.SaveEnum:
                                 return StringExtention.GetValue(data.ConverToString(), (Type)saveSetting.curObject);
                             case EnumSaveTypeKey.SaveList:
-                                return StringExtention.GetValue<List<object>>(data.ConverToString());
+                                return StringExtention.GetValue(data.ConverToString(), (Type)saveSetting.curObject);
                             case EnumSaveTypeKey.SaveDictionary:
                                 return StringExtention.GetValue<Dictionary<object, object>>(data.ConverToString());
                             case EnumSaveTypeKey.SaveDateTime:
@@ -328,7 +327,7 @@ public class ReadData : IDisposable {
                             case EnumSaveTypeKey.SaveDateTime:
                                 return DateTime.Parse(data.SaveValue.ToString());
                             case EnumSaveTypeKey.SaveArray:
-                                return StringExtention.GetValue<Array>(data.SaveValue.ConverToString());
+                                return StringExtention.GetValue(data.SaveValue.ConverToString(), (Type)saveSetting.curObject);
 
                         }
                         return null;
@@ -491,7 +490,7 @@ public class ReadData : IDisposable {
                             if (dataArray == null) {
                                 return null;
                             }
-                            return StringExtention.GetValue<Array>(dataArray.ConverToString());
+                            return StringExtention.GetValue(dataArray.ConverToString(), (Type)saveSetting.curObject);
                     }
                 }
                 break;

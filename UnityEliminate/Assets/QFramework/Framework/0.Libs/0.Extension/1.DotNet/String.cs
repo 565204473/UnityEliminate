@@ -342,8 +342,9 @@ namespace QFramework {
 
                     constructor = Activator.CreateInstance(type);
                     foreach (var str in list) {
-                        genericArgument = str;//GetValue(str, type2);
-                                              // Debug.Log(str + "  " + type2.Name + "  " + genericArgument);
+                       // genericArgument = str;
+                        genericArgument = GetValue(str, type2);
+                        // Debug.Log(str + "  " + type2.Name + "  " + genericArgument);
                         type.GetMethod("Add").Invoke(constructor, new[] { genericArgument });
                     }
 
@@ -365,7 +366,7 @@ namespace QFramework {
                     var elStr = value.Split(Spriter1);
                     var array = Array.CreateInstance(elementType, elStr.Length);
                     for (var i = 0; i < elStr.Length; i++) {
-                         array.SetValue(elStr[i].GetValue(elementType), i);             
+                        array.SetValue(elStr[i].GetValue(elementType), i);
                     }
                     return array;
                 }
