@@ -49,8 +49,9 @@ namespace QFramework {
                 System.Runtime.Serialization.Formatters.Binary.BinaryFormatter bf =
                     new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
                 bf.Serialize(fs, obj);
-    
-                UnityEngine.Debug.LogError(DateTime.Now.Millisecond + "Byte结束");
+                if (path == SaveDefaultData.Path + "0文件"|| path == SaveDefaultData.Path + "9999文件") {
+                    UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " * *Byte结束");
+                }
 
                 return true;
             }
@@ -66,7 +67,6 @@ namespace QFramework {
                 System.Runtime.Serialization.Formatters.Binary.BinaryFormatter bf =
                     new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
                 var data = bf.Deserialize(stream);
-                UnityEngine.Debug.LogError(DateTime.Now.Millisecond + "读Byte结束");
                 // TODO:这里没风险嘛?
                 return data;
             }
@@ -89,7 +89,7 @@ namespace QFramework {
                 System.Runtime.Serialization.Formatters.Binary.BinaryFormatter bf =
                     new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
                 object data = bf.Deserialize(fs);
-
+                UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " * *读Byte结束");
                 if (data != null) {
                     return data;
                 }
@@ -113,7 +113,7 @@ namespace QFramework {
             using (var fs = new FileStream(path, FileMode.OpenOrCreate)) {
                 var xmlserializer = new XmlSerializer(obj.GetType());
                 xmlserializer.Serialize(fs, obj);
-                UnityEngine.Debug.LogError(DateTime.Now.Millisecond + "**Xml结束");
+                UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " * *Xml结束");
                 return true;
             }
         }
@@ -132,7 +132,7 @@ namespace QFramework {
 
                 if (data != null) {
 
-                    UnityEngine.Debug.LogError(DateTime.Now.Millisecond + "读**Xml结束");
+                    UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " * *读**Xml结束");
                     return data;
                 }
             }
@@ -146,21 +146,23 @@ namespace QFramework {
         }
 
         public static T FromJson<T>(this string json) where T : class {
-          
-            var data = JsonConvert.DeserializeObject<T>(json);
-            UnityEngine.Debug.LogError(DateTime.Now.Millisecond + "读json结束");
-            return data;
-           // return JsonConvert.DeserializeObject<T>(json);
+            return JsonConvert.DeserializeObject<T>(json);
         }
 
         public static void SaveJson<T>(this T obj, string path) where T : class {
             File.WriteAllText(path, obj.ToJson<T>());
-            UnityEngine.Debug.LogError(DateTime.Now.Millisecond + "**json结束");
+            UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " * *json结束");
+            // UnityEngine.Debug.Log(DateTime.Now.Millisecond + "**json结束");
         }
 
-        public static T LoadJson<T>(string path) where T : class {         
-            return File.ReadAllText(path).FromJson<T>();
-       
+        public static T LoadJson<T>(string path) where T : class {
+            var data = File.ReadAllText(path).FromJson<T>();
+            if (data != null) {
+                UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " * *读json结束");
+            }
+            return data;
+            // return File.ReadAllText(path).FromJson<T>();
+
         }
 
         public static byte[] ToProtoBuff<T>(this T obj) where T : class {
@@ -180,14 +182,14 @@ namespace QFramework {
 
         public static void SaveProtoBuff<T>(this T obj, string path) where T : class {
             File.WriteAllBytes(path, obj.ToProtoBuff<T>());
-            UnityEngine.Debug.LogError(DateTime.Now.Millisecond + "**Proto结束");
+            UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " * *Proto结束");
         }
 
         public static T LoadProtoBuff<T>(string path) where T : class {
             var data = File.ReadAllBytes(path).FromProtoBuff<T>();
-            UnityEngine.Debug.LogError(DateTime.Now.Millisecond + "读**Proto结束");
+            UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " * *读**Proto结束");
             return data;
-          //  return File.ReadAllBytes(path).FromProtoBuff<T>();
+            //  return File.ReadAllBytes(path).FromProtoBuff<T>();
         }
     }
 }

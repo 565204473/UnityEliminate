@@ -71,8 +71,8 @@ public class WriterData : IDisposable {
         SelectWriteType(saveSetting.saveImplementType, stringValue);
     }
 
-    public void WriteDictionary(Dictionary<object, object> value) {
-        string stringValue = StringExtention.DictConvertToString(value);
+    public void WriteDictionary(object value) {
+        string stringValue = StringExtention.ConverToString(value);
         SelectWriteType(saveSetting.saveImplementType, stringValue);
     }
 
@@ -119,24 +119,21 @@ public class WriterData : IDisposable {
     private void SelectWriteType(SaveImplementType type, object value) {
         switch (saveSetting.saveImplementType) {
             case SaveImplementType.ImplementByte:
-                Debug.LogError(DateTime.Now.Millisecond + "Byte开始");
                 SerializeHelper.SerializeBinary(this.saveSetting.path, value);
                 break;
             case SaveImplementType.ImplementJson:
                 var tempJson = new JsonTestFloat { Savekey = this.saveSetting.filenameData.tag, SaveValue = value };
-                Debug.LogError(DateTime.Now.Millisecond + "***Json开始");
+
                 tempJson.SaveJson(this.saveSetting.path);
                 break;
             case SaveImplementType.ImplementProto:
                 var tempProto = new ProtoBufSave {
                     Savekey = this.saveSetting.filenameData.tag,
-                    SaveValue = (string)value
+                    SaveValue = (int)value
                 };
-                UnityEngine.Debug.LogError(DateTime.Now.Millisecond + "**Proto开始");
                 tempProto.SaveProtoBuff(this.saveSetting.path);
                 break;
             case SaveImplementType.ImplementXML:
-                Debug.LogError(DateTime.Now.Millisecond + "***Xml开始");
                 SerializeHelper.SerializeXML(this.saveSetting.path, value);
                 break;
         }

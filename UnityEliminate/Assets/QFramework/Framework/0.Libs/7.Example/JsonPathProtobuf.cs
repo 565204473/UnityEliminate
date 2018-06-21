@@ -114,7 +114,7 @@ namespace QFramework {
         public string Savekey = string.Empty;
 
         [ProtoBuf.ProtoMember(2)]
-        public string SaveValue;
+        public int SaveValue;
     }
 
 }

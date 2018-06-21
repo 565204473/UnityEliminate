@@ -61,19 +61,33 @@ public partial class LobbyGamePanel : QUIBehaviour {
         //TestEnum testEnum = TestEnum.Three;
         //SaveToolsHelp.Save(testEnum, "21");
         //List<object> lsTestString = new List<object>();
-        //lsTestString.Add("我真的好累啊");
-        //lsTestString.Add("真的");
+        //lsTestString.Add("哈哈哈哈");
+        //lsTestString.Add("嘻嘻嘻嘻");
         //lsTestString.Add(123);
         //SaveToolsHelp.Save(lsTestString, "22", SaveImplementType.ImplementXML);
         //List<object> lsTestint = new List<object>();
         //lsTestint.Add(2);
         //lsTestint.Add(3);
         //SaveToolsHelp.Save(lsTestint, "23");
-        //Dictionary<object, object> lsDicTest = new Dictionary<object, object>();
+        //Dictionary<int, string> lsDicTest = new Dictionary<int, string>();
         //lsDicTest.Add(1, "哈哈");
         //lsDicTest.Add(2, "嘻嘻");
-        //SaveToolsHelp.Save(lsDicTest, "24", SaveImplementType.ImplementXML);
-        SaveToolsHelp.Save(text.text + "***" + DateTime.Now, "25",SaveImplementType.ImplementXML);
+        //SaveToolsHelp.Save(lsDicTest, "24");
+
+        //Dictionary<string, bool> lsDicTest1 = new Dictionary<string, bool>();
+        //lsDicTest1.Add("你", false);
+        //lsDicTest1.Add("她", true);
+        //SaveToolsHelp.Save(lsDicTest1, "43");
+
+
+        //Dictionary<float, List<int>> lsDicTest2 = new Dictionary<float, List<int>>();
+        //List<int> list = new List<int>();
+        //list.Add(33);
+        //list.Add(22);
+        //lsDicTest2.Add(0.1f, list);
+        //SaveToolsHelp.Save(lsDicTest2, "44");
+
+        //  SaveToolsHelp.Save(text.text + "***" + DateTime.Now, "25",SaveImplementType.ImplementXML);
         //SaveToolsHelp.Save(text.text + "***" + DateTime.Now, "26", SaveImplementType.ImplementJson);
         //SaveToolsHelp.Save(text.text + "***" + DateTime.Now, "27", SaveImplementType.ImplementXML);
         //SaveToolsHelp.Save(text.text + "***" + DateTime.Now, "28", SaveImplementType.ImplementProto);
@@ -98,6 +112,8 @@ public partial class LobbyGamePanel : QUIBehaviour {
         //SaveToolsHelp.Save(dateTime, "38", SaveImplementType.ImplementXML);
 
 
+
+
         //int[] array = new int[2] { 33, 44 };
         //SaveToolsHelp.Save(array, "39");
 
@@ -112,6 +128,16 @@ public partial class LobbyGamePanel : QUIBehaviour {
         //ls.Add(1);
         //ls.Add(2);
         //SaveToolsHelp.Save(ls, "42");
+
+        int count = 10000;
+        for (int i = 0; i < count; i++) {
+            SaveToolsHelp.Save(i, i + "文件");
+        }
+
+        //for (int i = 0; i < count; i++) {
+        //    SaveToolsHelp.Load<int>(i + "文件", SaveImplementType.ImplementJson);
+        //}
+
 
         //Debug.LogError(SaveToolsHelp.Load<int>("1", saveSetting));
         //Debug.LogError(SaveToolsHelp.Load<int>("3", saveSetting2));
@@ -145,16 +171,28 @@ public partial class LobbyGamePanel : QUIBehaviour {
         //    Debug.LogError(item);
         //}
 
-        //Debug.LogError(SaveToolsHelp.Load<Dictionary<object, object>>("24", SaveImplementType.ImplementXML).Count);
-        //foreach (var item in SaveToolsHelp.Load<Dictionary<object, object>>("24", SaveImplementType.ImplementXML)) {
+        // Debug.LogError(SaveToolsHelp.Load<Dictionary<int, string>>("24").Count);
+        //foreach (var item in SaveToolsHelp.Load<Dictionary<int, string>>("24")) {
         //    Debug.LogError(item.Key + "***" + item.Value);
+        //}
+
+        //foreach (var item in SaveToolsHelp.Load<Dictionary<string, bool>>("43")) {
+        //    Debug.LogError(item.Key + "***" + item.Value);
+        //}
+
+
+        //foreach (var item in SaveToolsHelp.Load<Dictionary<float, List<int>>>("44")) {
+        //    Debug.LogError(item.Key + "***" + item.Value.Count);
+        //    foreach (var item1 in item.Value) {
+        //        Debug.LogError(item1);
+        //    }
         //}
 
         //int num = SaveToolsHelp.Load<int>("8");
         //int num1 = SaveToolsHelp.Load<int>("9");
         //Debug.LogError(num + "****" + num1);
 
-        SaveToolsHelp.Load<string>("25", SaveImplementType.ImplementXML);
+        // SaveToolsHelp.Load<string>("25", SaveImplementType.ImplementXML);
         //SaveToolsHelp.Load<string>("27", SaveImplementType.ImplementXML);
         //SaveToolsHelp.Load<string>("26", SaveImplementType.ImplementJson);
         //SaveToolsHelp.Load<string>("28", SaveImplementType.ImplementProto);

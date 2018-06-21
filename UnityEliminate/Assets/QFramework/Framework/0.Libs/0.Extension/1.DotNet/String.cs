@@ -327,8 +327,8 @@ namespace QFramework {
                     Dictionary<string, string> dictionary = ParseMap(value, Spriter2, Spriter1);
                     constructor = type.GetConstructor(Type.EmptyTypes).Invoke(null);
                     foreach (KeyValuePair<string, string> pair in dictionary) {
-                        var genericArgument1 = pair.Key;// GetValue(pair.Key, genericArguments[0]);
-                        genericArgument = pair.Value;//GetValue(pair.Value, genericArguments[1]);
+                        var genericArgument1 = /*pair.Key;*/ GetValue(pair.Key, genericArguments[0]);
+                        genericArgument =/* pair.Value;*/GetValue(pair.Value, genericArguments[1]);
                         type.GetMethod("Add").Invoke(constructor, new[] { genericArgument1, genericArgument });
                     }
 

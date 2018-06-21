@@ -29,6 +29,10 @@ public static class StoredataTypeMgr {
             return new SaveList();
         }
 
+        if (IsGenericTypeByDictionary(type)) {
+            return new SaveDictionary();
+        }
+
         return null;
     }
 
@@ -45,5 +49,10 @@ public static class StoredataTypeMgr {
     private static bool IsGenericType(Type type) {
 
         return type.IsGenericType;
+    }
+
+    private static bool IsGenericTypeByDictionary(Type type) {
+
+        return type.IsGenericType && (type.GetGenericTypeDefinition() == typeof(Dictionary<,>));
     }
 }

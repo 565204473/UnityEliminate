@@ -14,6 +14,6 @@ public sealed class SaveDictionary : StoredataType {
 
 
     public override void Write(object data, Writer write) {
-        write.writerData.WriteDictionary(((Dictionary<object, object>)data));
+        write.writerData.WriteDictionary(data);
     }
 }

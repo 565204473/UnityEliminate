@@ -137,13 +137,13 @@ public class ReadData : IDisposable {
         return StringExtention.GetValue("1", (Type)saveSetting.curObject); ;
     }
 
-    public Dictionary<object, object> ReadDictionary() {
+    public object ReadDictionary() {
         var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveDictionary);
-        if (dt is Dictionary<object, object>) {
-            return ((Dictionary<object, object>)dt);
+        if (dt != null && dt.GetType().IsGenericType) {
+            return dt;
         }
         NoHasKeyHint();
-        return new Dictionary<object, object>();
+        return StringExtention.GetValue("2", (Type)saveSetting.curObject);
     }
 
     public byte ReadByte() {
@@ -224,8 +224,8 @@ public class ReadData : IDisposable {
             case SaveImplementType.ImplementByte:
                 Stream stream = FileMgr.Instance.OpenReadStream(this.saveSetting.path);
                 if (stream != null) {
-                    Debug.LogError(DateTime.Now.Millisecond + "读Byte开始");
-                    var data = SerializeHelper.DeserializeBinary(stream);
+                   // Debug.LogError(DateTime.Now.Millisecond + "读Byte开始");
+                    var data = SerializeHelper.DeserializeBinary(this.saveSetting.path);
                     if (data != null) {
                         switch (keyType) {
                             case EnumSaveTypeKey.SaveInt:
@@ -267,7 +267,7 @@ public class ReadData : IDisposable {
                             case EnumSaveTypeKey.SaveList:
                                 return StringExtention.GetValue(data.ConverToString(), (Type)saveSetting.curObject);
                             case EnumSaveTypeKey.SaveDictionary:
-                                return StringExtention.GetValue<Dictionary<object, object>>(data.ConverToString());
+                                return StringExtention.GetValue(data.ConverToString(), (Type)saveSetting.curObject); ;
                             case EnumSaveTypeKey.SaveDateTime:
                                 return DateTime.Parse(data.ToString());
                             case EnumSaveTypeKey.SaveArray:
