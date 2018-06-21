@@ -113,7 +113,9 @@ namespace QFramework {
             using (var fs = new FileStream(path, FileMode.OpenOrCreate)) {
                 var xmlserializer = new XmlSerializer(obj.GetType());
                 xmlserializer.Serialize(fs, obj);
-                UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " * *Xml结束");
+                if (path == SaveDefaultData.Path + "0文件" || path == SaveDefaultData.Path + "9999文件") {
+                    UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " * *Xml结束");
+                }
                 return true;
             }
         }
