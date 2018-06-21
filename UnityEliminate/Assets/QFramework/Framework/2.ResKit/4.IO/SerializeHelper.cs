@@ -49,7 +49,7 @@ namespace QFramework {
                 System.Runtime.Serialization.Formatters.Binary.BinaryFormatter bf =
                     new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
                 bf.Serialize(fs, obj);
-                if (path == SaveDefaultData.Path + "0文件"|| path == SaveDefaultData.Path + "9999文件") {
+                if (path == SaveDefaultData.Path + "0文件" || path == SaveDefaultData.Path + "9999文件") {
                     UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " * *Byte结束");
                 }
 
@@ -153,8 +153,9 @@ namespace QFramework {
 
         public static void SaveJson<T>(this T obj, string path) where T : class {
             File.WriteAllText(path, obj.ToJson<T>());
-            UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " * *json结束");
-            // UnityEngine.Debug.Log(DateTime.Now.Millisecond + "**json结束");
+            if (path == SaveDefaultData.Path + "0文件" || path == SaveDefaultData.Path + "9999文件") {
+                UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " * *json结束");
+            }
         }
 
         public static T LoadJson<T>(string path) where T : class {
@@ -184,7 +185,9 @@ namespace QFramework {
 
         public static void SaveProtoBuff<T>(this T obj, string path) where T : class {
             File.WriteAllBytes(path, obj.ToProtoBuff<T>());
-            UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " * *Proto结束");
+            if (path == SaveDefaultData.Path + "0文件" || path == SaveDefaultData.Path + "9999文件") {
+                UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " * *Proto结束");
+            }
         }
 
         public static T LoadProtoBuff<T>(string path) where T : class {
