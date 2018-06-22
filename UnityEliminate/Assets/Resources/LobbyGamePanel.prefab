@@ -2239,7 +2239,7 @@ MonoBehaviour:
   - {fileID: 114653812049464632}
   - {fileID: 114476113035527536}
   readBtnPos: {fileID: 224351505989288110}
-  count: 10
+  count: 10000
 --- !u!114 &114340237084854050
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -88,16 +88,20 @@ public partial class LobbyGamePanel : QUIBehaviour {
     }
 
     private void WriteFileData(SaveImplementType type = SaveImplementType.ImplementByte) {
-        for (int i = 0; i < count; i++) {
-            SaveToolsHelp.Write(i, i + "文件", type);
+        using (QFramework.Profiler p = new QFramework.Profiler("SaveToolsHelp.Write")) 
+        {
+            for (int i = 0; i < count; i++) {
+                SaveToolsHelp.Write(i, i + "文件", type);
+            }
         }
-
     }
 
     private void ReadFileData(SaveImplementType type = SaveImplementType.ImplementByte) {
-        for (int i = 0; i < count; i++) {
-            SaveToolsHelp.Reader<int>(i + "文件", type);
-        }
+        using (QFramework.Profiler p = new QFramework.Profiler("SaveToolsHelp.Reader")) {
+            for (int i = 0; i < count; i++) {
+                SaveToolsHelp.Reader<int>(i + "文件", type);
+            }
+        }  
     }
 
     protected override void OnShow() {
