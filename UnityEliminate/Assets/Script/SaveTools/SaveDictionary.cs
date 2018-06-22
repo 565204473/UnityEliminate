@@ -9,7 +9,11 @@ public sealed class SaveDictionary : StoredataType {
     }
 
     public override object Reader(Read reader) {
-        return reader.readData.ReadDictionary();
+        return reader.readData.ReadDictionary(string.Empty);
+    }
+
+    public override object Reader(Read reader, object defaultData) {
+        return reader.readData.ReadDictionary(defaultData);
     }
 
 

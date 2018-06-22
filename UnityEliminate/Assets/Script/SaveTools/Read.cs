@@ -36,11 +36,25 @@ public class Read : IDisposable {
         return default(T);
     }
 
+    public T Reader<T>(StoredataType type, T defaultData) {
+        if (type != null) {
+            return (T)type.Reader(this, defaultData);
+        }
+        return default(T);
+    }
+
     public T Reader<T>(string tag) {
         StoredataType expectedValue = StoredataTypeMgr.GetStoredataType(typeof(T));
         Setting.curObject = typeof(T);
         return this.Reader<T>(expectedValue);
     }
+
+    public T Reader<T>(string tag, T defaultData) {
+        StoredataType expectedValue = StoredataTypeMgr.GetStoredataType(typeof(T));
+        Setting.curObject = typeof(T);
+        return this.Reader<T>(expectedValue, defaultData);
+    }
+
 
     public void Dispose() {
         readData = null;

@@ -13,6 +13,10 @@ public sealed  class SaveDouble : StoredataType {
         return reader.readData.ReadDouble();
     }
 
+    public override object Reader(Read reader, object defaultData) {
+        return reader.readData.ReadDouble((double)defaultData);
+    }
+
     public override void Write(object data, Writer write)
     {
         write.writerData.WriteDouble((double)data);

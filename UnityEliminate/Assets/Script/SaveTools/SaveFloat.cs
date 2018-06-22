@@ -12,6 +12,10 @@ public sealed class SaveFloat : StoredataType {
         return reader.readData.ReadFolat();
     }
 
+    public override object Reader(Read reader, object defaultData) {
+        return reader.readData.ReadFolat((float)defaultData);
+    }
+
 
     public override void Write(object data, Writer write) {
 

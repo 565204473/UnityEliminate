@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed  class SaveString : StoredataType {
+public sealed class SaveString : StoredataType {
 
     public SaveString() : base(typeof(string)) {
         base.key = EnumSaveTypeKey.SaveString;
@@ -11,6 +11,10 @@ public sealed  class SaveString : StoredataType {
     public override object Reader(Read reader) {
         Debug.LogError("调用SaveRead读入string的实现");
         return reader.readData.ReadString();
+    }
+
+    public override object Reader(Read reader, object defaultData) {
+        return reader.readData.ReadString((string)defaultData);
     }
 
     public override void Write(object data, Writer write) {

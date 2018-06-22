@@ -12,6 +12,10 @@ public sealed class SaveUshort : StoredataType {
         return reader.readData.ReadUshort();
     }
 
+    public override object Reader(Read reader, object defaultData) {
+        return reader.readData.ReadUshort((ushort)defaultData);
+    }
+
     public override void Write(object data, Writer write) {
         write.writerData.WriteUshort((ushort)data);
     }

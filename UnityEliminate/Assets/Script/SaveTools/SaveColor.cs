@@ -9,7 +9,12 @@ public sealed class SaveColor : StoredataType {
     }
 
     public override object Reader(Read reader) {
-        return reader.readData.ReadColor();
+        Color color = Color.black;
+        return reader.readData.ReadColor(color);
+    }
+
+    public override object Reader(Read reader, object defaultData) {
+        return reader.readData.ReadColor((Color)defaultData);
     }
 
 

@@ -89,7 +89,9 @@ namespace QFramework {
                 System.Runtime.Serialization.Formatters.Binary.BinaryFormatter bf =
                     new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
                 object data = bf.Deserialize(fs);
-                UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " * *读Byte结束");
+                if (path == SaveDefaultData.Path + "0文件" || path == SaveDefaultData.Path + "9999文件") {
+                    UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " * *读Byte结束");
+                }
                 if (data != null) {
                     return data;
                 }
@@ -134,7 +136,9 @@ namespace QFramework {
 
                 if (data != null) {
 
-                    UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " * *读**Xml结束");
+                    if (path == SaveDefaultData.Path + "0文件" || path == SaveDefaultData.Path + "9999文件") {
+                        UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " 读**Xml结束");
+                    }
                     return data;
                 }
             }
@@ -161,7 +165,9 @@ namespace QFramework {
         public static T LoadJson<T>(string path) where T : class {
             var data = File.ReadAllText(path).FromJson<T>();
             if (data != null) {
-                UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " * *读json结束");
+                if (path == SaveDefaultData.Path + "0文件" || path == SaveDefaultData.Path + "9999文件") {
+                    UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + "读json结束");
+                }
             }
             return data;
             // return File.ReadAllText(path).FromJson<T>();
@@ -192,7 +198,9 @@ namespace QFramework {
 
         public static T LoadProtoBuff<T>(string path) where T : class {
             var data = File.ReadAllBytes(path).FromProtoBuff<T>();
-            UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " * *读**Proto结束");
+            if (path == SaveDefaultData.Path + "0文件" || path == SaveDefaultData.Path + "9999文件") {
+                UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " * *读**Proto结束");
+            }
             return data;
             //  return File.ReadAllBytes(path).FromProtoBuff<T>();
         }

@@ -13,6 +13,10 @@ public sealed class SaveUint : StoredataType {
         return reader.readData.ReadUint();
     }
 
+    public override object Reader(Read reader, object defaultData) {
+        return reader.readData.ReadUint((uint)defaultData);
+    }
+
     public override void Write(object data, Writer write) {
         write.writerData.WriteUint((uint)data);
     }

@@ -12,7 +12,11 @@ public sealed class SaveList : StoredataType {
 
 
     public override object Reader(Read reader) {
-        return reader.readData.ReadList();
+        return reader.readData.ReadList(string.Empty);
+    }
+
+    public override object Reader(Read reader, object defaultData) {
+        return reader.readData.ReadList(defaultData);
     }
 
     public override void Write(object data, Writer write) {

@@ -10,7 +10,7 @@ public static class SaveToolsHelp {
     /// <param name="保存的内容"></param>
     /// <param name="保存的Key"></param>
     /// <param name="自定义风格"></param>
-    public static void Save<T>(T param, string identifier, SaveSetting setting) {
+    public static void Write<T>(T param, string identifier, SaveSetting setting) {
         using (Writer writer = Writer.Create(setting)) {
             writer.Write<T>(param, setting.filenameData.tag);
         }
@@ -24,7 +24,7 @@ public static class SaveToolsHelp {
     /// <param name="保存的key"></param>
     /// <param name="保存的实现方式"></param>
 
-    public static void Save<T>(T param, string identifier, SaveImplementType type = SaveImplementType.ImplementByte) {
+    public static void Write<T>(T param, string identifier, SaveImplementType type = SaveImplementType.ImplementByte) {
         SaveSetting setting = new SaveSetting(identifier, type);
         using (Writer writer = Writer.Create(setting)) {
             writer.Write<T>(param, setting.filenameData.tag);
@@ -39,7 +39,7 @@ public static class SaveToolsHelp {
     /// <param name="读取的实现方式"></param>
     /// <returns></returns>
 
-    public static T Load<T>(string identifier, SaveImplementType type = SaveImplementType.ImplementByte) {
+    public static T Reader<T>(string identifier, SaveImplementType type = SaveImplementType.ImplementByte) {
         SaveSetting setting = new SaveSetting(identifier, type);
         using (Read reader = Read.Create(setting)) {
             return reader.Reader<T>(setting.filenameData.tag);
@@ -54,10 +54,26 @@ public static class SaveToolsHelp {
     /// <param name="读取的自定义风格"></param>
     /// <returns></returns>
 
-    public static T Load<T>(string identifier, SaveSetting setting) {
+    public static T Reader<T>(string identifier, SaveSetting setting) {
         SaveSetting settingClone = setting.Clone();
         using (Read reader = Read.Create(settingClone)) {
             return reader.Reader<T>(setting.filenameData.tag);
+        }
+    }
+
+    /// <summary>
+    /// 读取文件+可以输入默认值的，如果读不到的情况
+    /// </summary>
+    /// <typeparam name="读取的类型"></typeparam>
+    /// <param name="读取的key"></param>
+    /// <param name="读取的默认值"></param>
+    /// <param name="读取的方式"></param>
+    /// <returns></returns>
+
+    public static T Reader<T>(string identifier, T defaultData, SaveImplementType type = SaveImplementType.ImplementByte) {
+        SaveSetting setting = new SaveSetting(identifier, type);
+        using (Read reader = Read.Create(setting)) {
+            return reader.Reader(setting.filenameData.tag, defaultData);
         }
     }
 

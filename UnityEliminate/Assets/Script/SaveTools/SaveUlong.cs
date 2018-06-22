@@ -14,6 +14,11 @@ public sealed class SaveUlong : StoredataType {
         return reader.readData.ReadUlong();
     }
 
+    public override object Reader(Read reader, object defaultData) {
+        return reader.readData.ReadUlong((ulong)defaultData);
+    }
+
+
     public override void Write(object data, Writer write) {
         write.writerData.WriteUlong((ulong)data);
     }
