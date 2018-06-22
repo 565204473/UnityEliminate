@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PrefabPath 
-{
-    public const string PrefabBlock = "Resources/Prefab/PrefabBlock";
+public class PrefabPath {
+    public const string HeadPath = "Resources/Prefab/";
+    public const string PrefabBlock = HeadPath + "PrefabBlock";
+    public const string BtnRead = HeadPath + "BtnRead";
 
 }

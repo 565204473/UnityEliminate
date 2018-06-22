@@ -13,11 +13,23 @@ enum TestEnum {
 
 public partial class LobbyGamePanel : QUIBehaviour {
 
+
+    private string[] readTypeName = new string[] { "Int", "Long", "String", "Float" , "Double", "Bool", "Vector2", "Vector3", "Vector4", "Quaternion", "Color", "Enum", "List", "Dictionary", "Byte", "Short",
+        "Uint","Ulong","Ushort","Char","DateTime","Array" };
+    private ResLoader mResLoader = ResLoader.Allocate();
     private string path;
+    private Transform item;
     protected override void InitUI(IUIData uiData = null) {
         base.InitUI(uiData);
         path = FilePath.PersistentDataPath4Res;
+        item = mResLoader.LoadSync<GameObject>(PrefabPath.BtnRead).GetComponent<Transform>();
+        for (int i = 0; i < readTypeName.Length; i++) {
+            item.Instantiate().Parent(this.readBtnPos)
+                .LocalPosition(Vector3.zero)
+                .LocalScaleIdentity();
+        }
     }
+
 
     public void Update() {
 
