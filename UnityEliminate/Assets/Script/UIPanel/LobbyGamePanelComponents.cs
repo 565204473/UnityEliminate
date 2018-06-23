@@ -10,6 +10,7 @@ public partial class LobbyGamePanel {
     [SerializeField] public List<Button> writeBtn;
     [SerializeField] private List<Button> readerBtn;
     [SerializeField] public Transform readBtnPos;
+    [SerializeField] public Transform writeBtnPos;
     [SerializeField] public int count = 10000;
 
 

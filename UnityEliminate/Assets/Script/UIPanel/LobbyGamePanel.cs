@@ -18,23 +18,36 @@ public partial class LobbyGamePanel : QUIBehaviour {
         "Uint","Ulong","Ushort","Char","DateTime","Array" };
     private ResLoader mResLoader = ResLoader.Allocate();
     private string path;
-    private Transform item;
+    private Transform itemRead;
+    private Transform itemWrite;
+    private BtnRead itemReadData;
+    private BtnWrite itemWriteData;
     protected override void InitUI(IUIData uiData = null) {
         base.InitUI(uiData);
         path = FilePath.PersistentDataPath4Res;
-        item = mResLoader.LoadSync<GameObject>(PrefabPath.BtnRead).GetComponent<Transform>();
+        itemRead = mResLoader.LoadSync<GameObject>(PrefabPath.BtnRead).GetComponent<Transform>();
+        itemWrite = mResLoader.LoadSync<GameObject>(PrefabPath.BtnWrite).GetComponent<Transform>();
         for (int i = 0; i < readTypeName.Length; i++) {
-            item.Instantiate().Parent(this.readBtnPos)
+            itemReadData = itemRead.Instantiate().Parent(readBtnPos)
                 .LocalPosition(Vector3.zero)
-                .LocalScaleIdentity();
+                .LocalScaleIdentity().GetComponent<BtnRead>();
+
+            if (itemReadData != null) {
+                itemReadData.index = i;
+                itemReadData.OnRefresh((EnumSaveTypeKey)i + 1);
+            }
+
+            itemWriteData = itemWrite.Instantiate().Parent(writeBtnPos)
+                 .LocalPosition(Vector3.zero)
+                 .LocalScaleIdentity().GetComponent<BtnWrite>();
+            if (itemWriteData != null) {
+                itemWriteData.OnRefresh((EnumSaveTypeKey)i + 1);
+            }
+
         }
     }
 
 
-    public void Update() {
-
-
-    }
     protected override void RegisterUIEvent() {
         base.RegisterUIEvent();
         writeBtn[0].onClick.AddListener(OnWriteBtnByteClick);
@@ -88,8 +101,7 @@ public partial class LobbyGamePanel : QUIBehaviour {
     }
 
     private void WriteFileData(SaveImplementType type = SaveImplementType.ImplementByte) {
-        using (QFramework.Profiler p = new QFramework.Profiler("SaveToolsHelp.Write")) 
-        {
+        using (QFramework.Profiler p = new QFramework.Profiler("SaveToolsHelp.Write")) {
             for (int i = 0; i < count; i++) {
                 SaveToolsHelp.Write(i, i + "文件", type);
             }
@@ -101,7 +113,7 @@ public partial class LobbyGamePanel : QUIBehaviour {
             for (int i = 0; i < count; i++) {
                 SaveToolsHelp.Reader<int>(i + "文件", type);
             }
-        }  
+        }
     }
 
     protected override void OnShow() {

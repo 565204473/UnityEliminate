@@ -337,8 +337,8 @@ public class ReadData : IDisposable {
                     var data = SerializeHelper.LoadProtoBuff<ProtoBufSave>(saveSetting.path);
                     if (data != null) {
                         switch (keyType) {
-                            //case EnumSaveTypeKey.SaveInt:
-                            //    return (int)data.SaveValue;
+                            case EnumSaveTypeKey.SaveInt:
+                                return data.SaveValue;
                             //case EnumSaveTypeKey.SaveFolat:
                             //    return (float)data.SaveValue;
                             case EnumSaveTypeKey.SaveString:
