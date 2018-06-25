@@ -128,7 +128,7 @@ public class ReadData : IDisposable {
         return def;
     }
 
-    public object ReadList(object def ) {
+    public object ReadList(object def) {
         var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveList);
         if (dt != null && dt.GetType().IsGenericType) {
             return dt;
@@ -219,6 +219,29 @@ public class ReadData : IDisposable {
         return def;
     }
 
+    public Hashtable ReadHashtable(Hashtable def) {
+        var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveHashtable);
+        Hashtable ha = new Hashtable();
+        if (dt != null && dt.GetType().IsGenericType) {
+            Dictionary<string, string> dic = (Dictionary<string, string>)dt;
+            foreach (var item in dic) {
+                string key = item.Key;
+                string value = item.Value;
+                ha.Add(key, value);
+
+            }
+            return ha;
+        }
+        NoHasKeyHint();
+        return def;
+    }
+
+    public ArrayList ReadArrayList(ArrayList def) {
+        var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveArrayList);
+        return def;
+    }
+
+
     private object SelectReadType(SaveImplementType type, EnumSaveTypeKey keyType) {
         switch (type) {
             case SaveImplementType.ImplementByte:
@@ -271,6 +294,11 @@ public class ReadData : IDisposable {
                                 return DateTime.Parse(data.ToString());
                             case EnumSaveTypeKey.SaveArray:
                                 return StringExtention.GetValue(data.ConverToString(), (Type)saveSetting.curObject);
+                            case EnumSaveTypeKey.SaveHashtable:
+                                return StringExtention.GetValue(data.ConverToString(), (Type)saveSetting.curObject);
+                            case EnumSaveTypeKey.SaveArrayList:
+                                return StringExtention.GetValue(data.ConverToString(), (Type)saveSetting.curObject);
+
 
                         }
                         return null;
@@ -326,7 +354,10 @@ public class ReadData : IDisposable {
                                 return DateTime.Parse(data.SaveValue.ToString());
                             case EnumSaveTypeKey.SaveArray:
                                 return StringExtention.GetValue(data.SaveValue.ConverToString(), (Type)saveSetting.curObject);
-
+                            case EnumSaveTypeKey.SaveHashtable:
+                                return StringExtention.GetValue(data.SaveValue.ConverToString(), (Type)saveSetting.curObject);
+                            case EnumSaveTypeKey.SaveArrayList:
+                                return StringExtention.GetValue(data.SaveValue.ConverToString(), (Type)saveSetting.curObject);
                         }
                         return null;
                     }
@@ -487,6 +518,18 @@ public class ReadData : IDisposable {
                                 return null;
                             }
                             return StringExtention.GetValue(dataArray.ConverToString(), (Type)saveSetting.curObject);
+                        case EnumSaveTypeKey.SaveHashtable:
+                            var dataHashtable = SerializeHelper.DeserializeXML<Hashtable>(saveSetting.path);
+                            if (dataHashtable == null) {
+                                return null;
+                            }
+                            return StringExtention.GetValue(dataHashtable.ConverToString(), (Type)saveSetting.curObject);
+                        case EnumSaveTypeKey.SaveArrayList:
+                            var dataArrayList = SerializeHelper.DeserializeXML<ArrayList>(saveSetting.path);
+                            if (dataArrayList == null) {
+                                return null;
+                            }
+                            return StringExtention.GetValue(dataArrayList.ConverToString(), (Type)saveSetting.curObject);
                     }
                 }
                 break;

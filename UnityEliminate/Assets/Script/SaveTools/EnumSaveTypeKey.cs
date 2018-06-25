@@ -21,7 +21,9 @@
     SaveUshort,
     SaveChar,
     SaveDateTime,
-    SaveArray
+    SaveArray,
+    SaveHashtable,
+    SaveArrayList
 }
 
 

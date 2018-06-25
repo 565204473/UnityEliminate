@@ -48,7 +48,7 @@ public static class StoredataTypeMgr {
 
     private static bool IsGenericType(Type type) {
 
-        return type.IsGenericType;
+        return type.IsGenericType&& (type.GetGenericTypeDefinition() == typeof(List<>));
     }
 
     private static bool IsGenericTypeByDictionary(Type type) {

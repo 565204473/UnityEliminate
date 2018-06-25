@@ -10,6 +10,11 @@ enum TestEnum {
     Three
 }
 
+public class TestClass {
+
+    public string testInt;
+}
+
 
 public partial class LobbyGamePanel : QUIBehaviour {
 
@@ -127,6 +132,24 @@ public partial class LobbyGamePanel : QUIBehaviour {
         SaveSetting saveSetting6 = new SaveSetting("7", path);
 
         Debug.LogError(SaveToolsHelp.Reader<int>("1"));
+
+        //List<TestClass> list = new List<TestClass>();
+        //TestClass test = new TestClass();
+        //test.testInt = "haha";
+        //SaveToolsHelp.Write(list, "1",SaveImplementType.ImplementJson);
+        //foreach (var item in SaveToolsHelp.Reader<List<TestClass>>("1",SaveImplementType.ImplementJson)) {
+        //    Debug.LogError(item.testInt);
+        //}
+
+        Hashtable ha = new Hashtable();
+        ha.Add("B", "3");
+        ha.Add("C", "2");
+        ha.Add("A", 0.1f);
+        SaveToolsHelp.Write(ha, "2", SaveImplementType.ImplementJson);
+        Debug.LogError(SaveToolsHelp.Reader<Hashtable>("2",SaveImplementType.ImplementJson).Count);
+        foreach (DictionaryEntry item in SaveToolsHelp.Reader<Hashtable>("2", SaveImplementType.ImplementJson)) {
+            Debug.LogError(item.Key + "***" + item.Value);
+        }
     }
 
     protected override void OnHide() {

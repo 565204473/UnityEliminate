@@ -713,8 +713,7 @@ namespace QFramework {
                     var tableValue = table[e.Current].ConverToString();
                     builder.Append(tableKey).Append(Spriter2).Append(tableValue).Append(Spriter1);
                 }
-
-                builder.Remove(builder.Length - 2, 1);
+               // builder.Remove(builder.Length - 2, 1);  //先注释了，不注释Value会添加不进去
                 return builder.ToString();
             }
 

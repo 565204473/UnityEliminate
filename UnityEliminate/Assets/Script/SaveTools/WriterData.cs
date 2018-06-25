@@ -115,6 +115,15 @@ public class WriterData : IDisposable {
         SelectWriteType(saveSetting.saveImplementType, stringValue);
     }
 
+    public void WriteHashtable(Hashtable value) {
+        string stringValue = StringExtention.ConverToString(value);
+        SelectWriteType(saveSetting.saveImplementType, stringValue);
+    }
+
+    public void WriteArrayList(ArrayList value) {
+        string stringValue = StringExtention.ConverToString(value);
+        SelectWriteType(saveSetting.saveImplementType, stringValue);
+    }
 
     private void SelectWriteType(SaveImplementType type, object value) {
         switch (saveSetting.saveImplementType) {
