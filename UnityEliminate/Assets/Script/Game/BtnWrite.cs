@@ -14,15 +14,12 @@ public class BtnWrite : MonoBehaviour {
 
 
     public void OnRefresh(EnumSaveTypeKey key) {
+        curKey = key;
         TxtName.text =  string.Format("写{0}", key.ToString());
     }
 
     private void OnBtnClick() {
-        switch (curKey) {
-            case EnumSaveTypeKey.SaveString:
-
-                break;
-        }
+        SaveExampleHelp.WriterType(curKey);
     }
 
 

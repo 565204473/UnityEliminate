@@ -15,15 +15,12 @@ public class BtnRead : MonoBehaviour {
 
 
     public void OnRefresh(EnumSaveTypeKey key) {
+        curKey = key;
         textName.text = string.Format("读{0}", key.ToString());
     }
 
     private void OnBtnClick() {
-        switch (curKey) {
-            case EnumSaveTypeKey.SaveString:
-
-                break;
-        }
+        SaveExampleHelp.ReaderType(curKey);
     }
 
 }
