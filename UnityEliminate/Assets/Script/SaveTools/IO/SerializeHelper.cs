@@ -1,32 +1,3 @@
-/****************************************************************************
- * Copyright (c) 2017 imagicbell
- * Copyright (c) 2017 ouyanggongming@putao.com
- * Copyright (c) 2017 liangxie
- *
- * TODO: 这个应该写成扩展关键字方式的
- * 
- * http://qframework.io
- * https://github.com/liangxiegame/QFramework
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- ****************************************************************************/
-
 namespace QFramework {
     using System;
     using System.IO;
@@ -49,10 +20,6 @@ namespace QFramework {
                 System.Runtime.Serialization.Formatters.Binary.BinaryFormatter bf =
                     new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
                 bf.Serialize(fs, obj);
-                if (path == SaveDefaultData.Path + "0文件" || path == SaveDefaultData.Path + "9999文件") {
-                    UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " * *Byte结束");
-                }
-
                 return true;
             }
         }
@@ -89,9 +56,6 @@ namespace QFramework {
                 System.Runtime.Serialization.Formatters.Binary.BinaryFormatter bf =
                     new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
                 object data = bf.Deserialize(fs);
-                if (path == SaveDefaultData.Path + "0文件" || path == SaveDefaultData.Path + "9999文件") {
-                    UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " * *读Byte结束");
-                }
                 if (data != null) {
                     return data;
                 }
@@ -115,9 +79,6 @@ namespace QFramework {
             using (var fs = new FileStream(path, FileMode.OpenOrCreate)) {
                 var xmlserializer = new XmlSerializer(obj.GetType());
                 xmlserializer.Serialize(fs, obj);
-                if (path == SaveDefaultData.Path + "0文件" || path == SaveDefaultData.Path + "9999文件") {
-                    UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " * *Xml结束");
-                }
                 return true;
             }
         }
@@ -129,16 +90,11 @@ namespace QFramework {
             }
 
             FileInfo fileInfo = new FileInfo(path);
-
             using (FileStream fs = fileInfo.OpenRead()) {
                 XmlSerializer xmlserializer = new XmlSerializer(typeof(T));
                 object data = xmlserializer.Deserialize(fs);
 
                 if (data != null) {
-
-                    if (path == SaveDefaultData.Path + "0文件" || path == SaveDefaultData.Path + "9999文件") {
-                        UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " 读**Xml结束");
-                    }
                     return data;
                 }
             }
@@ -157,20 +113,10 @@ namespace QFramework {
 
         public static void SaveJson<T>(this T obj, string path) where T : class {
             File.WriteAllText(path, obj.ToJson<T>());
-            if (path == SaveDefaultData.Path + "0文件" || path == SaveDefaultData.Path + "9999文件") {
-                UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " * *json结束");
-            }
         }
 
         public static T LoadJson<T>(string path) where T : class {
-            var data = File.ReadAllText(path).FromJson<T>();
-            if (data != null) {
-                if (path == SaveDefaultData.Path + "0文件" || path == SaveDefaultData.Path + "9999文件") {
-                    UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + "读json结束");
-                }
-            }
-            return data;
-            // return File.ReadAllText(path).FromJson<T>();
+             return File.ReadAllText(path).FromJson<T>();
 
         }
 
@@ -191,18 +137,10 @@ namespace QFramework {
 
         public static void SaveProtoBuff<T>(this T obj, string path) where T : class {
             File.WriteAllBytes(path, obj.ToProtoBuff<T>());
-            if (path == SaveDefaultData.Path + "0文件" || path == SaveDefaultData.Path + "9999文件") {
-                UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " * *Proto结束");
-            }
         }
 
         public static T LoadProtoBuff<T>(string path) where T : class {
-            var data = File.ReadAllBytes(path).FromProtoBuff<T>();
-            if (path == SaveDefaultData.Path + "0文件" || path == SaveDefaultData.Path + "9999文件") {
-                UnityEngine.Debug.Log(File.GetCreationTime(path) + "***" + File.GetCreationTime(path).Second + " * *读**Proto结束");
-            }
-            return data;
-            //  return File.ReadAllBytes(path).FromProtoBuff<T>();
+            return File.ReadAllBytes(path).FromProtoBuff<T>();
         }
     }
 }

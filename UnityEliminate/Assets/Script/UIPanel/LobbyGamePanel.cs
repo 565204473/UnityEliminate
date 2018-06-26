@@ -106,7 +106,7 @@ public partial class LobbyGamePanel : QUIBehaviour {
     }
 
     private void WriteFileData(SaveImplementType type = SaveImplementType.ImplementByte) {
-        using (QFramework.Profiler p = new QFramework.Profiler("SaveToolsHelp.Write")) {
+        using (Profiler p = new Profiler("SaveToolsHelp.Write")) {
             for (int i = 0; i < count; i++) {
                 SaveToolsHelp.Write(i, i + "文件", type);
             }
@@ -114,7 +114,7 @@ public partial class LobbyGamePanel : QUIBehaviour {
     }
 
     private void ReadFileData(SaveImplementType type = SaveImplementType.ImplementByte) {
-        using (QFramework.Profiler p = new QFramework.Profiler("SaveToolsHelp.Reader")) {
+        using (Profiler p = new Profiler("SaveToolsHelp.Reader")) {
             for (int i = 0; i < count; i++) {
                 SaveToolsHelp.Reader<int>(i + "文件", type);
             }
@@ -141,14 +141,33 @@ public partial class LobbyGamePanel : QUIBehaviour {
         //    Debug.LogError(item.testInt);
         //}
 
-        Hashtable ha = new Hashtable();
-        ha.Add("B", "3");
-        ha.Add("C", "2");
-        ha.Add("A", 0.1f);
-        SaveToolsHelp.Write(ha, "2", SaveImplementType.ImplementJson);
-        Debug.LogError(SaveToolsHelp.Reader<Hashtable>("2",SaveImplementType.ImplementJson).Count);
-        foreach (DictionaryEntry item in SaveToolsHelp.Reader<Hashtable>("2", SaveImplementType.ImplementJson)) {
-            Debug.LogError(item.Key + "***" + item.Value);
+        //Hashtable ha = new Hashtable();
+        //ha.Add("B", "3");
+        //ha.Add("C", "2");
+        //ha.Add("A", 0.1f);
+        //SaveToolsHelp.Write(ha, "2", SaveImplementType.ImplementJson);
+        //Debug.LogError(SaveToolsHelp.Reader<Hashtable>("2",SaveImplementType.ImplementJson).Count);
+        //foreach (DictionaryEntry item in SaveToolsHelp.Reader<Hashtable>("2", SaveImplementType.ImplementJson)) {
+        //    Debug.LogError(item.Key + "***" + item.Value);
+        //}
+
+        //ArrayList arrayList = new ArrayList();
+        //arrayList.Add(32);
+        //arrayList.Add("66");
+        //SaveToolsHelp.Write(arrayList, "3");
+
+        ArrayList arrayList = new ArrayList();
+        arrayList.Add("AA");
+        arrayList.Add("88");
+        arrayList.Add(true);
+        SaveToolsHelp.Write(arrayList, "4");
+
+        foreach (var item in SaveToolsHelp.Reader<ArrayList>("3")) {
+            Debug.LogError(item);
+        }
+
+        foreach (var item in SaveToolsHelp.Reader<ArrayList>("5")) {
+            Debug.LogError(item);
         }
     }
 

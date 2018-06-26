@@ -238,6 +238,15 @@ public class ReadData : IDisposable {
 
     public ArrayList ReadArrayList(ArrayList def) {
         var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveArrayList);
+        ArrayList arList = new ArrayList();
+        if (dt != null) {
+            List<string> ls = (List<string>)dt;
+            foreach (var item in ls) {
+                arList.Add(item);
+            }
+            return arList;
+        }
+        NoHasKeyHint();
         return def;
     }
 
