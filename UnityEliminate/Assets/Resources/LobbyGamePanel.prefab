@@ -680,7 +680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f3b3ce285999ae43a83be5e0c8d97a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imgbg: {fileID: 114076118818039284}
+  imgbg: {fileID: 114914436842646108}
   imgColor: {fileID: 114914436842646108}
   text: {fileID: 4900000, guid: d6aecdb0cfe74a94391553a653d77e9f, type: 3}
   writeBtn:
@@ -695,7 +695,7 @@ MonoBehaviour:
   - {fileID: 114476113035527536}
   readBtnPos: {fileID: 224351505989288110}
   writeBtnPos: {fileID: 224110009402292426}
-  count: 10000
+  count: 10
 --- !u!114 &114348318333867140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1306,15 +1306,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1771,7 +1771,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 443, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224360920355561676

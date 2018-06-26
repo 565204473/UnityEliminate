@@ -316,7 +316,7 @@ namespace QFramework {
 
                     constructor = Activator.CreateInstance(type);
                     foreach (var str in list) {
-                       // genericArgument = str;
+                        // genericArgument = str;
                         genericArgument = GetValue(str, type2);
                         // Debug.Log(str + "  " + type2.Name + "  " + genericArgument);
                         type.GetMethod("Add").Invoke(constructor, new[] { genericArgument });
@@ -373,7 +373,7 @@ namespace QFramework {
             str = str.Replace(FBracket1.ToString(), "");
             str = str.Replace(BBracket1.ToString(), "");
             result = Color.clear;
-            if (str.Length < 9) {
+            if (str.Length < 7) {
                 return false;
             }
 
@@ -383,8 +383,11 @@ namespace QFramework {
                     return false;
                 }
 
-                result = new Color(float.Parse(strArray[0]) / 255f, float.Parse(strArray[1]) / 255f,
-                    float.Parse(strArray[2]) / 255f, float.Parse(strArray[3]) / 255f);
+                //result = new Color(float.Parse(strArray[0]) / 255f, float.Parse(strArray[1]) / 255f,
+                //    float.Parse(strArray[2]) / 255f, float.Parse(strArray[3]) / 255f);
+
+                result = new Color(float.Parse(strArray[0]), float.Parse(strArray[1]),
+                   float.Parse(strArray[2]), float.Parse(strArray[3]));
                 return true;
             }
             catch (Exception) {
@@ -687,7 +690,7 @@ namespace QFramework {
                     var tableValue = table[e.Current].ConverToString();
                     builder.Append(tableKey).Append(Spriter2).Append(tableValue).Append(Spriter1);
                 }
-               // builder.Remove(builder.Length - 2, 1);  //先注释了，不注释Value会添加不进去
+                // builder.Remove(builder.Length - 2, 1);  //先注释了，不注释Value会添加不进去
                 return builder.ToString();
             }
 

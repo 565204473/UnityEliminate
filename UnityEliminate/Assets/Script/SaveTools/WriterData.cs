@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public class WriterData : IDisposable {
@@ -128,7 +129,11 @@ public class WriterData : IDisposable {
     private void SelectWriteType(SaveImplementType type, object value) {
         switch (saveSetting.saveImplementType) {
             case SaveImplementType.ImplementByte:
-                SerializeHelper.SerializeBinary(this.saveSetting.path, value);
+                byte[] tx = Encoding.UTF8.GetBytes(value.ConverToString());
+                byte[] txEncrypt = EncryptHelp.AESEncrypt(tx, SaveDefaultData.EncryptKey, SaveDefaultData.EncryptValue);
+                if (txEncrypt != null) {
+                    SerializeHelper.SerializeBinary(this.saveSetting.path, txEncrypt);
+                }
                 break;
             case SaveImplementType.ImplementJson:
                 var tempJson = new JsonTestFloat { Savekey = this.saveSetting.filenameData.tag, SaveValue = value };

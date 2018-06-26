@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using UnityEngine;
 
 public class ReadData : IDisposable {
@@ -256,6 +257,7 @@ public class ReadData : IDisposable {
             case SaveImplementType.ImplementByte:
                 Stream stream = FileMgr.Instance.OpenReadStream(this.saveSetting.path);
                 if (stream != null) {
+
                     var data = SerializeHelper.DeserializeBinary(this.saveSetting.path);
                     if (data != null) {
                         switch (keyType) {

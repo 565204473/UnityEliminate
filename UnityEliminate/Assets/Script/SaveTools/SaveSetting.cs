@@ -27,6 +27,8 @@ public enum SaveReadingType {
 
 public static class SaveDefaultData {
     public static string Path = FilePath.PersistentDataPath4Res + "/";
+    public static string EncryptKey = "1";
+    public static string EncryptValue = "2";
 }
 
 

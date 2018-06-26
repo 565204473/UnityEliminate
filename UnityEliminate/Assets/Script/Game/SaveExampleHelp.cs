@@ -37,7 +37,9 @@ public static class SaveExampleHelp {
                 SaveToolsHelp.Write(Quaternion.identity, "Quaternion");
                 break;
             case EnumSaveTypeKey.SaveColor:
-                SaveToolsHelp.Write(Color.black, "Color");
+                Debug.LogError(Color.red.a);
+                Color co = new Color(100f,100f,0,255f);                
+                SaveToolsHelp.Write(co, "Color");
                 break;
             case EnumSaveTypeKey.SaveDouble:
                 double du = 0.1;

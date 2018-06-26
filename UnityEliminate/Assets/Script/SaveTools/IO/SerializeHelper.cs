@@ -1,6 +1,9 @@
 namespace QFramework {
     using System;
     using System.IO;
+    using System.Runtime.Serialization;
+    using System.Runtime.Serialization.Formatters.Binary;
+    using System.Text;
     using System.Xml.Serialization;
     using Newtonsoft.Json;
 
@@ -17,8 +20,7 @@ namespace QFramework {
             }
 
             using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate)) {
-                System.Runtime.Serialization.Formatters.Binary.BinaryFormatter bf =
-                    new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                BinaryFormatter bf = new BinaryFormatter();
                 bf.Serialize(fs, obj);
                 return true;
             }
@@ -53,11 +55,13 @@ namespace QFramework {
             }
 
             using (FileStream fs = fileInfo.OpenRead()) {
-                System.Runtime.Serialization.Formatters.Binary.BinaryFormatter bf =
-                    new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                BinaryFormatter bf = new BinaryFormatter();
                 object data = bf.Deserialize(fs);
                 if (data != null) {
-                    return data;
+                    byte[] txEncrypt = EncryptHelp.AESDecrypt((Byte[])data, SaveDefaultData.EncryptKey, SaveDefaultData.EncryptValue);
+                    object str = Encoding.UTF8.GetString(txEncrypt);
+                    return str;
+                    //return data;
                 }
             }
 
@@ -116,7 +120,7 @@ namespace QFramework {
         }
 
         public static T LoadJson<T>(string path) where T : class {
-             return File.ReadAllText(path).FromJson<T>();
+            return File.ReadAllText(path).FromJson<T>();
 
         }
 

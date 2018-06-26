@@ -156,17 +156,31 @@ public partial class LobbyGamePanel : QUIBehaviour {
         //arrayList.Add("66");
         //SaveToolsHelp.Write(arrayList, "3");
 
-        ArrayList arrayList = new ArrayList();
-        arrayList.Add("AA");
-        arrayList.Add("88");
-        arrayList.Add(true);
-        SaveToolsHelp.Write(arrayList, "4");
+        //ArrayList arrayList = new ArrayList();
+        //arrayList.Add("AA");
+        //arrayList.Add("88");
+        //arrayList.Add(true);
+        //SaveToolsHelp.Write(arrayList, "4");
 
-        foreach (var item in SaveToolsHelp.Reader<ArrayList>("3")) {
-            Debug.LogError(item);
-        }
+        //foreach (var item in SaveToolsHelp.Reader<ArrayList>("3")) {
+        //    Debug.LogError(item);
+        //}
 
-        foreach (var item in SaveToolsHelp.Reader<ArrayList>("5")) {
+        //foreach (var item in SaveToolsHelp.Reader<ArrayList>("5")) {
+        //    Debug.LogError(item);
+        //}
+
+        SaveToolsHelp.Write(2, "加密");
+        Debug.LogError(SaveToolsHelp.Reader<int>("加密"));
+        imgColor.color = SaveToolsHelp.Reader<Color>("Color");
+
+        List<int> ls = new List<int>();
+        ls.Add(4);
+        ls.Add(5);
+        ls.Add(6);
+
+        //SaveToolsHelp.Write(ls, "加密list");
+        foreach (var item in SaveToolsHelp.Reader<List<int>>("加密list")) {
             Debug.LogError(item);
         }
     }
