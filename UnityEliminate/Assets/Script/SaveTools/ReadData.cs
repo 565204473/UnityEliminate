@@ -254,19 +254,6 @@ public class ReadData : IDisposable {
         return def;
     }
 
-    /// <summary>
-    /// 将byte数组转换成对象
-    /// </summary>
-    /// <param name="buff">被转换byte数组</param>
-    /// <returns>转换完成后的对象</returns>
-    public static object Bytes2Object(byte[] buff) {
-        object obj;
-        using (MemoryStream ms = new MemoryStream(buff)) {
-            IFormatter iFormatter = new BinaryFormatter();
-            obj = iFormatter.Deserialize(ms);
-        }
-        return obj;
-    }
 
     private object SelectReadType(SaveImplementType type, EnumSaveTypeKey keyType) {
         switch (type) {
@@ -275,67 +262,67 @@ public class ReadData : IDisposable {
                 if (stream != null) {
                     var data = SerializeHelper.DeserializeBinary(this.saveSetting.path);
                     if (data != null) {
-                        //switch (keyType) {
-                        //    case EnumSaveTypeKey.SaveInt:
-                        //        return int.Parse(data.ToString());
-                        //    case EnumSaveTypeKey.SaveLong:
-                        //        return long.Parse(data.ToString());
-                        //    case EnumSaveTypeKey.SaveFolat:
-                        //        return float.Parse(data.ToString());
-                        //    case EnumSaveTypeKey.SaveString:
-                        //        return data.ToString();
-                        //    case EnumSaveTypeKey.SaveDouble:
-                        //        return double.Parse(data.ToString());
-                        //    case EnumSaveTypeKey.SaveBool:
-                        //        return bool.Parse(data.ToString());
-                        //    case EnumSaveTypeKey.Savebyte:
-                        //        return byte.Parse(data.ToString());
-                        //    case EnumSaveTypeKey.SaveShort:
-                        //        return short.Parse(data.ToString());
-                        //    case EnumSaveTypeKey.SaveUint:
-                        //        return uint.Parse(data.ToString());
-                        //    case EnumSaveTypeKey.SaveUlong:
-                        //        return ulong.Parse(data.ToString());
-                        //    case EnumSaveTypeKey.SaveUshort:
-                        //        return ushort.Parse(data.ToString());
-                        //    case EnumSaveTypeKey.SaveChar:
-                        //        return char.Parse(data.ToString());
-                        //    case EnumSaveTypeKey.SaveVector2:
-                        //        return StringExtention.GetValue<Vector2>(data.ConverToString());
-                        //    case EnumSaveTypeKey.SaveVector3:
-                        //        return StringExtention.GetValue<Vector3>(data.ConverToString());
-                        //    case EnumSaveTypeKey.SaveVector4:
-                        //        return StringExtention.GetValue<Vector4>(data.ConverToString());
-                        //    case EnumSaveTypeKey.SaveQuaternion:
-                        //        return StringExtention.GetValue<Quaternion>(data.ConverToString());
-                        //    case EnumSaveTypeKey.SaveColor:
-                        //        return StringExtention.GetValue<Color>(data.ConverToString());
-                        //    case EnumSaveTypeKey.SaveEnum:
-                        //        return StringExtention.GetValue(data.ConverToString(), (Type)saveSetting.curObject);
-                        //    case EnumSaveTypeKey.SaveList:
-                        //        return StringExtention.GetValue(data.ConverToString(), (Type)saveSetting.curObject);
-                        //    case EnumSaveTypeKey.SaveDictionary:
-                        //        return StringExtention.GetValue(data.ConverToString(), (Type)saveSetting.curObject); ;
-                        //    case EnumSaveTypeKey.SaveDateTime:
-                        //        return DateTime.Parse(data.ToString());
-                        //    case EnumSaveTypeKey.SaveArray:
-                        //        return StringExtention.GetValue(data.ConverToString(), (Type)saveSetting.curObject);
-                        //    case EnumSaveTypeKey.SaveHashtable:
-                        //        return StringExtention.GetValue(data.ConverToString(), (Type)saveSetting.curObject);
-                        //    case EnumSaveTypeKey.SaveArrayList:
-                        //        return StringExtention.GetValue(data.ConverToString(), (Type)saveSetting.curObject);
-                        //}
-                        //   return null;
-                        return StringExtention.GetValue(data.ConverToString(), (Type)saveSetting.curObject);
+                        switch (keyType) {
+                            case EnumSaveTypeKey.SaveInt:
+                                return int.Parse(data.ToString());
+                            case EnumSaveTypeKey.SaveLong:
+                                return long.Parse(data.ToString());
+                            case EnumSaveTypeKey.SaveFolat:
+                                return float.Parse(data.ToString());
+                            case EnumSaveTypeKey.SaveString:
+                                return data.ToString();
+                            case EnumSaveTypeKey.SaveDouble:
+                                return double.Parse(data.ToString());
+                            case EnumSaveTypeKey.SaveBool:
+                                return bool.Parse(data.ToString());
+                            case EnumSaveTypeKey.Savebyte:
+                                return byte.Parse(data.ToString());
+                            case EnumSaveTypeKey.SaveShort:
+                                return short.Parse(data.ToString());
+                            case EnumSaveTypeKey.SaveUint:
+                                return uint.Parse(data.ToString());
+                            case EnumSaveTypeKey.SaveUlong:
+                                return ulong.Parse(data.ToString());
+                            case EnumSaveTypeKey.SaveUshort:
+                                return ushort.Parse(data.ToString());
+                            case EnumSaveTypeKey.SaveChar:
+                                return char.Parse(data.ToString());
+                            case EnumSaveTypeKey.SaveVector2:
+                                return StringExtention.GetValue<Vector2>(data.ConverToString());
+                            case EnumSaveTypeKey.SaveVector3:
+                                return StringExtention.GetValue<Vector3>(data.ConverToString());
+                            case EnumSaveTypeKey.SaveVector4:
+                                return StringExtention.GetValue<Vector4>(data.ConverToString());
+                            case EnumSaveTypeKey.SaveQuaternion:
+                                return StringExtention.GetValue<Quaternion>(data.ConverToString());
+                            case EnumSaveTypeKey.SaveColor:
+                                return StringExtention.GetValue<Color>(data.ConverToString());
+                            case EnumSaveTypeKey.SaveEnum:
+                                return StringExtention.GetValue(data.ConverToString(), (Type)saveSetting.curObject);
+                            case EnumSaveTypeKey.SaveList:
+                                return StringExtention.GetValue(data.ConverToString(), (Type)saveSetting.curObject);
+                            case EnumSaveTypeKey.SaveDictionary:
+                                return StringExtention.GetValue(data.ConverToString(), (Type)saveSetting.curObject); ;
+                            case EnumSaveTypeKey.SaveDateTime:
+                                return DateTime.Parse(data.ToString());
+                            case EnumSaveTypeKey.SaveArray:
+                                return StringExtention.GetValue(data.ConverToString(), (Type)saveSetting.curObject);
+                            case EnumSaveTypeKey.SaveHashtable:
+                                return StringExtention.GetValue(data.ConverToString(), (Type)saveSetting.curObject);
+                            case EnumSaveTypeKey.SaveArrayList:
+                                return StringExtention.GetValue(data.ConverToString(), (Type)saveSetting.curObject);
+                        }
+                        return null;
+                     //   return StringExtention.GetValue(data.ConverToString(), (Type)saveSetting.curObject);
                     }
                 }
                 break;
             case SaveImplementType.ImplementJson:
                 if (!string.IsNullOrEmpty(saveSetting.path)) {
                     var data = SerializeHelper.LoadJson<JsonTestFloat>(this.saveSetting.path);
-                    byte[] txEncrypt = EncryptHelp.AESDecrypt(data.SaveValue, SaveDefaultData.EncryptKey, SaveDefaultData.EncryptValue);
-                    string str = Encoding.UTF8.GetString(txEncrypt);
                     if (data != null) {
+                        byte[] txEncrypt = EncryptHelp.AESDecrypt(data.SaveValue, SaveDefaultData.EncryptKey, SaveDefaultData.EncryptValue);
+                        string str = Encoding.UTF8.GetString(txEncrypt);
                         switch (keyType) {
                             case EnumSaveTypeKey.SaveInt:
                                 return int.Parse(str.ToString());

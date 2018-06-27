@@ -123,13 +123,13 @@ public partial class LobbyGamePanel : QUIBehaviour {
 
     protected override void OnShow() {
         base.OnShow();
-        SaveSetting saveSetting = new SaveSetting("1", path);
-        SaveSetting saveSetting1 = new SaveSetting("2", path);
-        SaveSetting saveSetting2 = new SaveSetting("3", path);
-        SaveSetting saveSetting3 = new SaveSetting("4", path);
-        SaveSetting saveSetting4 = new SaveSetting("5", path);
-        SaveSetting saveSetting5 = new SaveSetting("6", path);
-        SaveSetting saveSetting6 = new SaveSetting("7", path);
+        //SaveSetting saveSetting = new SaveSetting("1", path);
+        //SaveSetting saveSetting1 = new SaveSetting("2", path);
+        //SaveSetting saveSetting2 = new SaveSetting("3", path);
+        //SaveSetting saveSetting3 = new SaveSetting("4", path);
+        //SaveSetting saveSetting4 = new SaveSetting("5", path);
+        //SaveSetting saveSetting5 = new SaveSetting("6", path);
+        //SaveSetting saveSetting6 = new SaveSetting("7", path);
 
         Debug.LogError(SaveToolsHelp.Reader<int>("1"));
 
@@ -179,17 +179,19 @@ public partial class LobbyGamePanel : QUIBehaviour {
         ls.Add(5);
         ls.Add(6);
 
-        ////SaveToolsHelp.Write(ls, "加密list");
+        // SaveToolsHelp.Write(ls, "加密list");
         //foreach (var item in SaveToolsHelp.Reader<List<int>>("加密list")) {
         //    Debug.LogError(item);    
         // }
-        //SaveToolsHelp.Write(100, "json加密", SaveImplementType.ImplementJson);
-        //Debug.LogError(SaveToolsHelp.Reader<int>("json加密", SaveImplementType.ImplementJson));
+        //  SaveToolsHelp.Write(100, "json加密", SaveImplementType.ImplementJson);
+        Debug.LogError(SaveToolsHelp.Reader<int>("json加密", SaveImplementType.ImplementJson));
 
         SaveToolsHelp.Write(ls, "jsonlist加密", SaveImplementType.ImplementJson);
         foreach (var item in SaveToolsHelp.Reader<List<int>>("jsonlist加密", SaveImplementType.ImplementJson)) {
             Debug.LogError(item);
         }
+
+        SaveToolsHelp.Clear();
 
     }
 

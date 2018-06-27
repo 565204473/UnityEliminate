@@ -133,7 +133,7 @@ public class WriterData : IDisposable {
         switch (saveSetting.saveImplementType) {
             case SaveImplementType.ImplementByte:
                 if (txEncrypt != null) {
-                    SerializeHelper.SerializeBinary(this.saveSetting.path, txEncrypt);
+                    SerializeHelper.SerializeBinary(saveSetting.path, txEncrypt);
                 }
                 break;
             case SaveImplementType.ImplementJson:

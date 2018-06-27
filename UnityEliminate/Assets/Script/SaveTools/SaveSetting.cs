@@ -49,7 +49,6 @@ public sealed class SaveSetting {
         }
     }
 
-
     public SaveSetting(string tag, SaveImplementType type = SaveImplementType.ImplementByte) {
         filenameData = new FilenameData(tag);
         this.path = SaveDefaultData.Path + tag;
@@ -90,5 +89,11 @@ public sealed class SaveSetting {
             }
         }
         return string.Empty;
+    }
+
+    public void Clear() {
+        if (!string.IsNullOrEmpty(SaveDefaultData.Path)) {
+            SaveDefaultData.Path.DeleteDirIfExists();
+        }
     }
 }

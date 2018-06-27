@@ -42,6 +42,9 @@ public static class SaveToolsHelp {
     public static T Reader<T>(string identifier, SaveImplementType type = SaveImplementType.ImplementByte) {
         SaveSetting setting = new SaveSetting(identifier, type);
         using (Read reader = Read.Create(setting)) {
+            //if (!Exists(identifier)) {
+            //    return default(T);
+            //}
             return reader.Reader<T>(setting.filenameData.tag);
         }
     }
@@ -57,6 +60,9 @@ public static class SaveToolsHelp {
     public static T Reader<T>(string identifier, SaveSetting setting) {
         SaveSetting settingClone = setting.Clone();
         using (Read reader = Read.Create(settingClone)) {
+            //if (!Exists(identifier)) {
+            //    return default(T);
+            //}
             return reader.Reader<T>(setting.filenameData.tag);
         }
     }
@@ -73,6 +79,9 @@ public static class SaveToolsHelp {
     public static T Reader<T>(string identifier, T defaultData, SaveImplementType type = SaveImplementType.ImplementByte) {
         SaveSetting setting = new SaveSetting(identifier, type);
         using (Read reader = Read.Create(setting)) {
+            //if (!Exists(identifier)) {
+            //    return default(T);
+            //}
             return reader.Reader(setting.filenameData.tag, defaultData);
         }
     }
@@ -103,5 +112,13 @@ public static class SaveToolsHelp {
     public static string GetFiles(string identifier) {
         SaveSetting setting = new SaveSetting();
         return setting.GetFiles(identifier);
+    }
+
+    /// <summary>
+    /// 删除当前文件夹(调用这个要慎重)
+    /// </summary>
+    public static void Clear() {
+        SaveSetting setting = new SaveSetting();
+        setting.Clear();
     }
 }
