@@ -172,17 +172,25 @@ public partial class LobbyGamePanel : QUIBehaviour {
 
         SaveToolsHelp.Write(2, "加密");
         Debug.LogError(SaveToolsHelp.Reader<int>("加密"));
-        imgColor.color = SaveToolsHelp.Reader<Color>("Color");
+        //imgColor.color = SaveToolsHelp.Reader<Color>("Color");
 
         List<int> ls = new List<int>();
         ls.Add(4);
         ls.Add(5);
         ls.Add(6);
 
-        //SaveToolsHelp.Write(ls, "加密list");
-        foreach (var item in SaveToolsHelp.Reader<List<int>>("加密list")) {
+        ////SaveToolsHelp.Write(ls, "加密list");
+        //foreach (var item in SaveToolsHelp.Reader<List<int>>("加密list")) {
+        //    Debug.LogError(item);    
+        // }
+        //SaveToolsHelp.Write(100, "json加密", SaveImplementType.ImplementJson);
+        //Debug.LogError(SaveToolsHelp.Reader<int>("json加密", SaveImplementType.ImplementJson));
+
+        SaveToolsHelp.Write(ls, "jsonlist加密", SaveImplementType.ImplementJson);
+        foreach (var item in SaveToolsHelp.Reader<List<int>>("jsonlist加密", SaveImplementType.ImplementJson)) {
             Debug.LogError(item);
         }
+
     }
 
     protected override void OnHide() {

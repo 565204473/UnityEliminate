@@ -14,8 +14,8 @@ public sealed class SaveBool : StoredataType {
         return reader.readData.ReadBool();
     }
 
-    public override object Reader(Read reader, object defaultData) {
-        return reader.readData.ReadBool((bool)defaultData);
+    public override object Reader(Read reader, object defaultValue) {
+        return reader.readData.ReadBool((bool)defaultValue);
     }
 
     public override void Write(object data, Writer write) {

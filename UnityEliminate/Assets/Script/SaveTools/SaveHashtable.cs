@@ -13,9 +13,9 @@ public sealed class SaveHashtable : StoredataType {
         return reader.readData.ReadHashtable(hs);
     }
 
-    public override object Reader(Read reader, object defaultData) {
+    public override object Reader(Read reader, object defaultValue) {
 
-        return reader.readData.ReadHashtable((Hashtable)defaultData);
+        return reader.readData.ReadHashtable((Hashtable)defaultValue);
     }
 
     public override void Write(object data, Writer write) {

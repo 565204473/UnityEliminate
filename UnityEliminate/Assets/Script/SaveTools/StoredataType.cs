@@ -20,7 +20,7 @@ public abstract class StoredataType : IStoredataType {
         return null;
     }
 
-    public  virtual object Reader(Read reader, object defaultData) {
+    public  virtual object Reader(Read reader, object defaultValue) {
         Debug.LogError("This Load method is not supported on Types of " + this.type.ToString() + ". Try a self-assigning Load method instead");
         return null;
     }

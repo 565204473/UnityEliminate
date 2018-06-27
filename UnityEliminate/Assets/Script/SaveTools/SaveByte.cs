@@ -12,8 +12,8 @@ public sealed class SaveByte : StoredataType {
         return reader.readData.ReadByte();
     }
 
-    public override object Reader(Read reader, object defaultData) {
-        return reader.readData.ReadByte((byte)defaultData);
+    public override object Reader(Read reader, object defaultValue) {
+        return reader.readData.ReadByte((byte)defaultValue);
     }
 
 

@@ -13,8 +13,8 @@ public sealed class SaveString : StoredataType {
         return reader.readData.ReadString();
     }
 
-    public override object Reader(Read reader, object defaultData) {
-        return reader.readData.ReadString((string)defaultData);
+    public override object Reader(Read reader, object defaultValue) {
+        return reader.readData.ReadString((string)defaultValue);
     }
 
     public override void Write(object data, Writer write) {

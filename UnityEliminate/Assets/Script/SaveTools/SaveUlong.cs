@@ -14,8 +14,8 @@ public sealed class SaveUlong : StoredataType {
         return reader.readData.ReadUlong();
     }
 
-    public override object Reader(Read reader, object defaultData) {
-        return reader.readData.ReadUlong((ulong)defaultData);
+    public override object Reader(Read reader, object defaultValue) {
+        return reader.readData.ReadUlong((ulong)defaultValue);
     }
 
 

@@ -33,8 +33,7 @@ namespace QFramework {
             }
 
             using (stream) {
-                System.Runtime.Serialization.Formatters.Binary.BinaryFormatter bf =
-                    new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                BinaryFormatter bf = new BinaryFormatter();
                 var data = bf.Deserialize(stream);
                 // TODO:这里没风险嘛?
                 return data;
@@ -99,7 +98,10 @@ namespace QFramework {
                 object data = xmlserializer.Deserialize(fs);
 
                 if (data != null) {
-                    return data;
+                    byte[] txEncrypt = EncryptHelp.AESDecrypt((Byte[])data, SaveDefaultData.EncryptKey, SaveDefaultData.EncryptValue);
+                    object str = Encoding.UTF8.GetString(txEncrypt);
+                    return str;
+                    //return data;
                 }
             }
 
@@ -121,7 +123,6 @@ namespace QFramework {
 
         public static T LoadJson<T>(string path) where T : class {
             return File.ReadAllText(path).FromJson<T>();
-
         }
 
         public static byte[] ToProtoBuff<T>(this T obj) where T : class {

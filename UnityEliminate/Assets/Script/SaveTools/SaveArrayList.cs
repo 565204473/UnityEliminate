@@ -12,8 +12,8 @@ public sealed class SaveArrayList : StoredataType {
         ArrayList df = new ArrayList();
         return reader.readData.ReadArrayList(df);
     }
-    public override object Reader(Read reader, object defaultData) {
-        return reader.readData.ReadArrayList((ArrayList)defaultData);
+    public override object Reader(Read reader, object defaultValue) {
+        return reader.readData.ReadArrayList((ArrayList)defaultValue);
     }
 
     public override void Write(object data, Writer write) {

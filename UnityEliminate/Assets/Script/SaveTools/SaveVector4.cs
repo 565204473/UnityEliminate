@@ -11,8 +11,8 @@ public sealed class SaveVector4 : StoredataType {
         return reader.readData.ReadVector4(Vector4.one);
     }
 
-    public override object Reader(Read reader, object defaultData) {
-        return reader.readData.ReadVector4((Vector4)defaultData);
+    public override object Reader(Read reader, object defaultValue) {
+        return reader.readData.ReadVector4((Vector4)defaultValue);
     }
 
     public override void Write(object data, Writer write) {

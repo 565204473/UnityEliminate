@@ -12,8 +12,8 @@ public sealed class SaveLong : StoredataType {
         return reader.readData.ReadLong();
     }
 
-    public override object Reader(Read reader, object defaultData) {
-        return reader.readData.ReadLong((long)defaultData);
+    public override object Reader(Read reader, object defaultValue) {
+        return reader.readData.ReadLong((long)defaultValue);
     }
 
     public override void Write(object data, Writer write) {

@@ -98,8 +98,8 @@ namespace QFramework {
             get { return savekey; }
             set { savekey = value; }
         }
-        private object saveValue;
-        public object SaveValue
+        private byte[] saveValue;
+        public byte[] SaveValue
         {
             get { return saveValue; }
             set { saveValue = value; }

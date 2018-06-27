@@ -127,17 +127,17 @@ public class WriterData : IDisposable {
     }
 
     private void SelectWriteType(SaveImplementType type, object value) {
+        byte[] tx = Encoding.UTF8.GetBytes(value.ConverToString());
+        byte[] txEncrypt = EncryptHelp.AESEncrypt(tx, SaveDefaultData.EncryptKey, SaveDefaultData.EncryptValue);
+
         switch (saveSetting.saveImplementType) {
             case SaveImplementType.ImplementByte:
-                byte[] tx = Encoding.UTF8.GetBytes(value.ConverToString());
-                byte[] txEncrypt = EncryptHelp.AESEncrypt(tx, SaveDefaultData.EncryptKey, SaveDefaultData.EncryptValue);
                 if (txEncrypt != null) {
                     SerializeHelper.SerializeBinary(this.saveSetting.path, txEncrypt);
                 }
                 break;
             case SaveImplementType.ImplementJson:
-                var tempJson = new JsonTestFloat { Savekey = this.saveSetting.filenameData.tag, SaveValue = value };
-
+                var tempJson = new JsonTestFloat { Savekey = this.saveSetting.filenameData.tag, SaveValue = txEncrypt };
                 tempJson.SaveJson(this.saveSetting.path);
                 break;
             case SaveImplementType.ImplementProto:
@@ -148,7 +148,7 @@ public class WriterData : IDisposable {
                 tempProto.SaveProtoBuff(this.saveSetting.path);
                 break;
             case SaveImplementType.ImplementXML:
-                SerializeHelper.SerializeXML(this.saveSetting.path, value);
+                SerializeHelper.SerializeXML(this.saveSetting.path, txEncrypt);
                 break;
         }
     }

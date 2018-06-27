@@ -14,8 +14,8 @@ public sealed class SaveInt : StoredataType
         return reader.readData.ReadInt32();
     }
 
-    public override object Reader(Read reader, object defaultData) {
-        return reader.readData.ReadInt32((int)defaultData);
+    public override object Reader(Read reader, object defaultValue) {
+        return reader.readData.ReadInt32((int)defaultValue);
     }
 
 

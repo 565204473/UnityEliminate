@@ -15,8 +15,8 @@ public sealed class SaveList : StoredataType {
         return reader.readData.ReadList(string.Empty);
     }
 
-    public override object Reader(Read reader, object defaultData) {
-        return reader.readData.ReadList(defaultData);
+    public override object Reader(Read reader, object defaultValue) {
+        return reader.readData.ReadList(defaultValue);
     }
 
     public override void Write(object data, Writer write) {

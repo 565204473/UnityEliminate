@@ -14,8 +14,8 @@ public class SaveDateTime : StoredataType {
         return reader.readData.ReadDateTime(DateTime.Now);
     }
 
-    public override object Reader(Read reader, object defaultData) {
-        return reader.readData.ReadDateTime((DateTime)defaultData);
+    public override object Reader(Read reader, object defaultValue) {
+        return reader.readData.ReadDateTime((DateTime)defaultValue);
     }
 
     public override void Write(object data, Writer write) {

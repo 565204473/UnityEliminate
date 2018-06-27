@@ -14,8 +14,8 @@ public sealed class SaveArray : StoredataType {
         return reader.readData.ReadArray(array);
     }
 
-    public override object Reader(Read reader, object defaultData) {
-        return reader.readData.ReadArray((Array)defaultData);
+    public override object Reader(Read reader, object defaultValue) {
+        return reader.readData.ReadArray((Array)defaultValue);
     }
 
     public override void Write(object data, Writer write) {

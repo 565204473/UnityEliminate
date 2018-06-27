@@ -13,8 +13,8 @@ public sealed class SaveChar : StoredataType {
         return reader.readData.ReadChar();
     }
 
-    public override object Reader(Read reader, object defaultData) {
-        return reader.readData.ReadChar((char)defaultData);
+    public override object Reader(Read reader, object defaultValue) {
+        return reader.readData.ReadChar((char)defaultValue);
     }
 
     public override void Write(object data, Writer write) {

@@ -12,8 +12,8 @@ public sealed class SaveShort : StoredataType {
         return reader.readData.ReadShort();
     }
 
-    public override object Reader(Read reader, object defaultData) {
-        return reader.readData.ReadShort((short)defaultData);
+    public override object Reader(Read reader, object defaultValue) {
+        return reader.readData.ReadShort((short)defaultValue);
     }
 
 
