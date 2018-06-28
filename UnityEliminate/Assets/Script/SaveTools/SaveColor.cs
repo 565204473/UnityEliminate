@@ -10,15 +10,15 @@ public sealed class SaveColor : StoredataType {
 
     public override object Reader(Read reader) {
         Color color = Color.black;
-        return reader.readData.ReadColor(color);
+        return reader.readData.ReadValue(key);
     }
 
     public override object Reader(Read reader, object defaultValue) {
-        return reader.readData.ReadColor((Color)defaultValue);
+        return reader.readData.ReadValue(key, defaultValue);
     }
 
 
     public override void Write(object data, Writer write) {
-        write.writerData.WriteColor((Color)data);
+        write.writerData.WriterValue(key, data);
     }
 }

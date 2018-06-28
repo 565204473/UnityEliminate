@@ -9,15 +9,14 @@ public sealed class SaveShort : StoredataType {
     }
 
     public override object Reader(Read reader) {
-        return reader.readData.ReadShort();
+        return reader.readData.ReadValue(key);
     }
 
     public override object Reader(Read reader, object defaultValue) {
-        return reader.readData.ReadShort((short)defaultValue);
+        return reader.readData.ReadValue(key, defaultValue);
     }
 
-
     public override void Write(object data, Writer write) {
-        write.writerData.WriteShort((short)data);
+        write.writerData.WriterValue(key, data);
     }
 }

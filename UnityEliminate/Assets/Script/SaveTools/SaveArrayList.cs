@@ -9,14 +9,13 @@ public sealed class SaveArrayList : StoredataType {
     }
 
     public override object Reader(Read reader) {
-        ArrayList df = new ArrayList();
-        return reader.readData.ReadArrayList(df);
+        return reader.readData.ReadValue(key);
     }
     public override object Reader(Read reader, object defaultValue) {
-        return reader.readData.ReadArrayList((ArrayList)defaultValue);
+        return reader.readData.ReadValue(key, defaultValue);
     }
 
     public override void Write(object data, Writer write) {
-        write.writerData.WriteArrayList((ArrayList)data);
+        write.writerData.WriterValue(key, data);
     }
 }

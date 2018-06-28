@@ -9,17 +9,14 @@ public sealed class SaveString : StoredataType {
     }
 
     public override object Reader(Read reader) {
-        Debug.LogError("调用SaveRead读入string的实现");
-        return reader.readData.ReadString();
+        return reader.readData.ReadValue(key);
     }
 
     public override object Reader(Read reader, object defaultValue) {
-        return reader.readData.ReadString((string)defaultValue);
+        return reader.readData.ReadValue(key, defaultValue);
     }
 
     public override void Write(object data, Writer write) {
-
-        Debug.LogError("写入sting的实现");
-        write.writerData.WriteString((string)data);
+        write.writerData.WriterValue(key, data);
     }
 }

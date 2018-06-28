@@ -9,15 +9,15 @@ public sealed class SaveDictionary : StoredataType {
     }
 
     public override object Reader(Read reader) {
-        return reader.readData.ReadDictionary(string.Empty);
+        return reader.readData.ReadValue(key);
     }
 
     public override object Reader(Read reader, object defaultData) {
-        return reader.readData.ReadDictionary(defaultData);
+        return reader.readData.ReadValue(key, defaultData);
     }
 
 
     public override void Write(object data, Writer write) {
-        write.writerData.WriteDictionary(data);
+        write.writerData.WriterValue(key, data);
     }
 }

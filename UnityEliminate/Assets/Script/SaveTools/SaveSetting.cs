@@ -26,7 +26,8 @@ public enum SaveReadingType {
 
 
 public static class SaveDefaultData {
-    public static string Path = FilePath.PersistentDataPath4Res + "/";
+    public static string Path = FilePath.PersistentDataPath4Res;
+    public static string DeletePath = FilePath.PersistentDataPath4ResDelete;
     public static string EncryptKey = "1";
     public static string EncryptValue = "2";
 }
@@ -92,8 +93,8 @@ public sealed class SaveSetting {
     }
 
     public void Clear() {
-        if (!string.IsNullOrEmpty(SaveDefaultData.Path)) {
-            SaveDefaultData.Path.DeleteDirIfExists();
+        if (!string.IsNullOrEmpty(SaveDefaultData.DeletePath)) {
+            SaveDefaultData.DeletePath.DeleteDirIfExists();
         }
     }
 }

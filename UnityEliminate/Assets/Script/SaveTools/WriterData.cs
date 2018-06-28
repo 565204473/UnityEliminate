@@ -12,118 +12,54 @@ public class WriterData : IDisposable {
         this.saveSetting = data;
     }
 
-    public void WriteInt(int value) {
-        SelectWriteType(saveSetting.saveImplementType, value);
-    }
+    public void WriterValue(EnumSaveTypeKey type, object value) {
+        string strValue = string.Empty;
+        switch (type) {
+            case EnumSaveTypeKey.SaveInt:
+            case EnumSaveTypeKey.SaveLong:
+            case EnumSaveTypeKey.SaveString:
+            case EnumSaveTypeKey.SaveFolat:
+            case EnumSaveTypeKey.SaveDouble:
+            case EnumSaveTypeKey.SaveBool:
+            case EnumSaveTypeKey.SaveShort:
+            case EnumSaveTypeKey.SaveUint:
+            case EnumSaveTypeKey.SaveUlong:
+            case EnumSaveTypeKey.SaveUshort:
+            case EnumSaveTypeKey.SaveChar:
+            case EnumSaveTypeKey.SaveDateTime:
+                SelectWriteType(saveSetting.saveImplementType, value);
+                break;
+            case EnumSaveTypeKey.SaveVector2:
+                strValue = StringExtention.Vector2ToString((Vector2)value);
+                break;
+            case EnumSaveTypeKey.SaveVector3:
+                strValue = StringExtention.Vector3ToString((Vector3)value);
+                break;
+            case EnumSaveTypeKey.SaveVector4:
+                strValue = StringExtention.Vector4ToString((Vector4)value);
+                break;
+            case EnumSaveTypeKey.SaveQuaternion:
+                strValue = StringExtention.QuaternionToString((Quaternion)value);
+                break;
+            case EnumSaveTypeKey.SaveColor:
+                strValue = StringExtention.ColorToString((Color)value);
+                break;
+            case EnumSaveTypeKey.SaveEnum:
+            case EnumSaveTypeKey.SaveList:
+            case EnumSaveTypeKey.SaveDictionary:
+            case EnumSaveTypeKey.Savebyte:
+            case EnumSaveTypeKey.SaveHashtable:
+            case EnumSaveTypeKey.SaveArrayList:
+                strValue = StringExtention.ConverToString(value);
+                break;
+            case EnumSaveTypeKey.SaveArray:
+                strValue = StringExtention.ArrConvertToString((Array)value);
+                break;
+        }
 
-    public void WriteLong(long value) {
-        SelectWriteType(saveSetting.saveImplementType, value);
-    }
-
-    public void WriteString(string value) {
-        SelectWriteType(saveSetting.saveImplementType, value);
-    }
-
-    public void WriteFloat(object value) {
-        SelectWriteType(saveSetting.saveImplementType, value);
-    }
-
-    public void WriteDouble(double value) {
-        SelectWriteType(saveSetting.saveImplementType, value);
-    }
-
-    public void WriteBool(bool value) {
-        SelectWriteType(saveSetting.saveImplementType, value);
-    }
-
-    public void WriteVector2(Vector2 value) {
-        string stringValue = StringExtention.Vector2ToString(value);
-        SelectWriteType(saveSetting.saveImplementType, stringValue);
-    }
-
-
-    public void WriteVector3(Vector3 value) {
-        string stringValue = StringExtention.Vector3ToString(value);
-        SelectWriteType(saveSetting.saveImplementType, stringValue);
-    }
-
-    public void WriteVector4(Vector4 value) {
-        string stringValue = StringExtention.Vector4ToString(value);
-        SelectWriteType(saveSetting.saveImplementType, stringValue);
-    }
-
-    public void WriteQuaternion(Quaternion value) {
-        string stringValue = StringExtention.QuaternionToString(value);
-        SelectWriteType(saveSetting.saveImplementType, stringValue);
-    }
-
-    public void WriteColor(Color value) {
-        string stringValue = StringExtention.ColorToString(value);
-        SelectWriteType(saveSetting.saveImplementType, stringValue);
-    }
-
-    public void WriteEnum(Enum value) {
-        string stringValue = StringExtention.ConverToString(value);
-        SelectWriteType(saveSetting.saveImplementType, stringValue);
-    }
-
-    public void WriteList(object value) {
-        string stringValue = StringExtention.ConverToString(value);
-        SelectWriteType(saveSetting.saveImplementType, stringValue);
-    }
-
-    public void WriteDictionary(object value) {
-        string stringValue = StringExtention.ConverToString(value);
-        SelectWriteType(saveSetting.saveImplementType, stringValue);
-    }
-
-    public void WriteByte(Byte value) {
-        string stringValue = StringExtention.ConverToString(value);
-        SelectWriteType(saveSetting.saveImplementType, stringValue);
-    }
-
-
-    public void WriteShort(short value) {
-        SelectWriteType(saveSetting.saveImplementType, value);
-    }
-
-    public void WriteUint(uint value) {
-
-        SelectWriteType(saveSetting.saveImplementType, value);
-    }
-
-
-    public void WriteUlong(ulong value) {
-
-        SelectWriteType(saveSetting.saveImplementType, value);
-    }
-
-    public void WriteUshort(ushort value) {
-        SelectWriteType(saveSetting.saveImplementType, value);
-    }
-
-    public void WriteChar(char value) {
-        SelectWriteType(saveSetting.saveImplementType, value);
-    }
-
-    public void WriteDateTime(DateTime value) {
-        SelectWriteType(saveSetting.saveImplementType, value);
-    }
-
-
-    public void WriteArray(Array value) {
-        string stringValue = StringExtention.ArrConvertToString(value);
-        SelectWriteType(saveSetting.saveImplementType, stringValue);
-    }
-
-    public void WriteHashtable(Hashtable value) {
-        string stringValue = StringExtention.ConverToString(value);
-        SelectWriteType(saveSetting.saveImplementType, stringValue);
-    }
-
-    public void WriteArrayList(ArrayList value) {
-        string stringValue = StringExtention.ConverToString(value);
-        SelectWriteType(saveSetting.saveImplementType, stringValue);
+        if (!string.IsNullOrEmpty(strValue)) {
+            SelectWriteType(saveSetting.saveImplementType, strValue);
+        }
     }
 
     private void SelectWriteType(SaveImplementType type, object value) {

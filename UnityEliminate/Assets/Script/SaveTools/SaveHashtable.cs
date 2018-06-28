@@ -9,16 +9,14 @@ public sealed class SaveHashtable : StoredataType {
     }
 
     public override object Reader(Read reader) {
-        Hashtable hs = new Hashtable();
-        return reader.readData.ReadHashtable(hs);
+        return reader.readData.ReadValue(key);
     }
 
     public override object Reader(Read reader, object defaultValue) {
-
-        return reader.readData.ReadHashtable((Hashtable)defaultValue);
+        return reader.readData.ReadValue(key, defaultValue);
     }
 
     public override void Write(object data, Writer write) {
-        write.writerData.WriteHashtable((Hashtable)data);
+        write.writerData.WriterValue(key, data);
     }
 }

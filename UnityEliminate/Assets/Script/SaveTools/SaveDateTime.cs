@@ -9,17 +9,16 @@ public class SaveDateTime : StoredataType {
         key = EnumSaveTypeKey.SaveDateTime;
     }
 
-
     public override object Reader(Read reader) {
-        return reader.readData.ReadDateTime(DateTime.Now);
+        return reader.readData.ReadValue(key);
     }
 
     public override object Reader(Read reader, object defaultValue) {
-        return reader.readData.ReadDateTime((DateTime)defaultValue);
+        return reader.readData.ReadValue(key, defaultValue);
     }
 
     public override void Write(object data, Writer write) {
-        write.writerData.WriteDateTime((DateTime)data);
+        write.writerData.WriterValue(key, data);
     }
 
 }

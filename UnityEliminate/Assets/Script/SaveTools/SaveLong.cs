@@ -9,14 +9,14 @@ public sealed class SaveLong : StoredataType {
     }
 
     public override object Reader(Read reader) {
-        return reader.readData.ReadLong();
+        return reader.readData.ReadValue(key);
     }
 
     public override object Reader(Read reader, object defaultValue) {
-        return reader.readData.ReadLong((long)defaultValue);
+        return reader.readData.ReadValue(key, defaultValue);
     }
 
     public override void Write(object data, Writer write) {
-        write.writerData.WriteLong((long)data);
+        write.writerData.WriterValue(key, data);
     }
 }

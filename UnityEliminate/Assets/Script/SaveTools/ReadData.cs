@@ -15,8 +15,119 @@ public class ReadData : IDisposable {
         saveSetting = data;
     }
 
-    public Int32 ReadInt32(int def = 1) {
-        var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveInt);
+    public object ReadValue(EnumSaveTypeKey type) {
+
+        switch (type) {
+            case EnumSaveTypeKey.SaveString:
+                return ReadString();
+            case EnumSaveTypeKey.SaveInt:
+                return ReadInt32();
+            case EnumSaveTypeKey.SaveBool:
+                return ReadBool();
+            case EnumSaveTypeKey.SaveFolat:
+                return ReadFolat();
+            case EnumSaveTypeKey.SaveVector2:
+                return ReadVector2(Vector2.one);
+            case EnumSaveTypeKey.SaveVector3:
+                return ReadVector3(Vector3.one);
+            case EnumSaveTypeKey.SaveVector4:
+                return ReadVector4(Vector4.one);
+            case EnumSaveTypeKey.SaveQuaternion:
+                return ReadQuaternion(Quaternion.identity);
+            case EnumSaveTypeKey.SaveColor:
+                return ReadColor(Color.black);
+            case EnumSaveTypeKey.SaveDouble:
+                return ReadDouble();
+            case EnumSaveTypeKey.SaveEnum:
+                return ReadEnum(TestEnum.One);
+            case EnumSaveTypeKey.SaveList:
+                return ReadList(string.Empty);
+            case EnumSaveTypeKey.SaveDictionary:
+                return ReadDictionary(string.Empty);
+            case EnumSaveTypeKey.Savebyte:
+                return ReadByte();
+            case EnumSaveTypeKey.SaveShort:
+                return ReadShort();
+            case EnumSaveTypeKey.SaveUint:
+                return ReadUint();
+            case EnumSaveTypeKey.SaveUlong:
+                return ReadUlong();
+            case EnumSaveTypeKey.SaveUshort:
+                return ReadUshort();
+            case EnumSaveTypeKey.SaveChar:
+                return ReadChar();
+            case EnumSaveTypeKey.SaveDateTime:
+                return ReadDateTime(DateTime.Now);
+            case EnumSaveTypeKey.SaveArray:
+                Array array = new Array[1];
+                return ReadArray(array);
+            case EnumSaveTypeKey.SaveHashtable:
+                Hashtable hs = new Hashtable();
+                return ReadHashtable(hs);
+            case EnumSaveTypeKey.SaveArrayList:
+                ArrayList df = new ArrayList();
+                return ReadArrayList(df);
+        }
+        return null;
+    }
+
+
+    public object ReadValue(EnumSaveTypeKey type, object defaultValue) {
+
+        switch (type) {
+            case EnumSaveTypeKey.SaveString:
+                return ReadString((string)defaultValue);
+            case EnumSaveTypeKey.SaveInt:
+                return ReadInt32((int)defaultValue);
+            case EnumSaveTypeKey.SaveBool:
+                return ReadBool((bool)defaultValue);
+            case EnumSaveTypeKey.SaveFolat:
+                return ReadFolat((float)defaultValue);
+            case EnumSaveTypeKey.SaveVector2:
+                return ReadVector2((Vector2)defaultValue);
+            case EnumSaveTypeKey.SaveVector3:
+                return ReadVector3((Vector3)defaultValue);
+            case EnumSaveTypeKey.SaveVector4:
+                return ReadVector4((Vector4)defaultValue);
+            case EnumSaveTypeKey.SaveQuaternion:
+                return ReadQuaternion((Quaternion)defaultValue);
+            case EnumSaveTypeKey.SaveColor:
+                return ReadColor((Color)defaultValue);
+            case EnumSaveTypeKey.SaveDouble:
+                return ReadDouble((double)defaultValue);
+            case EnumSaveTypeKey.SaveEnum:
+                return ReadEnum((Enum)defaultValue);
+            case EnumSaveTypeKey.SaveList:
+                return ReadList(defaultValue);
+            case EnumSaveTypeKey.SaveDictionary:
+                return ReadDictionary(defaultValue);
+            case EnumSaveTypeKey.Savebyte:
+                return ReadByte((byte)defaultValue);
+            case EnumSaveTypeKey.SaveShort:
+                return ReadShort((short)defaultValue);
+            case EnumSaveTypeKey.SaveUint:
+                return ReadUint((uint)defaultValue);
+            case EnumSaveTypeKey.SaveUlong:
+                return ReadUlong((ulong)defaultValue);
+            case EnumSaveTypeKey.SaveUshort:
+                return ReadUshort((ushort)defaultValue);
+            case EnumSaveTypeKey.SaveChar:
+                return ReadChar((char)defaultValue);
+            case EnumSaveTypeKey.SaveDateTime:
+                return ReadDateTime((DateTime)defaultValue);
+            case EnumSaveTypeKey.SaveArray:
+                return ReadArray((Array)defaultValue);
+            case EnumSaveTypeKey.SaveHashtable:
+                return ReadHashtable((Hashtable)defaultValue);
+            case EnumSaveTypeKey.SaveArrayList:
+                return ReadArrayList((ArrayList)defaultValue);
+        }
+        return null;
+    }
+
+
+    private Int32 ReadInt32(int def = 1) {
+        var dt = ReadValue(saveSetting.saveImplementType, EnumSaveTypeKey.SaveInt);
         if (dt is int) {
             return (int)dt;
         }
@@ -24,9 +135,9 @@ public class ReadData : IDisposable {
         return def;
     }
 
-    public long ReadLong(long def = 0) {
+    private long ReadLong(long def = 0) {
 
-        var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveLong);
+        var dt = ReadValue(saveSetting.saveImplementType, EnumSaveTypeKey.SaveLong);
         if (dt is long) {
             return (long)dt;
         }
@@ -34,9 +145,9 @@ public class ReadData : IDisposable {
         return def;
     }
 
-    public string ReadString(string def = "默认值") {
+    private string ReadString(string def = "默认值") {
 
-        var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveString);
+        var dt = ReadValue(saveSetting.saveImplementType, EnumSaveTypeKey.SaveString);
         if (dt is string) {
             return (string)dt;
         }
@@ -45,8 +156,8 @@ public class ReadData : IDisposable {
     }
 
 
-    public float ReadFolat(float def = 0.1f) {
-        var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveFolat);
+    private float ReadFolat(float def = 0.1f) {
+        var dt = ReadValue(saveSetting.saveImplementType, EnumSaveTypeKey.SaveFolat);
         if (dt is float) {
 
             return (float)dt;
@@ -56,8 +167,8 @@ public class ReadData : IDisposable {
     }
 
 
-    public double ReadDouble(double def = 0.1f) {
-        var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveDouble);
+    private double ReadDouble(double def = 0.1f) {
+        var dt = ReadValue(saveSetting.saveImplementType, EnumSaveTypeKey.SaveDouble);
         if (dt is double) {
             return (double)dt;
         }
@@ -66,8 +177,8 @@ public class ReadData : IDisposable {
     }
 
 
-    public bool ReadBool(bool def = false) {
-        var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveBool);
+    private bool ReadBool(bool def = false) {
+        var dt = ReadValue(saveSetting.saveImplementType, EnumSaveTypeKey.SaveBool);
         if (dt is bool) {
             return (bool)dt;
         }
@@ -75,8 +186,8 @@ public class ReadData : IDisposable {
         return def;
     }
 
-    public Vector2 ReadVector2(Vector2 def) {
-        var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveVector2);
+    private Vector2 ReadVector2(Vector2 def) {
+        var dt = ReadValue(saveSetting.saveImplementType, EnumSaveTypeKey.SaveVector2);
         if (dt is Vector2) {
             return (Vector2)dt;
         }
@@ -84,8 +195,8 @@ public class ReadData : IDisposable {
         return def;
     }
 
-    public Vector3 ReadVector3(Vector3 def) {
-        var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveVector3);
+    private Vector3 ReadVector3(Vector3 def) {
+        var dt = ReadValue(saveSetting.saveImplementType, EnumSaveTypeKey.SaveVector3);
         if (dt is Vector3) {
             return (Vector3)dt;
         }
@@ -93,9 +204,9 @@ public class ReadData : IDisposable {
         return def;
     }
 
-    public Vector4 ReadVector4(Vector4 def) {
+    private Vector4 ReadVector4(Vector4 def) {
 
-        var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveVector4);
+        var dt = ReadValue(saveSetting.saveImplementType, EnumSaveTypeKey.SaveVector4);
         if (dt is Vector4) {
             return (Vector4)dt;
         }
@@ -104,8 +215,8 @@ public class ReadData : IDisposable {
     }
 
 
-    public Quaternion ReadQuaternion(Quaternion def) {
-        var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveQuaternion);
+    private Quaternion ReadQuaternion(Quaternion def) {
+        var dt = ReadValue(saveSetting.saveImplementType, EnumSaveTypeKey.SaveQuaternion);
         if (dt is Quaternion) {
             return (Quaternion)dt;
         }
@@ -114,8 +225,8 @@ public class ReadData : IDisposable {
     }
 
 
-    public Color ReadColor(Color def) {
-        var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveColor);
+    private Color ReadColor(Color def) {
+        var dt = ReadValue(saveSetting.saveImplementType, EnumSaveTypeKey.SaveColor);
         if (dt is Color) {
             return (Color)dt;
         }
@@ -123,8 +234,8 @@ public class ReadData : IDisposable {
         return def;
     }
 
-    public Enum ReadEnum(Enum def) {
-        var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveEnum);
+    private Enum ReadEnum(Enum def) {
+        var dt = ReadValue(saveSetting.saveImplementType, EnumSaveTypeKey.SaveEnum);
         if (dt is Enum) {
             return (Enum)dt;
         }
@@ -132,8 +243,8 @@ public class ReadData : IDisposable {
         return def;
     }
 
-    public object ReadList(object def) {
-        var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveList);
+    private object ReadList(object def) {
+        var dt = ReadValue(saveSetting.saveImplementType, EnumSaveTypeKey.SaveList);
         if (dt != null && dt.GetType().IsGenericType) {
             return dt;
         }
@@ -141,8 +252,8 @@ public class ReadData : IDisposable {
         return StringExtention.GetValue(def.ConverToString(), (Type)saveSetting.curObject); ;
     }
 
-    public object ReadDictionary(object def) {
-        var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveDictionary);
+    private object ReadDictionary(object def) {
+        var dt = ReadValue(saveSetting.saveImplementType, EnumSaveTypeKey.SaveDictionary);
         if (dt != null && dt.GetType().IsGenericType) {
             return dt;
         }
@@ -150,8 +261,8 @@ public class ReadData : IDisposable {
         return StringExtention.GetValue(def.ConverToString(), (Type)saveSetting.curObject);
     }
 
-    public byte ReadByte(Byte def = 1) {
-        var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.Savebyte);
+    private byte ReadByte(Byte def = 1) {
+        var dt = ReadValue(saveSetting.saveImplementType, EnumSaveTypeKey.Savebyte);
         if (dt is byte) {
             return (byte)dt;
         }
@@ -159,8 +270,8 @@ public class ReadData : IDisposable {
         return def;
     }
 
-    public short ReadShort(short def = 1) {
-        var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveShort);
+    private short ReadShort(short def = 1) {
+        var dt = ReadValue(saveSetting.saveImplementType, EnumSaveTypeKey.SaveShort);
         if (dt is short) {
             return (short)dt;
         }
@@ -169,8 +280,8 @@ public class ReadData : IDisposable {
     }
 
 
-    public uint ReadUint(uint def = 1) {
-        var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveUint);
+    private uint ReadUint(uint def = 1) {
+        var dt = ReadValue(saveSetting.saveImplementType, EnumSaveTypeKey.SaveUint);
         if (dt is uint) {
             return (uint)dt;
         }
@@ -178,8 +289,8 @@ public class ReadData : IDisposable {
         return def;
     }
 
-    public ulong ReadUlong(ulong def = 1) {
-        var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveUlong);
+    private ulong ReadUlong(ulong def = 1) {
+        var dt = ReadValue(saveSetting.saveImplementType, EnumSaveTypeKey.SaveUlong);
         if (dt is ulong) {
             return (ulong)dt;
         }
@@ -187,8 +298,8 @@ public class ReadData : IDisposable {
         return def;
     }
 
-    public ushort ReadUshort(ushort def = 1) {
-        var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveUshort);
+    private ushort ReadUshort(ushort def = 1) {
+        var dt = ReadValue(saveSetting.saveImplementType, EnumSaveTypeKey.SaveUshort);
         if (dt is ushort) {
             return (ushort)dt;
         }
@@ -196,8 +307,8 @@ public class ReadData : IDisposable {
         return def;
     }
 
-    public char ReadChar(char def = 'A') {
-        var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveChar);
+    private char ReadChar(char def = 'A') {
+        var dt = ReadValue(saveSetting.saveImplementType, EnumSaveTypeKey.SaveChar);
         if (dt is char) {
             return (char)dt;
         }
@@ -205,8 +316,8 @@ public class ReadData : IDisposable {
         return 'A';
     }
 
-    public DateTime ReadDateTime(DateTime def) {
-        var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveDateTime);
+    private DateTime ReadDateTime(DateTime def) {
+        var dt = ReadValue(saveSetting.saveImplementType, EnumSaveTypeKey.SaveDateTime);
         if (dt is DateTime) {
             return (DateTime)dt;
         }
@@ -214,8 +325,8 @@ public class ReadData : IDisposable {
         return def;
     }
 
-    public Array ReadArray(Array def) {
-        var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveArray);
+    private Array ReadArray(Array def) {
+        var dt = ReadValue(saveSetting.saveImplementType, EnumSaveTypeKey.SaveArray);
         if (dt is Array) {
             return (Array)dt;
         }
@@ -223,8 +334,8 @@ public class ReadData : IDisposable {
         return def;
     }
 
-    public Hashtable ReadHashtable(Hashtable def) {
-        var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveHashtable);
+    private Hashtable ReadHashtable(Hashtable def) {
+        var dt = ReadValue(saveSetting.saveImplementType, EnumSaveTypeKey.SaveHashtable);
         Hashtable ha = new Hashtable();
         if (dt != null && dt.GetType().IsGenericType) {
             Dictionary<string, string> dic = (Dictionary<string, string>)dt;
@@ -240,8 +351,8 @@ public class ReadData : IDisposable {
         return def;
     }
 
-    public ArrayList ReadArrayList(ArrayList def) {
-        var dt = SelectReadType(saveSetting.saveImplementType, EnumSaveTypeKey.SaveArrayList);
+    private ArrayList ReadArrayList(ArrayList def) {
+        var dt = ReadValue(saveSetting.saveImplementType, EnumSaveTypeKey.SaveArrayList);
         ArrayList arList = new ArrayList();
         if (dt != null) {
             List<string> ls = (List<string>)dt;
@@ -255,11 +366,12 @@ public class ReadData : IDisposable {
     }
 
 
-    private object SelectReadType(SaveImplementType type, EnumSaveTypeKey keyType) {
+    private object ReadValue(SaveImplementType type, EnumSaveTypeKey keyType) {
         switch (type) {
             case SaveImplementType.ImplementByte:
                 Stream stream = FileMgr.Instance.OpenReadStream(this.saveSetting.path);
                 if (stream != null) {
+                    stream.Close();
                     var data = SerializeHelper.DeserializeBinary(this.saveSetting.path);
                     if (data != null) {
                         switch (keyType) {
@@ -313,7 +425,6 @@ public class ReadData : IDisposable {
                                 return StringExtention.GetValue(data.ConverToString(), (Type)saveSetting.curObject);
                         }
                         return null;
-                     //   return StringExtention.GetValue(data.ConverToString(), (Type)saveSetting.curObject);
                     }
                 }
                 break;

@@ -9,15 +9,14 @@ public sealed class SaveQuaternion : StoredataType {
     }
 
     public override object Reader(Read reader) {
-        return reader.readData.ReadQuaternion(Quaternion.identity);
+        return reader.readData.ReadValue(key);
     }
 
     public override object Reader(Read reader, object defaultData) {
-        return reader.readData.ReadQuaternion((Quaternion)defaultData);
+        return reader.readData.ReadValue(key, defaultData);
     }
 
     public override void Write(object data, Writer write) {
-
-        write.writerData.WriteQuaternion((Quaternion)data);
+        write.writerData.WriterValue(key, data);
     }
 }

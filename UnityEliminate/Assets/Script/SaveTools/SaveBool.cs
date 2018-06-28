@@ -6,19 +6,18 @@ using UnityEngine;
 public sealed class SaveBool : StoredataType {
 
     public SaveBool() : base(typeof(bool)) {
-
-        base.key = EnumSaveTypeKey.SaveBool;
+        key = EnumSaveTypeKey.SaveBool;
     }
 
     public override object Reader(Read reader) {
-        return reader.readData.ReadBool();
+        return reader.readData.ReadValue(key);
     }
 
     public override object Reader(Read reader, object defaultValue) {
-        return reader.readData.ReadBool((bool)defaultValue);
+        return reader.readData.ReadValue(key, defaultValue);
     }
 
     public override void Write(object data, Writer write) {
-        write.writerData.WriteBool((bool)data);
+        write.writerData.WriterValue(key, data);
     }
 }

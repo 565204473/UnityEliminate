@@ -24,156 +24,153 @@
  * THE SOFTWARE.
  ****************************************************************************/
 
-namespace QFramework
-{
-	using UnityEngine;
-	using System.IO;
-	using System.Collections.Generic;
-	
-	public class FilePath
-	{
-		private static string           mPersistentDataPath;
-		private static string           mStreamingAssetsPath;
-		private static string           mPersistentDataPath4Res;
-		private static string           mPersistentDataPath4Photo;
+namespace QFramework {
+    using UnityEngine;
+    using System.IO;
+    using System.Collections.Generic;
 
-		// 外部目录  
-		public static string PersistentDataPath
-		{
-			get
-			{
-				if (null == mPersistentDataPath)
-				{
-					mPersistentDataPath = Application.persistentDataPath + "/";
-				}
+    public class FilePath {
+        private static string mPersistentDataPath;
+        private static string mStreamingAssetsPath;
+        private static string mPersistentDataPath4Res;
+        private static string mPersistentDataPath4Photo;
 
-				return mPersistentDataPath;
-			}
-		}
+        // 外部目录  
+        public static string PersistentDataPath
+        {
+            get
+            {
+                if (null == mPersistentDataPath) {
+                    mPersistentDataPath = Application.persistentDataPath + "/";
+                }
 
-		// 内部目录
-		public static string StreamingAssetsPath
-		{
-			get
-			{
-				if (null == mStreamingAssetsPath)
-				{
-					#if UNITY_IPHONE && !UNITY_EDITOR
+                return mPersistentDataPath;
+            }
+        }
+
+        // 内部目录
+        public static string StreamingAssetsPath
+        {
+            get
+            {
+                if (null == mStreamingAssetsPath) {
+#if UNITY_IPHONE && !UNITY_EDITOR
 					mStreamingAssetsPath = Application.streamingAssetsPath + "/";
-					#elif UNITY_ANDROID && !UNITY_EDITOR
+#elif UNITY_ANDROID && !UNITY_EDITOR
 					mStreamingAssetsPath = Application.streamingAssetsPath + "/";
-					#elif (UNITY_STANDALONE_WIN) && !UNITY_EDITOR
+#elif (UNITY_STANDALONE_WIN) && !UNITY_EDITOR
 					mStreamingAssetsPath = Application.streamingAssetsPath + "/";//GetParentDir(Application.dataPath, 2) + "/BuildRes/";
-					#elif UNITY_STANDALONE_OSX && !UNITY_EDITOR
+#elif UNITY_STANDALONE_OSX && !UNITY_EDITOR
 					mStreamingAssetsPath = Application.streamingAssetsPath + "/";
-					#else
-					//mStreamingAssetsPath = GetParentDir(Application.dataPath, 1) + "/BuildRes/standalone/";
-					mStreamingAssetsPath = Application.streamingAssetsPath + "/";
-					#endif
-				}
+#else
+                    //mStreamingAssetsPath = GetParentDir(Application.dataPath, 1) + "/BuildRes/standalone/";
+                    mStreamingAssetsPath = Application.streamingAssetsPath + "/";
+#endif
+                }
 
-				return mStreamingAssetsPath;
-			}
-		}
+                return mStreamingAssetsPath;
+            }
+        }
 
-		// 外部资源目录
-		public static string PersistentDataPath4Res
-		{
-			get
-			{
-				if (null == mPersistentDataPath4Res)
-				{
-					mPersistentDataPath4Res = PersistentDataPath + "Res/";
+        // 外部资源目录
+        public static string PersistentDataPath4Res
+        {
+            get
+            {
+                if (null == mPersistentDataPath4Res) {
+                    mPersistentDataPath4Res = PersistentDataPath + "Res/";
 
-					if (!Directory.Exists(mPersistentDataPath4Res))
-					{
-						Directory.CreateDirectory(mPersistentDataPath4Res);
-						#if UNITY_IPHONE && !UNITY_EDITOR
+                    if (!Directory.Exists(mPersistentDataPath4Res)) {
+                        Directory.CreateDirectory(mPersistentDataPath4Res);
+#if UNITY_IPHONE && !UNITY_EDITOR
 						UnityEngine.iOS.Device.SetNoBackupFlag(mPersistentDataPath4Res);
-						#endif
-					}
-				}
+#endif
+                    }
+                }
 
-				return mPersistentDataPath4Res;
-			}
-		}
+                return mPersistentDataPath4Res;
+            }
+        }
 
-		// 外部头像缓存目录
-		public static string PersistentDataPath4Photo
-		{
-			get
-			{
-				if (null == mPersistentDataPath4Photo)
-				{
-					mPersistentDataPath4Photo = PersistentDataPath + "Photos\\";
 
-					IOExtension.CreateDirIfNotExists(mPersistentDataPath4Photo);
-				}
+        // 外部资源目录(删除)
+        public static string PersistentDataPath4ResDelete
+        {
+            get
+            {
+                if (null == mPersistentDataPath4Res) {
+                    mPersistentDataPath4Res = PersistentDataPath + "Res";
+                }
 
-				return mPersistentDataPath4Photo;
-			}
-		}
+                return mPersistentDataPath4Res;
+            }
+        }
 
-		// 资源路径，优先返回外存资源路径
-		public static string GetResPathInPersistentOrStream(string relativePath)
-		{
-			string resPersistentPath = string.Format("{0}{1}", FilePath.PersistentDataPath4Res, relativePath);
 
-			if (File.Exists(resPersistentPath))
-			{
-				return resPersistentPath;
-			}
-			else
-			{
-				return FilePath.StreamingAssetsPath + relativePath;
-			}
-		}
+        // 外部头像缓存目录
+        public static string PersistentDataPath4Photo
+        {
+            get
+            {
+                if (null == mPersistentDataPath4Photo) {
+                    mPersistentDataPath4Photo = PersistentDataPath + "Photos\\";
 
-		// 上一级目录
-		public static string GetParentDir(string dir, int floor = 1)
-		{
-			string subDir = dir;
+                    IOExtension.CreateDirIfNotExists(mPersistentDataPath4Photo);
+                }
 
-			for (int i = 0; i < floor; ++i)
-			{
-				int last = subDir.LastIndexOf('/');
-				subDir = subDir.Substring(0, last);
-			}
+                return mPersistentDataPath4Photo;
+            }
+        }
 
-			return subDir;
-		}
+        // 资源路径，优先返回外存资源路径
+        public static string GetResPathInPersistentOrStream(string relativePath) {
+            string resPersistentPath = string.Format("{0}{1}", FilePath.PersistentDataPath4Res, relativePath);
 
-		public static void GetFileInFolder(string dirName, string fileName, List<string> outResult)
-		{
-			if (outResult == null)
-			{
-				return;
-			}
+            if (File.Exists(resPersistentPath)) {
+                return resPersistentPath;
+            }
+            else {
+                return FilePath.StreamingAssetsPath + relativePath;
+            }
+        }
 
-			DirectoryInfo dir = new DirectoryInfo(dirName);
+        // 上一级目录
+        public static string GetParentDir(string dir, int floor = 1) {
+            string subDir = dir;
 
-			if (null != dir.Parent && dir.Attributes.ToString().IndexOf("System") > -1)
-			{
-				return;
-			}
+            for (int i = 0; i < floor; ++i) {
+                int last = subDir.LastIndexOf('/');
+                subDir = subDir.Substring(0, last);
+            }
 
-			FileInfo[] finfo = dir.GetFiles();
-			string fname = string.Empty;
-			for (int i = 0; i < finfo.Length; i++)
-			{
-				fname = finfo[i].Name;
+            return subDir;
+        }
 
-				if (fname == fileName)
-				{
-					outResult.Add(finfo[i].FullName);
-				}
-			}
+        public static void GetFileInFolder(string dirName, string fileName, List<string> outResult) {
+            if (outResult == null) {
+                return;
+            }
 
-			DirectoryInfo[] dinfo = dir.GetDirectories();
-			for (int i = 0; i < dinfo.Length; i++)
-			{
-				GetFileInFolder(dinfo[i].FullName, fileName, outResult);
-			}
-		}
-	}
+            DirectoryInfo dir = new DirectoryInfo(dirName);
+
+            if (null != dir.Parent && dir.Attributes.ToString().IndexOf("System") > -1) {
+                return;
+            }
+
+            FileInfo[] finfo = dir.GetFiles();
+            string fname = string.Empty;
+            for (int i = 0; i < finfo.Length; i++) {
+                fname = finfo[i].Name;
+
+                if (fname == fileName) {
+                    outResult.Add(finfo[i].FullName);
+                }
+            }
+
+            DirectoryInfo[] dinfo = dir.GetDirectories();
+            for (int i = 0; i < dinfo.Length; i++) {
+                GetFileInFolder(dinfo[i].FullName, fileName, outResult);
+            }
+        }
+    }
 }

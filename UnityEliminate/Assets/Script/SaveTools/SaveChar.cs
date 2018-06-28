@@ -10,15 +10,15 @@ public sealed class SaveChar : StoredataType {
 
 
     public override object Reader(Read reader) {
-        return reader.readData.ReadChar();
+        return reader.readData.ReadValue(key);
     }
 
     public override object Reader(Read reader, object defaultValue) {
-        return reader.readData.ReadChar((char)defaultValue);
+        return reader.readData.ReadValue(key, defaultValue);
     }
 
     public override void Write(object data, Writer write) {
-        write.writerData.WriteChar((char)data);
+        write.writerData.WriterValue(key, data);
     }
 
 }

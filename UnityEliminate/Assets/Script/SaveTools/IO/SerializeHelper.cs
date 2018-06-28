@@ -22,6 +22,7 @@ namespace QFramework {
             using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate)) {
                 BinaryFormatter bf = new BinaryFormatter();
                 bf.Serialize(fs, obj);
+               // fs.Close();              
                 return true;
             }
         }
@@ -56,6 +57,7 @@ namespace QFramework {
             using (FileStream fs = fileInfo.OpenRead()) {
                 BinaryFormatter bf = new BinaryFormatter();
                 object data = bf.Deserialize(fs);
+               // fs.Close();               
                 if (data != null) {
                     byte[] txEncrypt = EncryptHelp.AESDecrypt((Byte[])data, SaveDefaultData.EncryptKey, SaveDefaultData.EncryptValue);
                     object str = Encoding.UTF8.GetString(txEncrypt);

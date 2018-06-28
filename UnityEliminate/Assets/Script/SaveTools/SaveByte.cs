@@ -9,16 +9,16 @@ public sealed class SaveByte : StoredataType {
     }
 
     public override object Reader(Read reader) {
-        return reader.readData.ReadByte();
+        return reader.readData.ReadValue(key);
     }
 
     public override object Reader(Read reader, object defaultValue) {
-        return reader.readData.ReadByte((byte)defaultValue);
+        return reader.readData.ReadValue(key, defaultValue);
     }
 
 
     public override void Write(object data, Writer write) {
-        write.writerData.WriteByte((byte)data);
+        write.writerData.WriterValue(key, data);
     }
 
 }

@@ -8,14 +8,14 @@ public sealed class SaveVector4 : StoredataType {
     }
 
     public override object Reader(Read reader) {
-        return reader.readData.ReadVector4(Vector4.one);
+        return reader.readData.ReadValue(key);
     }
 
     public override object Reader(Read reader, object defaultValue) {
-        return reader.readData.ReadVector4((Vector4)defaultValue);
+        return reader.readData.ReadValue(key, defaultValue);
     }
 
     public override void Write(object data, Writer write) {
-        write.writerData.WriteVector4((Vector4)data);
+        write.writerData.WriterValue(key, data);
     }
 }

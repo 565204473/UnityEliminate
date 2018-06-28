@@ -9,17 +9,15 @@ public sealed class SaveUlong : StoredataType {
         key = EnumSaveTypeKey.SaveUlong;
     }
 
-
     public override object Reader(Read reader) {
-        return reader.readData.ReadUlong();
+        return reader.readData.ReadValue(key);
     }
 
     public override object Reader(Read reader, object defaultValue) {
-        return reader.readData.ReadUlong((ulong)defaultValue);
+        return reader.readData.ReadValue(key, defaultValue);
     }
 
-
     public override void Write(object data, Writer write) {
-        write.writerData.WriteUlong((ulong)data);
+        write.writerData.WriterValue(key, data);
     }
 }

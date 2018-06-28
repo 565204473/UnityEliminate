@@ -10,7 +10,7 @@ public static class SaveToolsHelp {
     /// <param name="保存的内容"></param>
     /// <param name="保存的Key"></param>
     /// <param name="自定义风格"></param>
-    public static void Write<T>(T param, string identifier, SaveSetting setting) {
+    public static void Write<T>(T param, string key, SaveSetting setting) {
         using (Writer writer = Writer.Create(setting)) {
             writer.Write<T>(param, setting.filenameData.tag);
         }
@@ -24,8 +24,8 @@ public static class SaveToolsHelp {
     /// <param name="保存的key"></param>
     /// <param name="保存的实现方式"></param>
 
-    public static void Write<T>(T param, string identifier, SaveImplementType type = SaveImplementType.ImplementByte) {
-        SaveSetting setting = new SaveSetting(identifier, type);
+    public static void Write<T>(T param, string key, SaveImplementType type = SaveImplementType.ImplementByte) {
+        SaveSetting setting = new SaveSetting(key, type);
         using (Writer writer = Writer.Create(setting)) {
             writer.Write<T>(param, setting.filenameData.tag);
         }
@@ -39,8 +39,8 @@ public static class SaveToolsHelp {
     /// <param name="读取的实现方式"></param>
     /// <returns></returns>
 
-    public static T Reader<T>(string identifier, SaveImplementType type = SaveImplementType.ImplementByte) {
-        SaveSetting setting = new SaveSetting(identifier, type);
+    public static T Reader<T>(string key, SaveImplementType type = SaveImplementType.ImplementByte) {
+        SaveSetting setting = new SaveSetting(key, type);
         using (Read reader = Read.Create(setting)) {
             //if (!Exists(identifier)) {
             //    return default(T);
@@ -57,7 +57,7 @@ public static class SaveToolsHelp {
     /// <param name="读取的自定义风格"></param>
     /// <returns></returns>
 
-    public static T Reader<T>(string identifier, SaveSetting setting) {
+    public static T Reader<T>(string key, SaveSetting setting) {
         SaveSetting settingClone = setting.Clone();
         using (Read reader = Read.Create(settingClone)) {
             //if (!Exists(identifier)) {
@@ -76,8 +76,8 @@ public static class SaveToolsHelp {
     /// <param name="读取的方式"></param>
     /// <returns></returns>
 
-    public static T Reader<T>(string identifier, T defaultData, SaveImplementType type = SaveImplementType.ImplementByte) {
-        SaveSetting setting = new SaveSetting(identifier, type);
+    public static T Reader<T>(string key, T defaultData, SaveImplementType type = SaveImplementType.ImplementByte) {
+        SaveSetting setting = new SaveSetting(key, type);
         using (Read reader = Read.Create(setting)) {
             //if (!Exists(identifier)) {
             //    return default(T);
@@ -90,8 +90,8 @@ public static class SaveToolsHelp {
     /// 删除保存的文件
     /// </summary>
     /// <param name="保存的key"></param>
-    public static void Delete(string identifier) {
-        SaveSetting setting = new SaveSetting(identifier, SaveReadingType.Delete);
+    public static void Delete(string key) {
+        SaveSetting setting = new SaveSetting(key, SaveReadingType.Delete);
     }
 
     /// <summary>
@@ -99,9 +99,9 @@ public static class SaveToolsHelp {
     /// </summary>
     /// <param name="保存的key"></param>
     /// <returns></returns>
-    public static bool Exists(string identifier) {
+    public static bool Exists(string key) {
         SaveSetting setting = new SaveSetting();
-        return setting.IsExists(identifier);
+        return setting.IsExists(key);
     }
 
     /// <summary>
@@ -109,9 +109,9 @@ public static class SaveToolsHelp {
     /// </summary>
     /// <param name="保存的key"></param>
     /// <returns></returns>
-    public static string GetFiles(string identifier) {
+    public static string GetFiles(string key) {
         SaveSetting setting = new SaveSetting();
-        return setting.GetFiles(identifier);
+        return setting.GetFiles(key);
     }
 
     /// <summary>
