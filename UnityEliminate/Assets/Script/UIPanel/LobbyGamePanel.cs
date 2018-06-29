@@ -223,16 +223,15 @@ public partial class LobbyGamePanel : QUIBehaviour {
         LogTest(SaveToolsHelp.Reader<DateTime>("DateTime"));
         int[] array = new int[] { 100, 200 };
         SaveToolsHelp.Write(array, "Array");
-        foreach (var item in SaveToolsHelp.Reader<int[]>("Array")) {
-            LogTest(item);
+        for (int i = 0; i < SaveToolsHelp.Reader<int[]>("Array").Length; i++) {
+            LogTest(SaveToolsHelp.Reader<int[]>("Array")[i]);
         }
-
         Hashtable hs = new Hashtable();
         hs.Add(1, "A");
         hs.Add(2, "B");
         SaveToolsHelp.Write(hs, "Hashtable");
-        foreach (var item in SaveToolsHelp.Reader<Hashtable>("Hashtable")) {
-            LogTest(item);
+        foreach (DictionaryEntry item in SaveToolsHelp.Reader<Hashtable>("Hashtable")) {
+            LogTest(item.Key + "***" + item.Value);
         }
         ArrayList arrayList = new ArrayList();
         arrayList.Add("Abc");
