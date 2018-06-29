@@ -43,9 +43,9 @@ public class ReadData : IDisposable {
             case EnumSaveTypeKey.SaveEnum:
                 return ReadEnum(TestEnum.One);
             case EnumSaveTypeKey.SaveList:
-                return ReadList(string.Empty);
+                return ReadList("list");
             case EnumSaveTypeKey.SaveDictionary:
-                return ReadDictionary(string.Empty);
+                return ReadDictionary("dictionary");
             case EnumSaveTypeKey.Savebyte:
                 return ReadByte();
             case EnumSaveTypeKey.SaveShort:
@@ -61,8 +61,7 @@ public class ReadData : IDisposable {
             case EnumSaveTypeKey.SaveDateTime:
                 return ReadDateTime(DateTime.Now);
             case EnumSaveTypeKey.SaveArray:
-                Array array = new Array[1];
-                return ReadArray(array);
+                return ReadArray("array");
             case EnumSaveTypeKey.SaveHashtable:
                 Hashtable hs = new Hashtable();
                 return ReadHashtable(hs);
@@ -253,7 +252,7 @@ public class ReadData : IDisposable {
             return dt;
         }
         NoHasKeyHint();
-        return StringExtention.GetValue(def.ConverToString(), (Type)saveSetting.curObject); ;
+        return StringExtention.GetValue(def.ConverToString(), (Type)saveSetting.curObject);
     }
 
     private object ReadDictionary(object def) {
@@ -329,13 +328,13 @@ public class ReadData : IDisposable {
         return def;
     }
 
-    private Array ReadArray(Array def) {
+    private object ReadArray(object def) {
         var dt = ReadValue(saveSetting.saveImplementType, EnumSaveTypeKey.SaveArray);
-        if (dt is Array) {
-            return (Array)dt;
+        if (dt != null && dt.GetType().IsArray) {
+            return dt;
         }
         NoHasKeyHint();
-        return def;
+        return StringExtention.GetValue(def.ConverToString(), (Type)saveSetting.curObject);
     }
 
     private Hashtable ReadHashtable(Hashtable def) {

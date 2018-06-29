@@ -156,90 +156,91 @@ public partial class LobbyGamePanel : QUIBehaviour {
         //}
         // SaveToolsHelp.Clear();
 
-        SaveToolsHelp.Write("我也是醉了", "string");
-        LogTest(SaveToolsHelp.Reader("string", "我是默认值"));
-        SaveToolsHelp.Write(100, "int");
-        LogTest(SaveToolsHelp.Reader<int>("int"));
-        SaveToolsHelp.Write(true, "bool");
-        LogTest(SaveToolsHelp.Reader<bool>("bool"));
-        SaveToolsHelp.Write(0.3, "folat");
-        LogTest(SaveToolsHelp.Reader<float>("folat"));
+        // SaveToolsHelp.Write("我也是醉了", "string");
+        //  LogTest(SaveToolsHelp.Reader("string", "我是默认值"));
+        //  SaveToolsHelp.Write(100, "int");
+        // LogTest(SaveToolsHelp.Reader<int>("int"));
+        //   SaveToolsHelp.Write(true, "bool");
+        //  LogTest(SaveToolsHelp.Reader<bool>("bool"));
+        //   SaveToolsHelp.Write(0.3, "folat");
+        //  LogTest(SaveToolsHelp.Reader<float>("folat"));
         Vector2 v = new Vector2(100, 100);
-        SaveToolsHelp.Write(v, "Vector2");
-        LogTest(SaveToolsHelp.Reader<Vector2>("Vector2"));
+        //    SaveToolsHelp.Write(v, "Vector2");
+        //   LogTest(SaveToolsHelp.Reader<Vector2>("Vector2"));
         Vector3 v3 = new Vector3(200, 200, 0);
-        SaveToolsHelp.Write(v3, "Vector3");
-        LogTest(SaveToolsHelp.Reader<Vector3>("Vector3"));
+        //     SaveToolsHelp.Write(v3, "Vector3");
+        //   LogTest(SaveToolsHelp.Reader<Vector3>("Vector3"));
         Vector4 v4 = new Vector4(300, 300, 300, 300);
-        SaveToolsHelp.Write(v4, "Vector4");
-        LogTest(SaveToolsHelp.Reader<Vector4>("Vector4"));
+        //   SaveToolsHelp.Write(v4, "Vector4");
+        //  LogTest(SaveToolsHelp.Reader<Vector4>("Vector4"));
         long lo = 9223372036854775807;
-        SaveToolsHelp.Write(lo, "long");
-        LogTest(SaveToolsHelp.Reader<long>("long"));
-        SaveToolsHelp.Write(Quaternion.identity, "Quaternion");
-        LogTest(SaveToolsHelp.Reader<Quaternion>("Quaternion"));
-        SaveToolsHelp.Write(Color.blue, "Color");
-        LogTest(SaveToolsHelp.Reader<Color>("Color"));
+        //   SaveToolsHelp.Write(lo, "long");
+        //  LogTest(SaveToolsHelp.Reader<long>("long"));
+        //    SaveToolsHelp.Write(Quaternion.identity, "Quaternion");
+        //  LogTest(SaveToolsHelp.Reader<Quaternion>("Quaternion"));
+        //    SaveToolsHelp.Write(Color.blue, "Color");
+        //  LogTest(SaveToolsHelp.Reader<Color>("Color"));
         double d = 1.7976931348623157;
-        SaveToolsHelp.Write(d, "double");
-        LogTest(SaveToolsHelp.Reader<double>("double"));
-        SaveToolsHelp.Write(TestEnum.Two, "Enum");
-        LogTest(SaveToolsHelp.Reader<TestEnum>("Enum"));
+        //     SaveToolsHelp.Write(d, "double");
+        //  LogTest(SaveToolsHelp.Reader<double>("double"));
+        //     SaveToolsHelp.Write(TestEnum.Two, "Enum");
+        //  LogTest(SaveToolsHelp.Reader<TestEnum>("Enum"));
         List<string> lsString = new List<string>();
         lsString.Add("黄");
         lsString.Add("乔");
         lsString.Add("平");
-        SaveToolsHelp.Write(lsString, "List");
-        foreach (var item in SaveToolsHelp.Reader<List<string>>("List")) {
-            LogTest(item);
-        }
+        //  SaveToolsHelp.Write(lsString, "List");
+        // foreach (var item in SaveToolsHelp.Reader<List<string>>("List")) {
+        // LogTest(item);
+        // }
         Dictionary<int, string> dictionary = new Dictionary<int, string>();
         dictionary.Add(1, "发");
         dictionary.Add(2, "大");
         dictionary.Add(3, "财");
-        SaveToolsHelp.Write(dictionary, "Dictionary");
-        foreach (var item in SaveToolsHelp.Reader<Dictionary<int, string>>("Dictionary")) {
-            LogTest(item.Value);
-        }
+        // SaveToolsHelp.Write(dictionary, "Dictionary");
+        //  foreach (var item in SaveToolsHelp.Reader<Dictionary<int, string>>("Dictionary")) {
+        // LogTest(item.Value);
+        //  }
         Byte by = 233;
-        SaveToolsHelp.Write(by, "Byte");
-        LogTest(SaveToolsHelp.Reader<byte>("Byte"));
+        //    SaveToolsHelp.Write(by, "Byte");
+        //  LogTest(SaveToolsHelp.Reader<byte>("Byte"));
         short sh = 32767;
-        SaveToolsHelp.Write(sh, "Short");
-        LogTest(SaveToolsHelp.Reader<short>("Short"));
+        //    SaveToolsHelp.Write(sh, "Short");
+        //  LogTest(SaveToolsHelp.Reader<short>("Short"));
         uint ui = 4294967295;
-        SaveToolsHelp.Write(ui, "uint");
-        LogTest(SaveToolsHelp.Reader<uint>("uint"));
+        //  SaveToolsHelp.Write(ui, "uint");
+        //   LogTest(SaveToolsHelp.Reader<uint>("uint"));
         ulong ul = 18446744073709551615;
-        SaveToolsHelp.Write(ui, "ulong");
-        LogTest(SaveToolsHelp.Reader<ulong>("ulong"));
+        //   SaveToolsHelp.Write(ui, "ulong");
+        //  LogTest(SaveToolsHelp.Reader<ulong>("ulong"));
         ushort us = 65535;
-        SaveToolsHelp.Write(us, "ushort");
-        LogTest(SaveToolsHelp.Reader<ushort>("ushort"));
+        //  SaveToolsHelp.Write(us, "ushort");
+        //  LogTest(SaveToolsHelp.Reader<ushort>("ushort"));
         char ch = 'A';
-        SaveToolsHelp.Write(ch, "char");
-        LogTest(SaveToolsHelp.Reader<char>("char"));
-        SaveToolsHelp.Write(DateTime.Now, "DateTime");
-        LogTest(SaveToolsHelp.Reader<DateTime>("DateTime"));
+        //   SaveToolsHelp.Write(ch, "char");
+        //   LogTest(SaveToolsHelp.Reader<char>("char"));
+        //    SaveToolsHelp.Write(DateTime.Now, "DateTime");
+        //  LogTest(SaveToolsHelp.Reader<DateTime>("DateTime"));
         int[] array = new int[] { 100, 200 };
-        SaveToolsHelp.Write(array, "Array");
-        for (int i = 0; i < SaveToolsHelp.Reader<int[]>("Array").Length; i++) {
-            LogTest(SaveToolsHelp.Reader<int[]>("Array")[i]);
+        //   SaveToolsHelp.Write(array, "Array");
+        int[] tstInt = SaveToolsHelp.Reader<int[]>("Array");
+        for (int i = 0; i < tstInt.Length; i++) {
+            LogTest(tstInt[i]);
         }
         Hashtable hs = new Hashtable();
         hs.Add(1, "A");
         hs.Add(2, "B");
-        SaveToolsHelp.Write(hs, "Hashtable");
-        foreach (DictionaryEntry item in SaveToolsHelp.Reader<Hashtable>("Hashtable")) {
-            LogTest(item.Key + "***" + item.Value);
-        }
+        //  SaveToolsHelp.Write(hs, "Hashtable");
+        //  foreach (DictionaryEntry item in SaveToolsHelp.Reader<Hashtable>("Hashtable")) {
+        //  LogTest(item.Key + "***" + item.Value);
+        //  }
         ArrayList arrayList = new ArrayList();
         arrayList.Add("Abc");
         arrayList.Add(123);
-        SaveToolsHelp.Write(arrayList, "ArrayList");
-        foreach (var item in SaveToolsHelp.Reader<ArrayList>("ArrayList")) {
-            LogTest(item);
-        }
+        // SaveToolsHelp.Write(arrayList, "ArrayList");
+        //   foreach (var item in SaveToolsHelp.Reader<ArrayList>("ArrayList")) {
+        // LogTest(item);
+        //  }
     }
 
 
