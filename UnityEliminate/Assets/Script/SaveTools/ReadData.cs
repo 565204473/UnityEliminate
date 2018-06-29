@@ -32,6 +32,8 @@ public class ReadData : IDisposable {
                 return ReadVector3(Vector3.one);
             case EnumSaveTypeKey.SaveVector4:
                 return ReadVector4(Vector4.one);
+            case EnumSaveTypeKey.SaveLong:
+                return ReadLong();
             case EnumSaveTypeKey.SaveQuaternion:
                 return ReadQuaternion(Quaternion.identity);
             case EnumSaveTypeKey.SaveColor:
@@ -89,6 +91,8 @@ public class ReadData : IDisposable {
                 return ReadVector3((Vector3)defaultValue);
             case EnumSaveTypeKey.SaveVector4:
                 return ReadVector4((Vector4)defaultValue);
+            case EnumSaveTypeKey.SaveLong:
+                return ReadLong((long)defaultValue);
             case EnumSaveTypeKey.SaveQuaternion:
                 return ReadQuaternion((Quaternion)defaultValue);
             case EnumSaveTypeKey.SaveColor:

@@ -133,57 +133,20 @@ public partial class LobbyGamePanel : QUIBehaviour {
 
         Debug.LogError(SaveToolsHelp.Reader<int>("1"));
 
-        //List<TestClass> list = new List<TestClass>();
-        //TestClass test = new TestClass();
-        //test.testInt = "haha";
-        //SaveToolsHelp.Write(list, "1",SaveImplementType.ImplementJson);
-        //foreach (var item in SaveToolsHelp.Reader<List<TestClass>>("1",SaveImplementType.ImplementJson)) {
-        //    Debug.LogError(item.testInt);
-        //}
-
-        //Hashtable ha = new Hashtable();
-        //ha.Add("B", "3");
-        //ha.Add("C", "2");
-        //ha.Add("A", 0.1f);
-        //SaveToolsHelp.Write(ha, "2", SaveImplementType.ImplementJson);
-        //Debug.LogError(SaveToolsHelp.Reader<Hashtable>("2",SaveImplementType.ImplementJson).Count);
-        //foreach (DictionaryEntry item in SaveToolsHelp.Reader<Hashtable>("2", SaveImplementType.ImplementJson)) {
-        //    Debug.LogError(item.Key + "***" + item.Value);
-        //}
-
-        //ArrayList arrayList = new ArrayList();
-        //arrayList.Add(32);
-        //arrayList.Add("66");
-        //SaveToolsHelp.Write(arrayList, "3");
-
-        //ArrayList arrayList = new ArrayList();
-        //arrayList.Add("AA");
-        //arrayList.Add("88");
-        //arrayList.Add(true);
-        //SaveToolsHelp.Write(arrayList, "4");
-
-        //foreach (var item in SaveToolsHelp.Reader<ArrayList>("3")) {
-        //    Debug.LogError(item);
-        //}
-
-        //foreach (var item in SaveToolsHelp.Reader<ArrayList>("5")) {
-        //    Debug.LogError(item);
-        //}
-
-        SaveToolsHelp.Write(2, "加密");
-        Debug.LogError(SaveToolsHelp.Reader<int>("加密"));
+        //   SaveToolsHelp.Write(2, "加密");
+        // Debug.LogError(SaveToolsHelp.Reader<int>("加密"));
         //imgColor.color = SaveToolsHelp.Reader<Color>("Color");
-        SaveToolsHelp.Write("haha", "存的string数据");
-        Debug.LogError(SaveToolsHelp.Reader<string>("存的string数据"));
-        List<int> ls = new List<int>();
-        ls.Add(4);
-        ls.Add(5);
-        ls.Add(6);
+        //SaveToolsHelp.Write("haha", "存的string数据");
+        //Debug.LogError(SaveToolsHelp.Reader<string>("存的string数据"));
+        //List<int> ls = new List<int>();
+        //ls.Add(4);
+        //ls.Add(5);
+        //ls.Add(6);
 
-        SaveToolsHelp.Write(ls, "加密list");
-        foreach (var item in SaveToolsHelp.Reader<List<int>>("加密list")) {
-            Debug.LogError(item);
-        }
+        //SaveToolsHelp.Write(ls, "加密list");
+        //foreach (var item in SaveToolsHelp.Reader<List<int>>("加密list")) {
+        //    Debug.LogError(item);
+        //}
         //SaveToolsHelp.Write(100, "json加密", SaveImplementType.ImplementJson);
         //Debug.LogError(SaveToolsHelp.Reader<int>("json加密", SaveImplementType.ImplementJson));
 
@@ -191,10 +154,100 @@ public partial class LobbyGamePanel : QUIBehaviour {
         //foreach (var item in SaveToolsHelp.Reader<List<int>>("jsonlist加密", SaveImplementType.ImplementJson)) {
         //    Debug.LogError(item);
         //}
-
         // SaveToolsHelp.Clear();
 
+        SaveToolsHelp.Write("我也是醉了", "string");
+        LogTest(SaveToolsHelp.Reader("string", "我是默认值"));
+        SaveToolsHelp.Write(100, "int");
+        LogTest(SaveToolsHelp.Reader<int>("int"));
+        SaveToolsHelp.Write(true, "bool");
+        LogTest(SaveToolsHelp.Reader<bool>("bool"));
+        SaveToolsHelp.Write(0.3, "folat");
+        LogTest(SaveToolsHelp.Reader<float>("folat"));
+        Vector2 v = new Vector2(100, 100);
+        SaveToolsHelp.Write(v, "Vector2");
+        LogTest(SaveToolsHelp.Reader<Vector2>("Vector2"));
+        Vector3 v3 = new Vector3(200, 200, 0);
+        SaveToolsHelp.Write(v3, "Vector3");
+        LogTest(SaveToolsHelp.Reader<Vector3>("Vector3"));
+        Vector4 v4 = new Vector4(300, 300, 300, 300);
+        SaveToolsHelp.Write(v4, "Vector4");
+        LogTest(SaveToolsHelp.Reader<Vector4>("Vector4"));
+        long lo = 9223372036854775807;
+        SaveToolsHelp.Write(lo, "long");
+        LogTest(SaveToolsHelp.Reader<long>("long"));
+        SaveToolsHelp.Write(Quaternion.identity, "Quaternion");
+        LogTest(SaveToolsHelp.Reader<Quaternion>("Quaternion"));
+        SaveToolsHelp.Write(Color.blue, "Color");
+        LogTest(SaveToolsHelp.Reader<Color>("Color"));
+        double d = 1.7976931348623157;
+        SaveToolsHelp.Write(d, "double");
+        LogTest(SaveToolsHelp.Reader<double>("double"));
+        SaveToolsHelp.Write(TestEnum.Two, "Enum");
+        LogTest(SaveToolsHelp.Reader<TestEnum>("Enum"));
+        List<string> lsString = new List<string>();
+        lsString.Add("黄");
+        lsString.Add("乔");
+        lsString.Add("平");
+        SaveToolsHelp.Write(lsString, "List");
+        foreach (var item in SaveToolsHelp.Reader<List<string>>("List")) {
+            LogTest(item);
+        }
+        Dictionary<int, string> dictionary = new Dictionary<int, string>();
+        dictionary.Add(1, "发");
+        dictionary.Add(2, "大");
+        dictionary.Add(3, "财");
+        SaveToolsHelp.Write(dictionary, "Dictionary");
+        foreach (var item in SaveToolsHelp.Reader<Dictionary<int, string>>("Dictionary")) {
+            LogTest(item.Value);
+        }
+        Byte by = 233;
+        SaveToolsHelp.Write(by, "Byte");
+        LogTest(SaveToolsHelp.Reader<byte>("Byte"));
+        short sh = 32767;
+        SaveToolsHelp.Write(sh, "Short");
+        LogTest(SaveToolsHelp.Reader<short>("Short"));
+        uint ui = 4294967295;
+        SaveToolsHelp.Write(ui, "uint");
+        LogTest(SaveToolsHelp.Reader<uint>("uint"));
+        ulong ul = 18446744073709551615;
+        SaveToolsHelp.Write(ui, "ulong");
+        LogTest(SaveToolsHelp.Reader<ulong>("ulong"));
+        ushort us = 65535;
+        SaveToolsHelp.Write(us, "ushort");
+        LogTest(SaveToolsHelp.Reader<ushort>("ushort"));
+        char ch = 'A';
+        SaveToolsHelp.Write(ch, "char");
+        LogTest(SaveToolsHelp.Reader<char>("char"));
+        SaveToolsHelp.Write(DateTime.Now, "DateTime");
+        LogTest(SaveToolsHelp.Reader<DateTime>("DateTime"));
+        int[] array = new int[] { 100, 200 };
+        SaveToolsHelp.Write(array, "Array");
+        foreach (var item in SaveToolsHelp.Reader<int[]>("Array")) {
+            LogTest(item);
+        }
 
+        Hashtable hs = new Hashtable();
+        hs.Add(1, "A");
+        hs.Add(2, "B");
+        SaveToolsHelp.Write(hs, "Hashtable");
+        foreach (var item in SaveToolsHelp.Reader<Hashtable>("Hashtable")) {
+            LogTest(item);
+        }
+        ArrayList arrayList = new ArrayList();
+        arrayList.Add("Abc");
+        arrayList.Add(123);
+        SaveToolsHelp.Write(arrayList, "ArrayList");
+        foreach (var item in SaveToolsHelp.Reader<ArrayList>("ArrayList")) {
+            LogTest(item);
+        }
+    }
+
+
+    public void LogTest(object value) {
+
+        string str = string.Format("结果:{0}", value);
+        Debug.LogError(str);
     }
 
     protected override void OnHide() {
