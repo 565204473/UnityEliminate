@@ -190,17 +190,17 @@ public partial class LobbyGamePanel : QUIBehaviour {
         lsString.Add(8);
         lsString.Add(9);
         //SaveToolsHelp.Write(lsString, "List");
-        foreach (var item in SaveToolsHelp.Reader<List<int>>("List")) {
-            LogTest(item);
-        }
+        //foreach (var item in SaveToolsHelp.Reader("List", lsString)) {
+        //    LogTest(item);
+        //}
         Dictionary<int, string> dictionary = new Dictionary<int, string>();
         dictionary.Add(1, "发");
         dictionary.Add(2, "大");
         dictionary.Add(3, "财");
         // SaveToolsHelp.Write(dictionary, "Dictionary");
-        //  foreach (var item in SaveToolsHelp.Reader<Dictionary<int, string>>("Dictionary")) {
-        // LogTest(item.Value);
-        //  }
+        foreach (var item in SaveToolsHelp.Reader("Dictionary", dictionary)) {
+            LogTest(item.Value);
+        }
         Byte by = 233;
         //    SaveToolsHelp.Write(by, "Byte");
         //  LogTest(SaveToolsHelp.Reader<byte>("Byte"));
@@ -223,17 +223,18 @@ public partial class LobbyGamePanel : QUIBehaviour {
         //  LogTest(SaveToolsHelp.Reader<DateTime>("DateTime"));
         double[] array = new double[] { 100, 200 };
         //   SaveToolsHelp.Write(array, "Array");
-        bool[] tstInt = SaveToolsHelp.Reader<bool[]>("Array");
-        for (int i = 0; i < tstInt.Length; i++) {
-            LogTest(tstInt[i]);
-        }
+        bool[] tesBool = new bool[] { false, true };
+        //bool[] tstInt = SaveToolsHelp.Reader<bool[]>("Array");
+        //for (int i = 0; i < tstInt.Length; i++) {
+        //    LogTest(tstInt[i]);
+        //}
         Hashtable hs = new Hashtable();
         hs.Add(1, "A");
         hs.Add(2, "B");
         //  SaveToolsHelp.Write(hs, "Hashtable");
-        //  foreach (DictionaryEntry item in SaveToolsHelp.Reader<Hashtable>("Hashtable")) {
-        //  LogTest(item.Key + "***" + item.Value);
-        //  }
+        //foreach (DictionaryEntry item in SaveToolsHelp.Reader<Hashtable>("Hashtable")) {
+        //    LogTest(item.Key + "***" + item.Value);
+        //}
         ArrayList arrayList = new ArrayList();
         arrayList.Add("Abc");
         arrayList.Add(123);

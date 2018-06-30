@@ -43,9 +43,9 @@ public class ReadData : IDisposable {
             case EnumSaveTypeKey.SaveEnum:
                 return ReadEnum(TestEnum.One);
             case EnumSaveTypeKey.SaveList:
-                return ReadList(saveSetting.curObject);
+                return ReadList(null);
             case EnumSaveTypeKey.SaveDictionary:
-                return ReadDictionary("dictionary");
+                return ReadDictionary(null);
             case EnumSaveTypeKey.Savebyte:
                 return ReadByte();
             case EnumSaveTypeKey.SaveShort:
@@ -61,7 +61,7 @@ public class ReadData : IDisposable {
             case EnumSaveTypeKey.SaveDateTime:
                 return ReadDateTime(DateTime.Now);
             case EnumSaveTypeKey.SaveArray:
-                return ReadArray("array");
+                return ReadArray(null);
             case EnumSaveTypeKey.SaveHashtable:
                 Hashtable hs = new Hashtable();
                 return ReadHashtable(hs);
@@ -252,7 +252,10 @@ public class ReadData : IDisposable {
             return dt;
         }
         NoHasKeyHint();
-        return Activator.CreateInstance((Type)saveSetting.curObject);
+        if (def == null) {
+            return Activator.CreateInstance((Type)saveSetting.curObject);
+        }
+        return def;
     }
 
     private object ReadDictionary(object def) {
@@ -261,7 +264,10 @@ public class ReadData : IDisposable {
             return dt;
         }
         NoHasKeyHint();
-        return Activator.CreateInstance((Type)saveSetting.curObject);
+        if (def == null) {
+            return Activator.CreateInstance((Type)saveSetting.curObject);
+        }
+        return def;
     }
 
     private byte ReadByte(Byte def = 1) {
@@ -339,7 +345,10 @@ public class ReadData : IDisposable {
         if (str.Length > 0) {
             t = Type.GetType(str[0]);
         }
-        return Array.CreateInstance(t, 1);
+        if (def == null) {
+            return Array.CreateInstance(t, 1);
+        }
+        return def;
     }
 
     private Hashtable ReadHashtable(Hashtable def) {
