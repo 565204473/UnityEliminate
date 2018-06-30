@@ -43,7 +43,7 @@ public class ReadData : IDisposable {
             case EnumSaveTypeKey.SaveEnum:
                 return ReadEnum(TestEnum.One);
             case EnumSaveTypeKey.SaveList:
-                return ReadList("list");
+                return ReadList(saveSetting.curObject);
             case EnumSaveTypeKey.SaveDictionary:
                 return ReadDictionary("dictionary");
             case EnumSaveTypeKey.Savebyte:
@@ -252,7 +252,7 @@ public class ReadData : IDisposable {
             return dt;
         }
         NoHasKeyHint();
-        return StringExtention.GetValue(def.ConverToString(), (Type)saveSetting.curObject);
+        return Activator.CreateInstance((Type)saveSetting.curObject);
     }
 
     private object ReadDictionary(object def) {
@@ -261,7 +261,7 @@ public class ReadData : IDisposable {
             return dt;
         }
         NoHasKeyHint();
-        return StringExtention.GetValue(def.ConverToString(), (Type)saveSetting.curObject);
+        return Activator.CreateInstance((Type)saveSetting.curObject);
     }
 
     private byte ReadByte(Byte def = 1) {
@@ -334,7 +334,12 @@ public class ReadData : IDisposable {
             return dt;
         }
         NoHasKeyHint();
-        return StringExtention.GetValue(def.ConverToString(), (Type)saveSetting.curObject);
+        string[] str = StringExtention.Split(saveSetting.curObject.ConverToString(), '[');
+        Type t = null;
+        if (str.Length > 0) {
+            t = Type.GetType(str[0]);
+        }
+        return Array.CreateInstance(t, 1);
     }
 
     private Hashtable ReadHashtable(Hashtable def) {

@@ -185,14 +185,14 @@ public partial class LobbyGamePanel : QUIBehaviour {
         //  LogTest(SaveToolsHelp.Reader<double>("double"));
         //     SaveToolsHelp.Write(TestEnum.Two, "Enum");
         //  LogTest(SaveToolsHelp.Reader<TestEnum>("Enum"));
-        List<string> lsString = new List<string>();
-        lsString.Add("黄");
-        lsString.Add("乔");
-        lsString.Add("平");
-        //  SaveToolsHelp.Write(lsString, "List");
-        // foreach (var item in SaveToolsHelp.Reader<List<string>>("List")) {
-        // LogTest(item);
-        // }
+        List<int> lsString = new List<int>();
+        lsString.Add(1);
+        lsString.Add(8);
+        lsString.Add(9);
+        //SaveToolsHelp.Write(lsString, "List");
+        foreach (var item in SaveToolsHelp.Reader<List<int>>("List")) {
+            LogTest(item);
+        }
         Dictionary<int, string> dictionary = new Dictionary<int, string>();
         dictionary.Add(1, "发");
         dictionary.Add(2, "大");
@@ -221,9 +221,9 @@ public partial class LobbyGamePanel : QUIBehaviour {
         //   LogTest(SaveToolsHelp.Reader<char>("char"));
         //    SaveToolsHelp.Write(DateTime.Now, "DateTime");
         //  LogTest(SaveToolsHelp.Reader<DateTime>("DateTime"));
-        int[] array = new int[] { 100, 200 };
+        double[] array = new double[] { 100, 200 };
         //   SaveToolsHelp.Write(array, "Array");
-        int[] tstInt = SaveToolsHelp.Reader<int[]>("Array");
+        bool[] tstInt = SaveToolsHelp.Reader<bool[]>("Array");
         for (int i = 0; i < tstInt.Length; i++) {
             LogTest(tstInt[i]);
         }
@@ -241,6 +241,7 @@ public partial class LobbyGamePanel : QUIBehaviour {
         //   foreach (var item in SaveToolsHelp.Reader<ArrayList>("ArrayList")) {
         // LogTest(item);
         //  }
+        //  SaveToolsHelp.Clear();
     }
 
 

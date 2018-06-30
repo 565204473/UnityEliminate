@@ -905,24 +905,33 @@ namespace QFramework {
         public static Type GetTypeByString(this string str) {
             str = str.Trim();
             switch (str) {
+                case "Int32":
                 case "int":
                     return typeof(int);
+                case "Single":
                 case "float":
                     return typeof(float);
                 case "string":
                     return typeof(string);
                 case "double":
+                case "Double":
                     return typeof(double);
                 case "byte":
                     return typeof(byte);
+                case "Boolean":
                 case "bool":
                     return typeof(bool);
+                case "Int16":
                 case "short":
                     return typeof(short);
                 case "uint":
+                case "UInt32":
                     return typeof(uint);
                 case "ushort":
+                case "UInt16":
                     return typeof(ushort);
+                case "UInt64":
+                    return typeof(ulong);
                 case "sbyte":
                     return typeof(sbyte);
                 case "Vector3":
@@ -935,6 +944,8 @@ namespace QFramework {
                     return typeof(Quaternion);
                 case "Color":
                     return typeof(Color);
+                case "Int64":
+                    return typeof(long);
             }
 
             if (str.StartsWith("List")) {
