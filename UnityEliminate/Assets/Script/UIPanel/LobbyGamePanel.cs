@@ -30,26 +30,39 @@ public partial class LobbyGamePanel : QUIBehaviour {
     protected override void InitUI(IUIData uiData = null) {
         base.InitUI(uiData);
         path = FilePath.PersistentDataPath4Res;
-        itemRead = mResLoader.LoadSync<GameObject>(PrefabPath.BtnRead).GetComponent<Transform>();
-        itemWrite = mResLoader.LoadSync<GameObject>(PrefabPath.BtnWrite).GetComponent<Transform>();
-        for (int i = 0; i < readTypeName.Length; i++) {
-            itemReadData = itemRead.Instantiate().Parent(readBtnPos)
-                .LocalPosition(Vector3.zero)
-                .LocalScaleIdentity().GetComponent<BtnRead>();
+        lGridView.cellsCount = readTypeName.Length;
+        lGridView.SetCellHandle(OnlGridViewCallBack);
+        lGridView.reloadData();
+        //itemRead = mResLoader.LoadSync<GameObject>(PrefabPath.BtnRead).GetComponent<Transform>();
+        //itemWrite = mResLoader.LoadSync<GameObject>(PrefabPath.BtnWrite).GetComponent<Transform>();
+        //for (int i = 0; i < readTypeName.Length; i++) {
+        //    itemReadData = itemRead.Instantiate().Parent(readBtnPos)
+        //        .LocalPosition(Vector3.zero)
+        //        .LocalScaleIdentity().GetComponent<BtnRead>();
 
-            if (itemReadData != null) {
-                itemReadData.index = i;
-                itemReadData.OnRefresh((EnumSaveTypeKey)i + 1);
-            }
+        //    if (itemReadData != null) {
+        //        itemReadData.index = i;
+        //        itemReadData.OnRefresh((EnumSaveTypeKey)i + 1);
+        //    }
 
-            itemWriteData = itemWrite.Instantiate().Parent(writeBtnPos)
-                 .LocalPosition(Vector3.zero)
-                 .LocalScaleIdentity().GetComponent<BtnWrite>();
-            if (itemWriteData != null) {
-                itemWriteData.OnRefresh((EnumSaveTypeKey)i + 1);
-            }
+        //    itemWriteData = itemWrite.Instantiate().Parent(writeBtnPos)
+        //         .LocalPosition(Vector3.zero)
+        //         .LocalScaleIdentity().GetComponent<BtnWrite>();
+        //    if (itemWriteData != null) {
+        //        itemWriteData.OnRefresh((EnumSaveTypeKey)i + 1);
+        //    }
 
-        }
+        //}
+    }
+
+    
+
+
+    private void OnlGridViewCallBack(int index, GameObject item) {
+        //itemWriteData = item.GetComponent<BtnWrite>();
+        //if (itemWriteData != null) {
+        //    itemWriteData.OnRefresh((EnumSaveTypeKey)index + 1);
+        //}
     }
 
 

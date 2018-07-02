@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Lui;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,6 @@ public partial class LobbyGamePanel {
     [SerializeField] public Transform readBtnPos;
     [SerializeField] public Transform writeBtnPos;
     [SerializeField] public int count = 10000;
-
+    [SerializeField] private LGridView lGridView;
 
 }
