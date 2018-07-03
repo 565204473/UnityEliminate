@@ -287,6 +287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BtnOpen: {fileID: 114244091657257920}
   TestTxt: {fileID: 114583223639020190}
+  sceneObjectFile: sceneObjectsFile.txt
 --- !u!114 &114899871401572904
 MonoBehaviour:
   m_ObjectHideFlags: 1

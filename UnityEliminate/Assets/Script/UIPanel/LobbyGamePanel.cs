@@ -30,9 +30,7 @@ public partial class LobbyGamePanel : QUIBehaviour {
     protected override void InitUI(IUIData uiData = null) {
         base.InitUI(uiData);
         path = FilePath.PersistentDataPath4Res;
-        lGridView.cellsCount = readTypeName.Length;
-        lGridView.SetCellHandle(OnlGridViewCallBack);
-        lGridView.reloadData();
+
         //itemRead = mResLoader.LoadSync<GameObject>(PrefabPath.BtnRead).GetComponent<Transform>();
         //itemWrite = mResLoader.LoadSync<GameObject>(PrefabPath.BtnWrite).GetComponent<Transform>();
         //for (int i = 0; i < readTypeName.Length; i++) {
@@ -55,14 +53,14 @@ public partial class LobbyGamePanel : QUIBehaviour {
         //}
     }
 
-    
+
 
 
     private void OnlGridViewCallBack(int index, GameObject item) {
-        //itemWriteData = item.GetComponent<BtnWrite>();
-        //if (itemWriteData != null) {
-        //    itemWriteData.OnRefresh((EnumSaveTypeKey)index + 1);
-        //}
+        itemWriteData = item.GetComponent<BtnWrite>();
+        if (itemWriteData != null) {
+            itemWriteData.OnRefresh((EnumSaveTypeKey)index + 1);
+        }
     }
 
 
@@ -256,8 +254,22 @@ public partial class LobbyGamePanel : QUIBehaviour {
         // LogTest(item);
         //  }
         //  SaveToolsHelp.Clear();
+
+        lGridView.cols = 2;
+        lGridView.cellsCount = readTypeName.Length;
+        lGridView.SetCellHandle(OnlGridViewCallBack);
+        lGridView.reloadData();
+
+        lGridPageView.cols = 3;
+        lGridPageView.rows = 4;
+        lGridPageView.gridCellsCount = 22;
+        lGridPageView.onPageChangedHandler = LGridPageViewCallback;
+        lGridPageView.reloadData();
     }
 
+    private void LGridPageViewCallback(int idx) {
+        Debug.LogError(idx);
+    }
 
     public void LogTest(object value) {
 
