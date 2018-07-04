@@ -7,7 +7,7 @@ public class SceneGame : Scene
 {
     public override bool LoadScene()
     {
-        UIMgr.OpenPanel<LobbyGamePanel>(prefabName: "Resources/" + UIDefine.LobbyGamePanel);
+        UIMgr.OpenPanel<LobbyGamePanel>();
         return base.LoadScene();
     }
 

@@ -25,34 +25,29 @@
  * THE SOFTWARE.
  ****************************************************************************/
 
-namespace QFramework
-{
+namespace QFramework {
     using UnityEngine;
-    
+
     /// <summary>
     /// Default
     /// </summary>
-    public class DefaultUIPanelLoader : IUIPanelLoader
-    {
+    public class DefaultUIPanelLoader : IUIPanelLoader {
         ResLoader mResLoader = ResLoader.Allocate();
 
-        public GameObject LoadPanelPrefab(string panelName)
-        {
-#if COCOS_SUPPORT
+        public GameObject LoadPanelPrefab(string panelName) {
+# if UNITY_EDITOR
             var retObj = mResLoader.LoadSync<GameObject>(string.Format("Resources/{0}", panelName));
             if (null != retObj) return retObj;
-            #endif
-            
+#endif
+
             return mResLoader.LoadSync<GameObject>(panelName);
         }
 
-        public GameObject LoadPanelPrefab(string assetBundleName, string panelName)
-        {
+        public GameObject LoadPanelPrefab(string assetBundleName, string panelName) {
             return mResLoader.LoadSync<GameObject>(assetBundleName, panelName);
         }
 
-        public void Unload()
-        {
+        public void Unload() {
             mResLoader.Recycle2Cache();
             mResLoader = null;
         }

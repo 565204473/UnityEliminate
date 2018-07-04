@@ -22,13 +22,18 @@ public partial class LobbyGameLobbyPanel : QUIBehaviour
     protected override void RegisterUIEvent()
     {
         base.RegisterUIEvent();
-        BtnOpenGameEnd.onClick.AddListener(OnBtnOpenGameEnd);
+        UIToos.ButtonAddListener(BtnOpenGameEnd, OnBtnOpenGameEnd);
+        UIToos.ButtonAddListener(BtnBtnULui, OnOpenLuiPanel);
     }
 
 
-    private void OnBtnOpenGameEnd()
+    private void OnBtnOpenGameEnd(GameObject go)
     {
         QUIManager.Instance.HideUI(this.name);
         ScenesMgr.Instance.OpenScene(SceneType.SceneGame);
+    }
+
+    private void OnOpenLuiPanel(GameObject go) {
+        Debug.Log("打开ui例子界面");
     }
 }

@@ -8,7 +8,7 @@ public class SceneLobby : Scene {
 
     public override bool LoadScene() {
         ScenesMgr.Instance.CloseScene(SceneType.SceneLogion);
-        UIMgr.OpenPanel<LobbyGameOpenPanel>(prefabName: "Resources/" + UIDefine.LobbyGameLobbyPanel);
+        UIMgr.OpenPanel<LobbyGameLobbyPanel>();
         return base.LoadScene();
     }
 

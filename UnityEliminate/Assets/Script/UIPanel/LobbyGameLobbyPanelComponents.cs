@@ -6,5 +6,6 @@ using UnityEngine.UI;
 public partial class LobbyGameLobbyPanel {
 
     [SerializeField] public Button  BtnOpenGameEnd;
+    [SerializeField] private Button BtnBtnULui;
 
 }

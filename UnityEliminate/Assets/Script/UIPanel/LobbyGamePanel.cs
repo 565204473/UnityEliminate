@@ -31,26 +31,26 @@ public partial class LobbyGamePanel : QUIBehaviour {
         base.InitUI(uiData);
         path = FilePath.PersistentDataPath4Res;
 
-        //itemRead = mResLoader.LoadSync<GameObject>(PrefabPath.BtnRead).GetComponent<Transform>();
+        itemRead = mResLoader.LoadSync<GameObject>(PrefabPath.BtnRead).GetComponent<Transform>();
         //itemWrite = mResLoader.LoadSync<GameObject>(PrefabPath.BtnWrite).GetComponent<Transform>();
-        //for (int i = 0; i < readTypeName.Length; i++) {
-        //    itemReadData = itemRead.Instantiate().Parent(readBtnPos)
-        //        .LocalPosition(Vector3.zero)
-        //        .LocalScaleIdentity().GetComponent<BtnRead>();
+        for (int i = 0; i < readTypeName.Length; i++) {
+            itemReadData = itemRead.Instantiate().Parent(readBtnPos)
+                .LocalPosition(Vector3.zero)
+                .LocalScaleIdentity().GetComponent<BtnRead>();
 
-        //    if (itemReadData != null) {
-        //        itemReadData.index = i;
-        //        itemReadData.OnRefresh((EnumSaveTypeKey)i + 1);
-        //    }
+            if (itemReadData != null) {
+                itemReadData.index = i;
+                itemReadData.OnRefresh((EnumSaveTypeKey)i + 1);
+            }
 
-        //    itemWriteData = itemWrite.Instantiate().Parent(writeBtnPos)
-        //         .LocalPosition(Vector3.zero)
-        //         .LocalScaleIdentity().GetComponent<BtnWrite>();
-        //    if (itemWriteData != null) {
-        //        itemWriteData.OnRefresh((EnumSaveTypeKey)i + 1);
-        //    }
+            //itemWriteData = itemWrite.Instantiate().Parent(writeBtnPos)
+            //     .LocalPosition(Vector3.zero)
+            //     .LocalScaleIdentity().GetComponent<BtnWrite>();
+            //if (itemWriteData != null) {
+            //    itemWriteData.OnRefresh((EnumSaveTypeKey)i + 1);
+            //}
 
-        //}
+        }
     }
 
 
@@ -75,6 +75,8 @@ public partial class LobbyGamePanel : QUIBehaviour {
         readerBtn[1].onClick.AddListener(OnReaderBtnXmlClick);
         readerBtn[2].onClick.AddListener(OnReaderBtnJsonClick);
         readerBtn[3].onClick.AddListener(OnReaderBtnProtoClick);
+        UIToos.ButtonAddListener(BtnBack, OnBtnBack);
+        UITransitionExtension.BindTransition<LobbyGamePanel, LobbyGameLobbyPanel>(BtnBack);
     }
 
 
@@ -130,6 +132,13 @@ public partial class LobbyGamePanel : QUIBehaviour {
                 SaveToolsHelp.Reader<int>(i + "文件", type);
             }
         }
+    }
+
+    private void OnBtnBack(GameObject go) {
+        // QUIManager.Instance.HideUI(this.name);
+        //UIMgr.HidePanel<LobbyGamePanel>();
+        // UIMgr.OpenPanel<LobbyGameLobbyPanel>();
+
     }
 
     protected override void OnShow() {

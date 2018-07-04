@@ -48,7 +48,7 @@ namespace QFramework
         {
             btn.onClick.AddListener(() =>
             {
-                UIMgr.ClosePanel<TSrcPanel>();
+                UIMgr.HidePanel<TSrcPanel>();
                 UIMgr.OpenPanel<TDstPanel>();
             });
         }

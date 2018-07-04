@@ -15,5 +15,6 @@ public partial class LobbyGamePanel {
     [SerializeField] public int count = 10000;
     [SerializeField] private LGridView lGridView;
     [SerializeField] private LGridPageView lGridPageView;
+    [SerializeField] private Button BtnBack;
 
 }

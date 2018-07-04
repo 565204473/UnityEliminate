@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class SceneLogin : Scene {
 
     public override bool LoadScene() {
-        UIMgr.OpenPanel<LobbyGameOpenPanel>(prefabName: "Resources/" + UIDefine.LobbyGameOpenPanel);
+        UIMgr.OpenPanel<LobbyGameOpenPanel>();
         return base.LoadScene();
     }
 
