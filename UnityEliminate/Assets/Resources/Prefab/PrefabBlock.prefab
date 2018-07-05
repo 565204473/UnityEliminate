@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 224777261786852374}
   - component: {fileID: 222438900590756642}
   - component: {fileID: 114124161022227546}
-  - component: {fileID: 114539667340496522}
   - component: {fileID: 114084232456443814}
   m_Layer: 5
   m_Name: PrefabBlock
@@ -58,15 +57,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7757c7c78aafa4c48900c8cd72c53acb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  row: 0
-  column: 0
   imaBg: {fileID: 114779297572480458}
-  lsColors:
-  - {r: 0.5660378, g: 0.09344962, b: 0.18584664, a: 1}
-  - {r: 0.33481663, g: 0.41509432, b: 0.40315115, a: 1}
-  - {r: 0.109047875, g: 0.04601282, b: 0.8867924, a: 1}
-  - {r: 0.754717, g: 0.3097188, b: 0.3097188, a: 0}
-  - {r: 0.25673342, g: 0.8207547, b: 0.06581525, a: 0}
+  lsSpite:
+  - {fileID: 21300000, guid: 280539f62b6b9fb40a40942d2146c2c0, type: 3}
+  - {fileID: 21300000, guid: 00bce9f2a319fd941a8fc4057e21deac, type: 3}
+  - {fileID: 21300000, guid: 440e0a9094c889a449888e6b31f59064, type: 3}
+  - {fileID: 21300000, guid: fa6affabcf9d74845b221b4094137408, type: 3}
+  - {fileID: 21300000, guid: 6ca6f247fea912e4ea2455bd8025a416, type: 3}
+  - {fileID: 21300000, guid: 68b87cbb28b11aa43b60deb54a9e731d, type: 3}
 --- !u!114 &114124161022227546
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -80,7 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.103773594, g: 0.09447313, b: 0.103113204, a: 0.73333335}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -94,19 +92,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114539667340496522
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1512753569397944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4211833ca4e7a4984b2d973425a62933, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MarkType: 2
-  CustomComponentName: 
 --- !u!114 &114779297572480458
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -120,7 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -178,8 +163,8 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 100, y: 100}
   m_SizeDelta: {x: 80, y: 80}
-  m_Pivot: {x: 0, y: 1}
+  m_Pivot: {x: 0, y: 0}

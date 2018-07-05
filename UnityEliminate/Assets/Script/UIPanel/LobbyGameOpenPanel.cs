@@ -22,7 +22,7 @@ public partial class LobbyGameOpenPanel : QUIBehaviour {
     protected override void OnShow() {
         base.OnShow();
         // ES2File.CreateFolder("朱雀网络");
-        ES2.Delete("w");
+        // ES2.Delete("w");
         //if (!ES2.Exists("w")) {
         //    Debug.LogError("不存在");
         //    ES2.Save(1, "123");

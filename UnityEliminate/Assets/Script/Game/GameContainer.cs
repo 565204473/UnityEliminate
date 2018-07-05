@@ -30,7 +30,6 @@ public class GameContainer : QMonoSingleton<GameContainer>
                     .LocalPosition(locaV3)
                     .LocalScaleIdentity();
                 itemData.OnRefresh();
-                itemData.SetPos(i, j);
             }
         }
     }
