@@ -20,7 +20,9 @@ public partial class LobbyExampleULui : QUIBehaviour {
 
     protected override void OnShow() {
         base.OnShow();
-
+        lGridView.cols = 1;
+        lGridView.cellsCount = 17;
+        lGridView.reloadData();
     }
 
     protected override void OnHide() {
