@@ -57,10 +57,17 @@ public partial class LobbyGamePanel : QUIBehaviour {
 
 
     private void OnlGridViewCallBack(int index, GameObject item) {
-        itemWriteData = item.GetComponent<BtnWrite>();
-        if (itemWriteData != null) {
-            itemWriteData.OnRefresh((EnumSaveTypeKey)index + 1);
+        //itemWriteData = item.GetComponent<BtnWrite>();
+        //if (itemWriteData != null) {
+        //    itemWriteData.OnRefresh((EnumSaveTypeKey)index + 1);
+        //}
+        IListItem itemData = item.GetComponent<IListItem>();
+
+        if (itemData != null) {
+            itemData.Init(index);
+            itemData.OnRefresh();
         }
+
     }
 
 

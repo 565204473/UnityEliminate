@@ -30,11 +30,10 @@ public partial class LobbyGameLobbyPanel : QUIBehaviour {
 
 
     private void ItemCallBack(int index, GameObject go) {
-        Item itemData = go.GetComponent<Item>();
+        IListItem itemData = go.GetComponent<IListItem>();
         if (itemData != null) {
+            itemData.Init(index);
             itemData.OnRefresh();
-            Debug.LogError(itemData.curItemType);
-            QUIEventListener.CheckAndAddListener(go).onPointerDown = onPointerDown;
         }
     }
 
@@ -47,10 +46,5 @@ public partial class LobbyGameLobbyPanel : QUIBehaviour {
         Debug.Log("打开ui例子界面");
         UIMgr.HidePanel<LobbyGameLobbyPanel>();
         UIMgr.OpenPanel<LobbyExampleULui>(UILevel.AlwayTop, new PanelData(1));
-    }
-
-    private void onPointerDown(BaseEventData eventData) {
-
-        Debug.LogError("打印出来" + eventData.currentInputModule);
     }
 }

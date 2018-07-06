@@ -247,7 +247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -313,7 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d5632768e283584696053695f60af68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceable: 1
+  bounceable: 0
   direction: 1
   dragable: 0
   pickEnable: 0
