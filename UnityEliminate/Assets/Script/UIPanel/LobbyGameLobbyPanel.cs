@@ -30,11 +30,11 @@ public partial class LobbyGameLobbyPanel : QUIBehaviour {
 
 
     private void ItemCallBack(int index, GameObject go) {
-        IListItem itemData = go.GetComponent<IListItem>();
-        if (itemData != null) {
-            itemData.Init(index);
-            itemData.OnRefresh();
-        }
+        //IListItem itemData = go.GetComponent<IListItem>();
+        //if (itemData != null) {
+        //    itemData.Init(index);
+        //    itemData.OnRefresh();
+        //}
     }
 
     private void OnBtnOpenGameEnd(GameObject go) {

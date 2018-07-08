@@ -7,24 +7,21 @@ using UnityEngine.EventSystems;
 using System;
 using System.Collections;
 
-namespace Lui
-{
-    public class LGridViewCell : LTableViewCell
-    {
+namespace Lui {
+    public class LGridViewCell : LTableViewCell {
         public int row;
     }
-        
+
     /// <summary>
     /// 网格
     /// </summary>
     [SLua.CustomLuaClass]
-    public class LGridView : LScrollView
-    {
+    public class LGridView : LScrollView {
         public Vector2 cellsSize;
         public int cellsCount;
         public int cols;
         public bool autoRelocate;
-		public bool isAsyncOnce;
+        public bool isAsyncOnce;
         public GameObject cell_tpl;
 
         protected int _rows;
@@ -33,13 +30,12 @@ namespace Lui
         protected List<Vector2> _positions;
         protected Dictionary<int, int> _indices;
         protected UnityAction<int, GameObject> onCellHandle;
-        public void SetCellHandle(UnityAction<int, GameObject> act)
-        {
+        public void SetCellHandle(UnityAction<int, GameObject> act) {
             onCellHandle = act;
+
         }
 
-        public LGridView()
-        {
+        public LGridView() {
             cellsCount = 0;
             cellsSize = Vector2.zero;
             cols = 0;
@@ -51,38 +47,29 @@ namespace Lui
             _indices = new Dictionary<int, int>();
         }
 
-        public void removeAllFromUsed()
-        {
-			int len = _cellsUsed.Count;
-            for (int i = 0;i<len ;i++)
-            {
+        public void removeAllFromUsed() {
+            int len = _cellsUsed.Count;
+            for (int i = 0; i < len; i++) {
                 Destroy(_cellsUsed[i].node);
             }
             _cellsUsed.Clear();
         }
 
-        public void removeAllFromFreed()
-        {
-			int len = _cellsFreed.Count;
-            for (int i = 0;i<len ;i++)
-            {
+        public void removeAllFromFreed() {
+            int len = _cellsFreed.Count;
+            for (int i = 0; i < len; i++) {
                 Destroy(_cellsFreed[i].node);
             }
             _cellsFreed.Clear();
         }
 
-        public void insertSortableCell(LGridViewCell cell, int idx)
-        {
-            if (_cellsUsed.Count == 0)
-            {
+        public void insertSortableCell(LGridViewCell cell, int idx) {
+            if (_cellsUsed.Count == 0) {
                 _cellsUsed.Add(cell);
             }
-            else
-            {
-                for (int i = 0; i < _cellsUsed.Count; i++)
-                {
-                    if (_cellsUsed[i].idx > idx)
-                    {
+            else {
+                for (int i = 0; i < _cellsUsed.Count; i++) {
+                    if (_cellsUsed[i].idx > idx) {
                         _cellsUsed.Insert(i, cell);
                         return;
                     }
@@ -92,19 +79,15 @@ namespace Lui
             }
         }
 
-        protected Vector2 cellPositionFromIndex(int idx)
-        {
-            if (idx == LScrollView.INVALID_INDEX)
-            {
+        protected Vector2 cellPositionFromIndex(int idx) {
+            if (idx == LScrollView.INVALID_INDEX) {
                 return _positions[0];
             }
             return _positions[idx];
         }
 
-        public void updateCellAtIndex(int idx, int row)
-        {
-            if (cellsCount == 0)
-            {
+        public void updateCellAtIndex(int idx, int row) {
+            if (cellsCount == 0) {
                 return;
             }
 
@@ -120,11 +103,18 @@ namespace Lui
             cell.node.transform.localScale = new Vector3(1, 1, 1);
             insertSortableCell(cell, idx);
 
+            //新抽象出来的Item接口
+            IListItem item = rtran.GetComponent<IListItem>();
+            if (item != null) {
+                Debug.LogError("我是Index" + idx);
+                item.Init(idx);
+                item.OnRefresh();
+            }
+
             _indices.Add(idx, 1);
         }
 
-        protected int cellBeginRowFromOffset(Vector2 offset)
-        {
+        protected int cellBeginRowFromOffset(Vector2 offset) {
             float ofy = offset.y + container.GetComponent<RectTransform>().rect.height;
             float xos = ofy - GetComponent<RectTransform>().rect.height;
             int row = (int)(xos / cellsSize.y);
@@ -135,8 +125,7 @@ namespace Lui
             return (int)row;
         }
 
-        protected int cellEndRowFromOffset(Vector2 offset)
-        {
+        protected int cellEndRowFromOffset(Vector2 offset) {
             float ofy = offset.y + container.GetComponent<RectTransform>().rect.height;
             int row = (int)(ofy / cellsSize.y);
 
@@ -146,15 +135,12 @@ namespace Lui
             return (int)row;
         }
 
-        protected int cellFirstIndexFromRow(int row)
-        {
+        protected int cellFirstIndexFromRow(int row) {
             return cols * row;
         }
 
-        protected void updatePositions()
-        {
-            if (cellsCount == 0)
-            {
+        protected void updatePositions() {
+            if (cellsCount == 0) {
                 return;
             }
             RectTransform rtran = GetComponent<RectTransform>();
@@ -167,10 +153,8 @@ namespace Lui
             float nx = 0.0f;
             float ny = height;
 
-            for (int idx = 0; idx < cellsCount; ++idx)
-            {
-                if (idx != 0 && idx % cols == 0)
-                {
+            for (int idx = 0; idx < cellsCount; ++idx) {
+                if (idx != 0 && idx % cols == 0) {
                     nx = 0.0f;
                     ny = ny - cellsSize.y;
                 }
@@ -179,53 +163,41 @@ namespace Lui
             }
         }
 
-        public List<LGridViewCell> getCells()
-        {
+        public List<LGridViewCell> getCells() {
             List<LGridViewCell> ret = new List<LGridViewCell>();
-            for (int i = 0; i < _cellsUsed.Count; i++)
-            {
+            for (int i = 0; i < _cellsUsed.Count; i++) {
                 ret.Add(_cellsUsed[i]);
             }
             return ret;
         }
 
-        public LGridViewCell cellAtIndex(int idx)
-        {
-            if (!_indices.ContainsKey(idx))
-            {
+        public LGridViewCell cellAtIndex(int idx) {
+            if (!_indices.ContainsKey(idx)) {
                 return null;
             }
-            for (int i = 0; i < _cellsUsed.Count; i++)
-            {
-                if (_cellsUsed[i].idx == idx)
-                {
+            for (int i = 0; i < _cellsUsed.Count; i++) {
+                if (_cellsUsed[i].idx == idx) {
                     return _cellsUsed[i];
                 }
             }
             return null;
         }
 
-        protected LGridViewCell dequeueCell()
-        {
+        protected LGridViewCell dequeueCell() {
             LGridViewCell cell = null;
-            if (_cellsFreed.Count == 0)
-            {
+            if (_cellsFreed.Count == 0) {
                 return null;
             }
-            else
-            {
+            else {
                 cell = _cellsFreed[0];
                 _cellsFreed.RemoveAt(0);
             }
             return cell;
         }
 
-        public void reloadData()
-        {
-			if (_cellsUsed.Count > 0) 
-			{
-                for (int i = 0; i < _cellsUsed.Count; i++)
-                {
+        public void reloadData() {
+            if (_cellsUsed.Count > 0) {
+                for (int i = 0; i < _cellsUsed.Count; i++) {
                     LGridViewCell cell = _cellsUsed[i];
                     _cellsFreed.Add(cell);
                     cell.reset();
@@ -235,41 +207,36 @@ namespace Lui
             }
 
             Transform tran = transform.Find("container/cell_tpl");
-            if(tran!=null){
+            if (tran != null) {
                 tran.gameObject.SetActive(false);
             }
-            try
-            {
+            try {
                 _indices.Clear();
                 _positions.Clear();
                 updatePositions();
                 setContentOffsetToTop();
                 onScrolling();
             }
-            catch(Exception e)
-            {
+            catch (Exception e) {
                 Debug.Log(e);
             }
-            
+
             relocateContainer();
         }
 
-        protected override void onScrolling()
-        {
-			base.onScrolling ();
+        protected override void onScrolling() {
+            base.onScrolling();
 
             int beginRow = 0, endRow = 0;
             beginRow = cellBeginRowFromOffset(getContentOffset());
             endRow = cellEndRowFromOffset(getContentOffset());
 
-            while (_cellsUsed.Count > 0)
-            {
+            while (_cellsUsed.Count > 0) {
                 LGridViewCell cell = _cellsUsed[0];
                 int row = cell.row;
                 int idx = cell.idx;
 
-                if (row < beginRow)
-                {
+                if (row < beginRow) {
                     _indices.Remove(idx);
                     _cellsUsed.Remove(cell);
                     _cellsFreed.Add(cell);
@@ -277,81 +244,72 @@ namespace Lui
                     //cell.node.transform.SetParent(null);
                     cell.node.SetActive(false);
                 }
-                else
-                {
+                else {
                     break;
                 }
             }
 
-            while (_cellsUsed.Count > 0)
-            {
+            while (_cellsUsed.Count > 0) {
                 LGridViewCell cell = _cellsUsed[_cellsUsed.Count - 1];
                 int row = cell.row;
                 int idx = cell.idx;
 
-                if (row > endRow && row < _rows)
-                {
+                if (row > endRow && row < _rows) {
                     _indices.Remove(idx);
                     _cellsUsed.Remove(cell);
-					_cellsFreed.Add(cell);
+                    _cellsFreed.Add(cell);
                     cell.reset();
                     //cell.node.transform.SetParent(null);
                     cell.node.SetActive(false);
                 }
-                else
-                {
+                else {
                     break;
                 }
             }
 
-			if (isAsyncOnce) {
-				StopAllCoroutines ();
-				StartCoroutine (_onScrollingAsync (beginRow, endRow));
-			} else {
+            if (isAsyncOnce) {
+                StopAllCoroutines();
+                StartCoroutine(_onScrollingAsync(beginRow, endRow));
+            }
+            else {
 
-				for (int row = beginRow; row <= endRow && row < _rows; ++row) {
-					int cellBeginIndex = cellFirstIndexFromRow (row);
-					int cellEndIndex = cellBeginIndex + cols;
+                for (int row = beginRow; row <= endRow && row < _rows; ++row) {
+                    int cellBeginIndex = cellFirstIndexFromRow(row);
+                    int cellEndIndex = cellBeginIndex + cols;
 
-					for (int idx = cellBeginIndex; idx < cellEndIndex && idx < cellsCount; ++idx) {
-						if (_indices.ContainsKey (idx)) {
-							continue;
-						}
-						updateCellAtIndex (idx, row);
-					}
-				}
-			}
+                    for (int idx = cellBeginIndex; idx < cellEndIndex && idx < cellsCount; ++idx) {
+                        if (_indices.ContainsKey(idx)) {
+                            continue;
+                        }
+                        updateCellAtIndex(idx, row);
+                    }
+                }
+            }
         }
-			
-		IEnumerator _onScrollingAsync(int beginRow,int endRow){
 
-			for (int row = beginRow; row <= endRow && row < _rows; ++row)
-			{
-				int cellBeginIndex = cellFirstIndexFromRow(row);
-				int cellEndIndex = cellBeginIndex + cols;
+        IEnumerator _onScrollingAsync(int beginRow, int endRow) {
 
-				for (int idx = cellBeginIndex; idx < cellEndIndex && idx < cellsCount; ++idx)
-				{
-					if (_indices.ContainsKey(idx))
-					{
-						continue;
-					}
-					updateCellAtIndex(idx, row);
-					yield return new WaitForEndOfFrame();
-				}
-			}
-			isAsyncOnce = false;
-		}
+            for (int row = beginRow; row <= endRow && row < _rows; ++row) {
+                int cellBeginIndex = cellFirstIndexFromRow(row);
+                int cellEndIndex = cellBeginIndex + cols;
 
-        protected override void onDraggingScrollEnded()
-        {
-            if (cellsCount == 0)
-            {
+                for (int idx = cellBeginIndex; idx < cellEndIndex && idx < cellsCount; ++idx) {
+                    if (_indices.ContainsKey(idx)) {
+                        continue;
+                    }
+                    updateCellAtIndex(idx, row);
+                    yield return new WaitForEndOfFrame();
+                }
+            }
+            isAsyncOnce = false;
+        }
+
+        protected override void onDraggingScrollEnded() {
+            if (cellsCount == 0) {
                 return;
             }
 
-            if (autoRelocate)
-            {
+            if (autoRelocate) {
                 Vector2 offset = getContentOffset();
                 int row = cellBeginRowFromOffset(offset);
                 Vector2 pointA = cellPositionFromIndex(cellFirstIndexFromRow(row));
@@ -363,13 +321,11 @@ namespace Lui
                 float distanceA = Vector2.Distance(offset, -pointA);
                 float distanceB = Vector2.Distance(offset, -pointB);
 
-                if (distanceA < distanceB)
-                {
+                if (distanceA < distanceB) {
                     float duration = Mathf.Abs(distanceA) / LTableView.AUTO_RELOCATE_SPPED;
                     setContentOffsetInDuration(-pointA + contentPoint, duration);
                 }
-                else
-                {
+                else {
                     float duration = Mathf.Abs(distanceB) / LTableView.AUTO_RELOCATE_SPPED;
                     setContentOffsetInDuration(-pointB + contentPoint, duration);
                 }
@@ -378,24 +334,22 @@ namespace Lui
             base.onDraggingScrollEnded();
         }
 
-        protected LGridViewCell _onDataSourceAdapterHandler(LGridViewCell cell, int idx)
-        {
-            if (cell == null)
-            {
+        protected LGridViewCell _onDataSourceAdapterHandler(LGridViewCell cell, int idx) {
+            if (cell == null) {
                 cell = new LGridViewCell();
-				if (cell_tpl != null)
-					cell.node = (GameObject)Instantiate (cell_tpl);
-				else {
-					Transform tpl = transform.Find ("container/cell_tpl");
-					if (tpl) {
-						cell.node = (GameObject)Instantiate (tpl.gameObject);
-					} else {
-						Debug.LogWarning("模板为空");
-					}
-				}
+                if (cell_tpl != null)
+                    cell.node = (GameObject)Instantiate(cell_tpl);
+                else {
+                    Transform tpl = transform.Find("container/cell_tpl");
+                    if (tpl) {
+                        cell.node = (GameObject)Instantiate(tpl.gameObject);
+                    }
+                    else {
+                        Debug.LogWarning("模板为空");
+                    }
+                }
             }
-            if(onCellHandle != null)
-            {
+            if (onCellHandle != null) {
                 onCellHandle.Invoke(idx, cell.node);
             }
             return cell;

@@ -31,20 +31,18 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-namespace Lui
-{
-    public class LTableViewCell
-    {
+namespace Lui {
+    public class LTableViewCell {
         public int idx;
         protected GameObject _node;
         public GameObject node
         {
             get { return _node; }
-            set { 
+            set
+            {
                 _node = value;
                 RectTransform rtran = _node.GetComponent<RectTransform>();
-                if (rtran == null)
-                {
+                if (rtran == null) {
                     rtran = _node.AddComponent<RectTransform>();
                 }
                 rtran.pivot = Vector2.zero;
@@ -52,8 +50,7 @@ namespace Lui
                 rtran.anchorMin = Vector2.zero;
             }
         }
-        public void reset()
-        {
+        public void reset() {
             idx = LScrollView.INVALID_INDEX;
         }
     }
@@ -62,8 +59,7 @@ namespace Lui
     /// 复用列表
     /// </summary>
     [SLua.CustomLuaClass]
-    public class LTableView : LScrollView
-    {
+    public class LTableView : LScrollView {
         public int cellsCount;
         public Vector2 cellsSize;
         public bool autoRelocate;
@@ -73,14 +69,12 @@ namespace Lui
         protected List<LTableViewCell> cellsFreed;
         protected List<float> positions;
         protected Dictionary<int, int> indices;
-        protected UnityAction<int,GameObject> onCellHandle;
-        public void SetCellHandle(UnityAction<int, GameObject> act)
-        {
+        protected UnityAction<int, GameObject> onCellHandle;
+        public void SetCellHandle(UnityAction<int, GameObject> act) {
             onCellHandle = act;
         }
 
-        public LTableView()
-        {
+        public LTableView() {
             cellsCount = 0;
             cellsSize = Vector2.zero;
             direction = ScrollDirection.HORIZONTAL;
@@ -92,10 +86,8 @@ namespace Lui
             indices = new Dictionary<int, int>();
         }
 
-        public virtual void reloadData()
-        {
-            for (int i = 0; i < cellsUsed.Count;i++ )
-            {
+        public virtual void reloadData() {
+            for (int i = 0; i < cellsUsed.Count; i++) {
                 LTableViewCell cell = cellsUsed[i];
                 cellsFreed.Add(cell);
                 //cell.node.transform.SetParent(null);
@@ -104,7 +96,7 @@ namespace Lui
             }
 
             Transform tran = transform.Find("container/cell_tpl");
-            if(tran!=null){
+            if (tran != null) {
                 tran.gameObject.SetActive(false);
             }
 
@@ -117,30 +109,24 @@ namespace Lui
             relocateContainer();
         }
 
-        public void removeAllFromUsed()
-        {
-			int len = cellsUsed.Count;
-            for (int i=0;i<len;i++)
-            {
+        public void removeAllFromUsed() {
+            int len = cellsUsed.Count;
+            for (int i = 0; i < len; i++) {
                 Destroy(cellsUsed[i].node);
             }
             cellsUsed.Clear();
         }
 
-        public void removeAllFromFreed()
-        {
-			int len = cellsFreed.Count;
-            for (int i=0;i<len;i++)
-            {
+        public void removeAllFromFreed() {
+            int len = cellsFreed.Count;
+            for (int i = 0; i < len; i++) {
                 Destroy(cellsFreed[i].node);
             }
             cellsFreed.Clear();
         }
 
-        protected override void onScrolling()
-        {
-            if (cellsCount == 0)
-            {
+        protected override void onScrolling() {
+            if (cellsCount == 0) {
                 return;
             }
 
@@ -148,49 +134,41 @@ namespace Lui
             beginIdx = cellBeginIndexFromOffset(getContentOffset());
             endIdx = cellEndIndexFromOffset(getContentOffset());
 
-            while (cellsUsed.Count > 0)
-            {
+            while (cellsUsed.Count > 0) {
                 LTableViewCell cell = cellsUsed[0];
                 int idx = cell.idx;
 
-                if (idx < beginIdx)
-                {
+                if (idx < beginIdx) {
                     indices.Remove(idx);
                     cellsUsed.Remove(cell);
                     cellsFreed.Add(cell);
                     cell.reset();
-                    
+
                     cell.node.SetActive(false);
                 }
-                else
-                {
+                else {
                     break;
                 }
             }
 
-            while (cellsUsed.Count > 0)
-            {
+            while (cellsUsed.Count > 0) {
                 LTableViewCell cell = cellsUsed[cellsUsed.Count - 1];
                 int idx = cell.idx;
 
-                if (idx > endIdx && idx < cellsCount)
-                {
+                if (idx > endIdx && idx < cellsCount) {
                     indices.Remove(idx);
                     cellsUsed.RemoveAt(cellsUsed.Count - 1);
                     cellsFreed.Add(cell);
                     cell.reset();
                     cell.node.SetActive(false);
                 }
-                else
-                {
+                else {
                     break;
                 }
             }
 
-            for (int idx = beginIdx; idx <= endIdx && idx < cellsCount; ++idx)
-            {
-                if (indices.ContainsKey(idx))
-                {
+            for (int idx = beginIdx; idx <= endIdx && idx < cellsCount; ++idx) {
+                if (indices.ContainsKey(idx)) {
                     continue;
                 }
                 updateCellByAdapter(idx);
@@ -199,74 +177,60 @@ namespace Lui
             base.onScrolling();
         }
 
-        protected void updatePositions()
-        {
-            if (direction == ScrollDirection.HORIZONTAL)
-            {
+        protected void updatePositions() {
+            if (direction == ScrollDirection.HORIZONTAL) {
                 setContainerSize(new Vector2(cellsSize.x * cellsCount, cellsSize.y));
-                for (int i = 0; i < cellsCount;i++ )
-                {
+                for (int i = 0; i < cellsCount; i++) {
                     positions.Add(cellsSize.x * i);
                 }
             }
-            else
-            {
+            else {
                 float height = cellsSize.y * cellsCount;
                 setContainerSize(new Vector2(cellsSize.x, height));
                 height = Mathf.Max(height, GetComponent<RectTransform>().rect.height);
-                for (int i = cellsCount - 1; i >= 0;--i )
-                {
+                for (int i = cellsCount - 1; i >= 0; --i) {
                     positions.Add(height);
                     height -= cellsSize.y;
                 }
             }
         }
 
-        protected override void onDraggingScrollEnded()
-        {
-            if (cellsCount == 0)
-            {
+        protected override void onDraggingScrollEnded() {
+            if (cellsCount == 0) {
                 return;
             }
 
-            if (autoRelocate)
-            {
+            if (autoRelocate) {
                 Vector2 offset = getContentOffset();
                 int idx = cellBeginIndexFromOffset(offset);
                 Vector2 pointA = cellPositionFromIndex(idx);
 
-                if (direction == ScrollDirection.HORIZONTAL)
-                {
+                if (direction == ScrollDirection.HORIZONTAL) {
                     Vector2 pointB = new Vector2(pointA.x + cellsSize.x, 0);
                     float distanceA = Vector2.Distance(offset, -pointA);
                     float distanceB = Vector2.Distance(offset, -pointB);
 
-                    if (distanceA < distanceB)
-                    {
+                    if (distanceA < distanceB) {
                         float duration = Mathf.Abs(distanceA) / autoRelocateSpeed;
                         setContentOffsetInDuration(-pointA, duration);
                     }
-                    else
-                    {
+                    else {
                         float duration = Mathf.Abs(distanceB) / autoRelocateSpeed;
                         setContentOffsetInDuration(-pointB, duration);
                     }
                 }
-                else
-                {
+                else {
                     Vector2 pointB = new Vector2(0, pointA.y - cellsSize.y);
                     Vector2 contentPoint = new Vector2(0, GetComponent<RectTransform>().rect.height);
                     offset = offset - contentPoint;
                     float distanceA = Vector2.Distance(offset, -pointA);
                     float distanceB = Vector2.Distance(offset, -pointB);
 
-                    if (distanceA < distanceB)
-                    {
+                    if (distanceA < distanceB) {
                         float duration = Mathf.Abs(distanceA) / autoRelocateSpeed;
                         setContentOffsetInDuration(-pointA + contentPoint, duration);
                     }
-                    else
-                    {
+                    else {
                         float duration = Mathf.Abs(distanceB) / autoRelocateSpeed;
                         setContentOffsetInDuration(-pointB + contentPoint, duration);
                     }
@@ -276,41 +240,33 @@ namespace Lui
             base.onDraggingScrollEnded();
         }
 
-        protected LTableViewCell dequeueCell()
-        {
+        protected LTableViewCell dequeueCell() {
             LTableViewCell cell = null;
-            if (cellsFreed.Count == 0)
-            {
+            if (cellsFreed.Count == 0) {
                 return null;
             }
-            else
-            {
+            else {
                 cell = cellsFreed[cellsFreed.Count - 1];
                 cellsFreed.Remove(cell);
             }
             return cell;
         }
 
-        protected int cellBeginIndexFromOffset(Vector2 offset)
-        {
-            if (cellsCount == 0)
-            {
+        protected int cellBeginIndexFromOffset(Vector2 offset) {
+            if (cellsCount == 0) {
                 return LScrollView.INVALID_INDEX;
             }
 
-            switch (direction)
-            {
-                case ScrollDirection.HORIZONTAL:
-                    {
+            switch (direction) {
+                case ScrollDirection.HORIZONTAL: {
                         float xos = -offset.x;
                         int idx = (int)(xos / cellsSize.x);
 
                         idx = Mathf.Max(idx, 0);
-                        idx = Mathf.Min((int)cellsCount-1,idx);
+                        idx = Mathf.Min((int)cellsCount - 1, idx);
                         return (int)idx;
                     }
-                default:
-                    {
+                default: {
                         float ofy = offset.y + container.GetComponent<RectTransform>().rect.height;
                         float xos = ofy - GetComponent<RectTransform>().rect.height;
                         int idx = (int)(xos / cellsSize.y);
@@ -322,17 +278,13 @@ namespace Lui
             }
         }
 
-        protected int cellEndIndexFromOffset(Vector2 offset)
-        {
-            if (cellsCount == 0)
-            {
+        protected int cellEndIndexFromOffset(Vector2 offset) {
+            if (cellsCount == 0) {
                 return LScrollView.INVALID_INDEX;
             }
 
-            switch (direction)
-            {
-                case ScrollDirection.HORIZONTAL:
-                    {
+            switch (direction) {
+                case ScrollDirection.HORIZONTAL: {
                         float xos = -(offset.x + -GetComponent<RectTransform>().rect.width);
                         int idx = (int)(xos / cellsSize.x);
 
@@ -341,8 +293,7 @@ namespace Lui
 
                         return (int)idx;
                     }
-                default:
-                    {
+                default: {
                         float ofy = offset.y + container.GetComponent<RectTransform>().rect.height;
                         int idx = (int)(ofy / cellsSize.y);
 
@@ -354,37 +305,27 @@ namespace Lui
             }
         }
 
-		public Vector2 cellPositionFromIndex(int idx)
-        {
-            if (idx == LScrollView.INVALID_INDEX)
-            {
+        public Vector2 cellPositionFromIndex(int idx) {
+            if (idx == LScrollView.INVALID_INDEX) {
                 return Vector2.zero;
             }
-            switch (direction)
-            {
-                case ScrollDirection.HORIZONTAL:
-                    {
+            switch (direction) {
+                case ScrollDirection.HORIZONTAL: {
                         return new Vector2(positions[idx], 0);
                     }
-                default:
-                    {
+                default: {
                         return new Vector2(0, positions[idx]);
                     }
             }
         }
 
-        protected void insertSortableCell(LTableViewCell cell, int idx)
-        {
-            if (cellsUsed.Count == 0)
-            {
+        protected void insertSortableCell(LTableViewCell cell, int idx) {
+            if (cellsUsed.Count == 0) {
                 cellsUsed.Add(cell);
             }
-            else
-            {
-                for (int i = 0; i < cellsUsed.Count; i++ )
-                {
-                    if (cellsUsed[i].idx > idx)
-                    {
+            else {
+                for (int i = 0; i < cellsUsed.Count; i++) {
+                    if (cellsUsed[i].idx > idx) {
                         cellsUsed.Insert(i, cell);
                         return;
                     }
@@ -393,45 +334,39 @@ namespace Lui
             }
         }
 
-		public void scrollToIdx(int idx,float duration){
+        public void scrollToIdx(int idx, float duration) {
 
-			Vector2 cellPos = cellPositionFromIndex (idx);
-			if (direction == ScrollDirection.HORIZONTAL) {
-				cellPos = new Vector2 (cellPos.x * -1, 0); 
-			} else if (direction == ScrollDirection.VERTICAL) {
-				float totalHeight = cellsSize.y * cellsCount;
-				cellPos = new Vector2 (0,  (idx + 1) * cellsSize.y - totalHeight ); 
-			}
-			setContentOffsetInDuration(cellPos,duration);
-		}
+            Vector2 cellPos = cellPositionFromIndex(idx);
+            if (direction == ScrollDirection.HORIZONTAL) {
+                cellPos = new Vector2(cellPos.x * -1, 0);
+            }
+            else if (direction == ScrollDirection.VERTICAL) {
+                float totalHeight = cellsSize.y * cellsCount;
+                cellPos = new Vector2(0, (idx + 1) * cellsSize.y - totalHeight);
+            }
+            setContentOffsetInDuration(cellPos, duration);
+        }
 
-        public LTableViewCell cellAtIndex(int idx)
-        {
-            if (!indices.ContainsKey(idx))
-            {
+        public LTableViewCell cellAtIndex(int idx) {
+            if (!indices.ContainsKey(idx)) {
                 return null;
             }
-            for (int i = 0; i < cellsUsed.Count; i++)
-            {
-                if (cellsUsed[i].idx == idx)
-                {
+            for (int i = 0; i < cellsUsed.Count; i++) {
+                if (cellsUsed[i].idx == idx) {
                     return cellsUsed[i];
                 }
             }
             return null;
         }
 
-        protected virtual void updateCellByAdapter(int idx )
-        {
+        protected virtual void updateCellByAdapter(int idx) {
             LTableViewCell cell = _onDataSourceAdapterHandler(dequeueCell(), idx);
-            if (cell == null)
-            {
+            if (cell == null) {
                 Debug.LogError("cell can not be NULL");
             }
             cell.idx = idx;
             RectTransform rtran = cell.node.GetComponent<RectTransform>();
-            switch (direction)
-            {
+            switch (direction) {
                 case ScrollDirection.HORIZONTAL:
                     rtran.pivot = Vector2.zero;
                     break;
@@ -443,37 +378,32 @@ namespace Lui
             rtran.sizeDelta = cellsSize;
             cell.node.SetActive(true);
             cell.node.transform.SetParent(container.transform);
-            cell.node.transform.localScale = new Vector3(1,1,1);
+            cell.node.transform.localScale = new Vector3(1, 1, 1);
             cell.node.transform.localPosition = cellPositionFromIndex(idx);
 
             insertSortableCell(cell, idx);
-            if(!indices.ContainsKey(idx))
+            if (!indices.ContainsKey(idx))
                 indices.Add(idx, 1);
         }
 
-        public virtual void updateCellAtIndex(int idx)
-        {
-            foreach(LTableViewCell cell in cellsUsed)
-            {
-                if(cell.idx == idx){
+        public virtual void updateCellAtIndex(int idx) {
+            foreach (LTableViewCell cell in cellsUsed) {
+                if (cell.idx == idx) {
                     onCellHandle.Invoke(idx, cell.node);
                     break;
                 }
             }
         }
 
-        protected LTableViewCell _onDataSourceAdapterHandler(LTableViewCell cell, int idx)
-        {
-            if (cell == null)
-            {
+        protected LTableViewCell _onDataSourceAdapterHandler(LTableViewCell cell, int idx) {
+            if (cell == null) {
                 cell = new LTableViewCell();
                 if (cell_tpl != null)
                     cell.node = (GameObject)Instantiate(cell_tpl);
                 else
                     cell.node = (GameObject)Instantiate(transform.Find("container/cell_tpl").gameObject);
             }
-            if(onCellHandle != null)
-            {
+            if (onCellHandle != null) {
                 onCellHandle.Invoke(idx, cell.node);
             }
             return cell;

@@ -61,12 +61,12 @@ public partial class LobbyGamePanel : QUIBehaviour {
         //if (itemWriteData != null) {
         //    itemWriteData.OnRefresh((EnumSaveTypeKey)index + 1);
         //}
-        IListItem itemData = item.GetComponent<IListItem>();
+        //IListItem itemData = item.GetComponent<IListItem>();
 
-        if (itemData != null) {
-            itemData.Init(index);
-            itemData.OnRefresh();
-        }
+        //if (itemData != null) {
+        //    itemData.Init(index);
+        //    itemData.OnRefresh();
+        //}
 
     }
 
