@@ -35,6 +35,8 @@ public partial class LobbyGameLobbyPanel : QUIBehaviour {
         //    itemData.Init(index);
         //    itemData.OnRefresh();
         //}
+        Item item = go.GetComponent<Item>();
+        GameMgr.Instance.AddDic(index.ToString(), item);
     }
 
     private void OnBtnOpenGameEnd(GameObject go) {

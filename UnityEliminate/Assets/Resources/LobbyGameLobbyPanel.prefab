@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 224030824921922862}
   - component: {fileID: 222670538491618254}
-  - component: {fileID: 114363520307232990}
   - component: {fileID: 114452360664185632}
+  - component: {fileID: 114937248656121078}
   m_Layer: 5
   m_Name: ImgBg
   m_TagString: Untagged
@@ -145,7 +145,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224769998110084316}
-  - component: {fileID: 114108996368704434}
+  - component: {fileID: 222590472912508372}
+  - component: {fileID: 114460592480577270}
   m_Layer: 5
   m_Name: container
   m_TagString: Untagged
@@ -153,19 +154,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114108996368704434
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1964302516228108}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3a74718e0c484b4eacaf318f748396c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: {x: 30, y: 30}
-  itemSize: 80
 --- !u!114 &114171007101756008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -234,33 +222,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114363520307232990
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1229713035954436}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
 --- !u!114 &114405211985484570
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -325,6 +286,19 @@ MonoBehaviour:
   autoRelocate: 1
   isAsyncOnce: 1
   cell_tpl: {fileID: 1512753569397944, guid: 26025bd9ce9302c4a97edd1a2c1f97ad, type: 2}
+--- !u!114 &114460592480577270
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1964302516228108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e07c5f99ee8e99641b70b9d5280dd8dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartCode: {fileID: 0}
+  EndCode: {fileID: 0}
 --- !u!114 &114514617521414416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -514,6 +488,33 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114937248656121078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1229713035954436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.003921569}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!114 &114941094353697860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -539,6 +540,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1846185404830638}
+--- !u!222 &222590472912508372
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1964302516228108}
 --- !u!222 &222621374706441578
 CanvasRenderer:
   m_ObjectHideFlags: 1

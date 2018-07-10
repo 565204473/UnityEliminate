@@ -65,6 +65,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: fa6affabcf9d74845b221b4094137408, type: 3}
   - {fileID: 21300000, guid: 6ca6f247fea912e4ea2455bd8025a416, type: 3}
   - {fileID: 21300000, guid: 68b87cbb28b11aa43b60deb54a9e731d, type: 3}
+  StartCode: {fileID: 0}
+  EndCode: {fileID: 0}
+  posIndex: 0
 --- !u!114 &114124161022227546
 MonoBehaviour:
   m_ObjectHideFlags: 1
