@@ -455,51 +455,51 @@ public class ReadData : IDisposable {
                             case EnumSaveTypeKey.SaveInt:
                                 return int.Parse(str.ToString());
                             case EnumSaveTypeKey.SaveLong:
-                                return long.Parse(data.SaveValue.ToString());
+                                return long.Parse(str.ToString());
                             case EnumSaveTypeKey.SaveFolat:
-                                return float.Parse(data.SaveValue.ToString());
+                                return float.Parse(str.ToString());
                             case EnumSaveTypeKey.SaveString:
-                                return data.SaveValue.ToString();
+                                return str.ToString();
                             case EnumSaveTypeKey.SaveDouble:
-                                return double.Parse(data.SaveValue.ToString());
+                                return double.Parse(str.ToString());
                             case EnumSaveTypeKey.SaveBool:
-                                return bool.Parse(data.SaveValue.ToString());
+                                return bool.Parse(str.ToString());
                             case EnumSaveTypeKey.Savebyte:
-                                return byte.Parse(data.SaveValue.ToString());
+                                return byte.Parse(str.ToString());
                             case EnumSaveTypeKey.SaveShort:
-                                return short.Parse(data.SaveValue.ToString());
+                                return short.Parse(str.ToString());
                             case EnumSaveTypeKey.SaveUint:
-                                return uint.Parse(data.SaveValue.ToString());
+                                return uint.Parse(str.ToString());
                             case EnumSaveTypeKey.SaveUlong:
-                                return ulong.Parse(data.SaveValue.ToString());
+                                return ulong.Parse(str.ToString());
                             case EnumSaveTypeKey.SaveUshort:
-                                return ushort.Parse(data.SaveValue.ToString());
+                                return ushort.Parse(str.ToString());
                             case EnumSaveTypeKey.SaveChar:
-                                return char.Parse(data.SaveValue.ToString());
+                                return char.Parse(str.ToString());
                             case EnumSaveTypeKey.SaveVector2:
-                                return StringExtention.GetValue<Vector2>(data.SaveValue.ConverToString());
+                                return StringExtention.GetValue<Vector2>(str.ConverToString());
                             case EnumSaveTypeKey.SaveVector3:
-                                return StringExtention.GetValue<Vector3>(data.SaveValue.ConverToString());
+                                return StringExtention.GetValue<Vector3>(str.ConverToString());
                             case EnumSaveTypeKey.SaveVector4:
-                                return StringExtention.GetValue<Vector4>(data.SaveValue.ConverToString());
+                                return StringExtention.GetValue<Vector4>(str.ConverToString());
                             case EnumSaveTypeKey.SaveQuaternion:
-                                return StringExtention.GetValue<Quaternion>(data.SaveValue.ConverToString());
+                                return StringExtention.GetValue<Quaternion>(str.ConverToString());
                             case EnumSaveTypeKey.SaveColor:
-                                return StringExtention.GetValue<Color>(data.SaveValue.ConverToString());
+                                return StringExtention.GetValue<Color>(str.ConverToString());
                             case EnumSaveTypeKey.SaveEnum:
-                                return StringExtention.GetValue(data.SaveValue.ConverToString(), (Type)saveSetting.curObject);
+                                return StringExtention.GetValue(str.ConverToString(), (Type)saveSetting.curObject);
                             case EnumSaveTypeKey.SaveList:
                                 return StringExtention.GetValue(str.ConverToString(), (Type)saveSetting.curObject);
                             case EnumSaveTypeKey.SaveDictionary:
                                 return StringExtention.GetValue(str.ConverToString(), (Type)saveSetting.curObject);
                             case EnumSaveTypeKey.SaveDateTime:
-                                return DateTime.Parse(data.SaveValue.ToString());
+                                return DateTime.Parse(str.ToString());
                             case EnumSaveTypeKey.SaveArray:
-                                return StringExtention.GetValue(data.SaveValue.ConverToString(), (Type)saveSetting.curObject);
+                                return StringExtention.GetValue(str.ConverToString(), (Type)saveSetting.curObject);
                             case EnumSaveTypeKey.SaveHashtable:
-                                return StringExtention.GetValue(data.SaveValue.ConverToString(), (Type)saveSetting.curObject);
+                                return StringExtention.GetValue(str.ConverToString(), (Type)saveSetting.curObject);
                             case EnumSaveTypeKey.SaveArrayList:
-                                return StringExtention.GetValue(data.SaveValue.ConverToString(), (Type)saveSetting.curObject);
+                                return StringExtention.GetValue(str.ConverToString(), (Type)saveSetting.curObject);
                         }
                         return null;
                     }
@@ -527,147 +527,147 @@ public class ReadData : IDisposable {
                 if (!string.IsNullOrEmpty(saveSetting.path)) {
                     switch (keyType) {
                         case EnumSaveTypeKey.SaveInt:
-                            var dataInt = SerializeHelper.DeserializeXML<int>(saveSetting.path);
+                            var dataInt = SerializeHelper.DeserializeXML<byte[]>(saveSetting.path);
                             if (dataInt == null) {
                                 return null;
                             }
-                            return (int)dataInt;
+                            return int.Parse(dataInt.ToString());
                         case EnumSaveTypeKey.SaveLong:
-                            var dataLong = SerializeHelper.DeserializeXML<long>(saveSetting.path);
+                            var dataLong = SerializeHelper.DeserializeXML<byte[]>(saveSetting.path);
                             if (dataLong == null) {
                                 return null;
                             }
-                            return (long)dataLong;
+                            return long.Parse(dataLong.ToString());
                         case EnumSaveTypeKey.SaveFolat:
-                            var dataFolat = SerializeHelper.DeserializeXML<float>(saveSetting.path);
+                            var dataFolat = SerializeHelper.DeserializeXML<byte[]>(saveSetting.path);
                             if (dataFolat == null) {
                                 return null;
                             }
-                            return (float)dataFolat;
+                            return float.Parse(dataFolat.ToString());
                         case EnumSaveTypeKey.SaveString:
-                            var dataString = SerializeHelper.DeserializeXML<string>(saveSetting.path);
+                            var dataString = SerializeHelper.DeserializeXML<byte[]>(saveSetting.path);
                             if (dataString == null) {
                                 return null;
                             }
-                            return (string)dataString;
+                            return dataString.ToString();
                         case EnumSaveTypeKey.SaveDouble:
-                            var dataDouble = SerializeHelper.DeserializeXML<double>(saveSetting.path);
+                            var dataDouble = SerializeHelper.DeserializeXML<byte[]>(saveSetting.path);
                             if (dataDouble == null) {
                                 return null;
                             }
-                            return (double)dataDouble;
+                            return double.Parse(dataDouble.ToString());
                         case EnumSaveTypeKey.SaveBool:
-                            var dataBool = SerializeHelper.DeserializeXML<bool>(saveSetting.path);
+                            var dataBool = SerializeHelper.DeserializeXML<byte[]>(saveSetting.path);
                             if (dataBool == null) {
                                 return null;
                             }
-                            return (bool)dataBool;
+                            return bool.Parse(dataBool.ToString());
                         case EnumSaveTypeKey.Savebyte:
-                            var dataByte = SerializeHelper.DeserializeXML<byte>(saveSetting.path);
+                            var dataByte = SerializeHelper.DeserializeXML<byte[]>(saveSetting.path);
                             if (dataByte == null) {
                                 return null;
                             }
                             return byte.Parse(dataByte.ToString());
                         case EnumSaveTypeKey.SaveShort:
-                            var dataShort = SerializeHelper.DeserializeXML<short>(saveSetting.path);
+                            var dataShort = SerializeHelper.DeserializeXML<byte[]>(saveSetting.path);
                             if (dataShort == null) {
                                 return null;
                             }
-                            return (short)dataShort;
+                            return short.Parse(dataShort.ToString());
                         case EnumSaveTypeKey.SaveUint:
-                            var dataUint = SerializeHelper.DeserializeXML<uint>(saveSetting.path);
+                            var dataUint = SerializeHelper.DeserializeXML<byte[]>(saveSetting.path);
                             if (dataUint == null) {
                                 return null;
                             }
-                            return (uint)dataUint;
+                            return uint.Parse(dataUint.ToString());
                         case EnumSaveTypeKey.SaveUlong:
-                            var dataUlong = SerializeHelper.DeserializeXML<ulong>(saveSetting.path);
+                            var dataUlong = SerializeHelper.DeserializeXML<byte[]>(saveSetting.path);
                             if (dataUlong == null) {
                                 return dataUlong;
                             }
-                            return (ulong)dataUlong;
+                            return ulong.Parse(dataUlong.ToString());
                         case EnumSaveTypeKey.SaveUshort:
-                            var dataUshort = SerializeHelper.DeserializeXML<ushort>(saveSetting.path);
+                            var dataUshort = SerializeHelper.DeserializeXML<byte[]>(saveSetting.path);
                             if (dataUshort == null) {
                                 return dataUshort;
                             }
-                            return (ushort)dataUshort;
+                            return ushort.Parse(dataUshort.ToString());
                         case EnumSaveTypeKey.SaveChar:
-                            var dataChar = SerializeHelper.DeserializeXML<char>(saveSetting.path);
+                            var dataChar = SerializeHelper.DeserializeXML<byte[]>(saveSetting.path);
                             if (dataChar == null) {
                                 return dataChar;
                             }
-                            return (char)dataChar;
+                            return char.Parse(dataChar.ToString());
 
                         case EnumSaveTypeKey.SaveVector2:
-                            var dataVector2 = SerializeHelper.DeserializeXML<string>(saveSetting.path);
+                            var dataVector2 = SerializeHelper.DeserializeXML<byte[]>(saveSetting.path);
                             if (dataVector2 == null) {
                                 return null;
                             }
                             return StringExtention.GetValue<Vector2>(dataVector2.ConverToString());
                         case EnumSaveTypeKey.SaveVector3:
-                            var dataVector3 = SerializeHelper.DeserializeXML<string>(saveSetting.path);
+                            var dataVector3 = SerializeHelper.DeserializeXML<byte[]>(saveSetting.path);
                             if (dataVector3 == null) {
                                 return null;
                             }
                             return StringExtention.GetValue<Vector3>(dataVector3.ConverToString());
                         case EnumSaveTypeKey.SaveVector4:
-                            var dataVector4 = SerializeHelper.DeserializeXML<string>(saveSetting.path);
+                            var dataVector4 = SerializeHelper.DeserializeXML<byte[]>(saveSetting.path);
                             if (dataVector4 == null) {
                                 return null;
                             }
                             return StringExtention.GetValue<Vector4>(dataVector4.ConverToString());
                         case EnumSaveTypeKey.SaveQuaternion:
-                            var dataQuaternion = SerializeHelper.DeserializeXML<string>(saveSetting.path);
+                            var dataQuaternion = SerializeHelper.DeserializeXML<byte[]>(saveSetting.path);
                             if (dataQuaternion == null) {
                                 return null;
                             }
                             return StringExtention.GetValue<Quaternion>(dataQuaternion.ConverToString());
                         case EnumSaveTypeKey.SaveColor:
-                            var dataColor = SerializeHelper.DeserializeXML<string>(saveSetting.path);
+                            var dataColor = SerializeHelper.DeserializeXML<byte[]>(saveSetting.path);
                             if (dataColor == null) {
                                 return null;
                             }
                             return StringExtention.GetValue<Color>(dataColor.ConverToString());
                         case EnumSaveTypeKey.SaveEnum:
-                            var dataEnum = SerializeHelper.DeserializeXML<string>(saveSetting.path);
+                            var dataEnum = SerializeHelper.DeserializeXML<byte[]>(saveSetting.path);
                             if (dataEnum == null) {
                                 return null;
                             }
                             return StringExtention.GetValue(dataEnum.ConverToString(), (Type)saveSetting.curObject);
                         case EnumSaveTypeKey.SaveList:
 
-                            var dataList = SerializeHelper.DeserializeXML<string>(saveSetting.path);
+                            var dataList = SerializeHelper.DeserializeXML<byte[]>(saveSetting.path);
                             if (dataList == null) {
                                 return null;
                             }
-                            return StringExtention.GetValue<List<object>>(dataList.ConverToString());
+                            return StringExtention.GetValue(dataList.ConverToString(), (Type)saveSetting.curObject);
                         case EnumSaveTypeKey.SaveDictionary:
-                            var dataDictionary = SerializeHelper.DeserializeXML<string>(saveSetting.path);
+                            var dataDictionary = SerializeHelper.DeserializeXML<byte[]>(saveSetting.path);
                             if (dataDictionary == null) {
                                 return null;
                             }
-                            return StringExtention.GetValue<Dictionary<object, object>>(dataDictionary.ConverToString());
+                            return StringExtention.GetValue(dataDictionary.ConverToString(), (Type)saveSetting.curObject);
                         case EnumSaveTypeKey.SaveDateTime:
-                            var dataDateTime = SerializeHelper.DeserializeXML<DateTime>(saveSetting.path);
+                            var dataDateTime = SerializeHelper.DeserializeXML<byte[]>(saveSetting.path);
                             if (dataDateTime == null) {
                                 return null;
                             }
-                            return (DateTime)dataDateTime;
+                            return DateTime.Parse(dataDateTime.ToString());
                         case EnumSaveTypeKey.SaveArray:
-                            var dataArray = SerializeHelper.DeserializeXML<Array>(saveSetting.path);
+                            var dataArray = SerializeHelper.DeserializeXML<byte[]>(saveSetting.path);
                             if (dataArray == null) {
                                 return null;
                             }
                             return StringExtention.GetValue(dataArray.ConverToString(), (Type)saveSetting.curObject);
                         case EnumSaveTypeKey.SaveHashtable:
-                            var dataHashtable = SerializeHelper.DeserializeXML<Hashtable>(saveSetting.path);
+                            var dataHashtable = SerializeHelper.DeserializeXML<byte[]>(saveSetting.path);
                             if (dataHashtable == null) {
                                 return null;
                             }
                             return StringExtention.GetValue(dataHashtable.ConverToString(), (Type)saveSetting.curObject);
                         case EnumSaveTypeKey.SaveArrayList:
-                            var dataArrayList = SerializeHelper.DeserializeXML<ArrayList>(saveSetting.path);
+                            var dataArrayList = SerializeHelper.DeserializeXML<byte[]>(saveSetting.path);
                             if (dataArrayList == null) {
                                 return null;
                             }

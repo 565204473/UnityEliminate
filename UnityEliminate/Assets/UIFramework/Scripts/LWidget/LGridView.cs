@@ -106,7 +106,6 @@ namespace Lui {
             //新抽象出来的Item接口
             IListItem item = rtran.GetComponent<IListItem>();
             if (item != null) {
-                Debug.LogError("我是Index" + idx);
                 item.Init(idx);
                 item.OnRefresh();
             }
